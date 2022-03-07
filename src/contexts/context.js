@@ -1,3 +1,3 @@
 import {createContext} from 'react'
 
-export const ContextGlobal = createContext('')
+export const ContextGlobal = createContext()

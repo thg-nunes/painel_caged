@@ -1,4 +1,3 @@
-import React from 'react'
 import { useReducer } from 'react'
 import { ContextGlobal } from './context'
 import { estadoGlobal } from './data'

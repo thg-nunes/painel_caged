@@ -19,8 +19,6 @@ export const Filtros = ({ filtros }) => {
 
   const context = useContext(ContextGlobal)
 
-  console.log(filtros_superior)
-
   return (
     <Styled.ContainerFiltros>
       <p className="texto-filtros">Filtros:</p>
