@@ -7,8 +7,6 @@ type Quantidade = {
 
 export const SaldoEmpregos = ({ saldo_geral, saldo_emppregos }: Quantidade) => {
 
-  console.log(saldo_geral, saldo_emppregos)
-
   return (
     <Styled.ContainerSaldoEmpregos>
       <Styled.QuantidadeSaldoEmpregos>
