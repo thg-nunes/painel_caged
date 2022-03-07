@@ -161,3 +161,166 @@ export const getDadosGraficos = async (column_db: string[], context: Context) =>
 
   return all_data
 }
+
+// ------------------------------
+export const getDadosFiltrosUF = async () => {
+
+  return await axios({
+    method: 'POST',
+    url: 'http://179.127.13.245:3000/query/sql',
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      sql: `select distinct uf from caged order by uf limit 800000`
+    },
+  })
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => err)
+}
+
+export const getDadosFiltrosMunicipio = async () => {
+
+  return await axios({
+    method: 'POST',
+    url: 'http://179.127.13.245:3000/query/sql',
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      sql: `select distinct municipio from caged order by municipio limit 800000`
+    },
+  })
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => err)
+}
+
+export const getDadosFiltrosPorte = async () => {
+
+  return await axios({
+    method: 'POST',
+    url: 'http://179.127.13.245:3000/query/sql',
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      sql: `select distinct porte from caged order by porte limit 800000`
+    },
+  })
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => err)
+}
+
+export const getDadosFiltrosOcupacao = async () => {
+
+  return await axios({
+    method: 'POST',
+    url: 'http://179.127.13.245:3000/query/sql',
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      sql: `select distinct cbo2002ocupacao from caged order by cbo2002ocupacao limit 800000`
+    },
+  })
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => err)
+}
+
+export const getDadosFiltrosSetor = async () => {
+
+  return await axios({
+    method: 'POST',
+    url: 'http://179.127.13.245:3000/query/sql',
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      sql: `select distinct setor from caged order by setor limit 800000`
+    },
+  })
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => err)
+}
+
+export const getDadosFiltrosRacaCor = async () => {
+
+  return await axios({
+    method: 'POST',
+    url: 'http://179.127.13.245:3000/query/sql',
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      sql: `select distinct racacor from caged order by racacor limit 800000`
+    },
+  })
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => err)
+}
+
+export const getDadosFiltrosGaudeInstrucao = async () => {
+
+  return await axios({
+    method: 'POST',
+    url: 'http://179.127.13.245:3000/query/sql',
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      sql: `select distinct graudeinstrucao from caged order by graudeinstrucao limit 800000`
+    },
+  })
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => err)
+}
+
+export const getDadosFiltrosSexo = async () => {
+
+  return await axios({
+    method: 'POST',
+    url: 'http://179.127.13.245:3000/query/sql',
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      sql: `select distinct sexo from caged order by sexo limit 800000`
+    },
+  })
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => err)
+}
+
+export const getDadosFiltrosSubclasse = async () => {
+
+  return await axios({
+    method: 'POST',
+    url: 'http://179.127.13.245:3000/query/sql',
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      sql: `select distinct subclasse from caged order by subclasse limit 800000`
+    },
+  })
+    .then((res) => {
+      return res.data
+    })
+    .catch((err) => err)
+}

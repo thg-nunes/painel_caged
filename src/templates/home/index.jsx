@@ -55,9 +55,9 @@ export const Home = () => {
       saldo_emppregos={dados_graficos[11].valor[0].toLocaleString()} />
     }
 
-    <Styled.ContainerGraficos>
-        {dados_graficoMensal.length !== 0 && <GraficoMensal dados_grafico_mensal={dados_graficoMensal} /> }
-        {dados_graficos.length !== 0 && <Styled.ContainerGraficosClassificacao>
+    {dados_graficos.length && <Styled.ContainerGraficos>
+        <GraficoMensal dados_grafico_mensal={dados_graficoMensal} />
+        <Styled.ContainerGraficosClassificacao>
             <Styled.ContainerGraficosTipo>
               <LayoutPadraoGraficos
                 className='grafico-tipo'
@@ -90,16 +90,14 @@ export const Home = () => {
                 tipoGrafico={dados_graficos[7].grafico}
               />
             </Styled.ContainerGraficosHorizontal>
-          </Styled.ContainerGraficosClassificacao>
-  	    }
+        </Styled.ContainerGraficosClassificacao>
 
-        {dados_graficos.length !== 0 && <Styled.ContainerTabelas>
+        <Styled.ContainerTabelas>
             <Tabela Titulo='Ocupação' dados={dados_graficos[4].valor} />
             <Tabela Titulo='Município' dados={dados_graficos[2].valor} />
             <Tabela Titulo='Subclasse' dados={dados_graficos[9].valor} />
           </Styled.ContainerTabelas>
-        }
-        </Styled.ContainerGraficos>
-
+      </Styled.ContainerGraficos>
+    }
   </>
 }
