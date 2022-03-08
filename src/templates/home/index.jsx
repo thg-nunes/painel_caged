@@ -13,20 +13,12 @@ import * as Styled from './styled'
 export const Home = () => {
 
   const context = useContext(ContextGlobal)
-  const [filtros, setFiltros] = useState([])
   const [dados_graficos, setDadosGraficos] = useState([])
   const [dados_graficoMensal, setDadosGraficoMensal] = useState([])
   
   useEffect(() => {
     
-    const querys_filtros = ['uf', 'municipio', 'porte', 'cbo2002ocupacao', 'setor', 'racacor', 'graudeinstrucao', 'sexo', 'subclasse']
-    
     const columns_dataBase = ['mes', 'uf', 'municipio', 'porte', 'cbo2002ocupacao', 'setor', 'racacor', 'graudeinstrucao', 'sexo', 'subclasse', 'as_saldo', 'as_mpe']
-
-    const getAllFiltros = async () => {
-      const response_getFIltros = await getFiltros(querys_filtros)
-      setFiltros(response_getFIltros)
-    } 
 
     const dadosGraficos = async () => {
       const response_dadosGraficos = await getDadosGraficos(columns_dataBase, context)
@@ -38,7 +30,6 @@ export const Home = () => {
       setDadosGraficoMensal(response_graficoMensal)
     }
 
-    getAllFiltros()
     dadosGraficos()
     dados_GraficoMensal()
   }, [context])
@@ -48,7 +39,7 @@ export const Home = () => {
       <DataHeader />
     </Header>
 
-    {filtros.length !== 0 && <Filtros filtros={filtros} />}
+    {dados_graficos .length !== 0 && <Filtros />}
 
     {dados_graficos.length !== 0 && <SaldoEmpregos
       saldo_geral={dados_graficos[10].valor[0].toLocaleString()}
