@@ -1,11 +1,5 @@
 import axios from 'axios'
 
-
-type Filtros = {
-  value: string
-  label: string
-}
-
 type Context = {
   dispatch: () => unknown
   state: {
@@ -45,45 +39,6 @@ export const get_dados_grafico_mensal = async (context) => {
     return res.data
   })
     .catch((err) => err)
-}
-
-export const getDadosFiltros = async (element: string) => {
-
-  return await axios({
-    method: 'POST',
-    url: 'http://179.127.13.245:3000/query/sql',
-    headers: {
-      'Target-URL': 'http://pinot-broker:8099',
-    },
-    data: {
-      sql: `select distinct ${element} from caged order by ${element} limit 800000`
-    },
-  })
-    .then((res) => {
-      return res.data
-    })
-    .catch((err) => err)
-}
-
-export const getFiltros = async (filtros: string[]) => {
-
-  let all_data: any[] = []
-
-  for (let i = 0; i < filtros.length; i++) {
-    const response = await getDadosFiltros(filtros[i])
-    const { rows } = response.resultTable
-    let lista_filtros: Filtros[] = []
-
-    rows.forEach((filtro) => {
-      lista_filtros.push({
-        value: filtros[i],
-        label: filtro[0]
-      })
-    })
-    all_data.push(lista_filtros)
-  }
-
-  return all_data
 }
 
 const response_dadosGraficos = async (query: string) => {
@@ -161,8 +116,6 @@ export const getDadosGraficos = async (column_db: string[], context: Context) =>
 
   return all_data
 }
-
-// ------------------------------
 export const getDadosFiltrosUF = async () => {
 
   return await axios({
@@ -181,8 +134,10 @@ export const getDadosFiltrosUF = async () => {
     .catch((err) => err)
 }
 
-export const getDadosFiltrosMunicipio = async () => {
+export const getDadosFiltrosMunicipio = async (uf:string) => {
 
+  uf == '' ? uf = 'Maranhão' : uf = uf
+  
   return await axios({
     method: 'POST',
     url: 'http://179.127.13.245:3000/query/sql',
@@ -190,7 +145,7 @@ export const getDadosFiltrosMunicipio = async () => {
       'Target-URL': 'http://pinot-broker:8099',
     },
     data: {
-      sql: `select distinct municipio from caged order by municipio limit 800000`
+      sql: `select distinct municipio from caged where uf = '${uf}' order by municipio limit 800000`
     },
   })
     .then((res) => {
