@@ -2,22 +2,135 @@ import { Multiselect } from 'multiselect-react-dropdown'
 
 import * as Styled from './styled'
 import * as actions from '../../contexts/actions'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ContextGlobal } from '../../contexts/context'
+import {
+  getDadosFiltrosUF, getDadosFiltrosMunicipio, getDadosFiltrosPorte, getDadosFiltrosOcupacao,
+  getDadosFiltrosSetor, getDadosFiltrosRacaCor, getDadosFiltrosGaudeInstrucao, getDadosFiltrosSexo, getDadosFiltrosSubclasse
+} from "../../services/pinot"
 
-export const Filtros = ({ filtros }) => {
-
-  let filtros_superior = []
-  let filtros_inferior = []
-
-  for (let i = 0; i < filtros.length; i++) {
-    if(i < 4) {
-      filtros_superior.push(filtros[i])
-    }
-    else if (i >= 4) filtros_inferior.push(filtros[i])
-  }
+export const Filtros = () => {
 
   const context = useContext(ContextGlobal)
+  const [filtrosAnual, setFiltrosAnual] = useState([])
+  const [filtrosMensal, setFiltrosMensal] = useState([])
+  const [filtrosUf, setFiltrosUf] = useState([])
+  const [filtrosMunicipio, setFiltrosMunicipio] = useState([])
+  const [filtrosPorte, setFiltrosPorte] = useState([])
+  const [filtrosOcupacao, setFiltrosOcupacao] = useState([])
+  const [filtrosSetor, setFiltrosSetor] = useState([])
+  const [filtrosRacaCor, setFiltrosRacaCor] = useState([])
+  const [filtrosGrauInstrucao, setFiltrosGrauInstrucao] = useState([])
+  const [filtrosPorSexo, setFiltrosPorSexo] = useState([])
+  const [filtrosSubclasse, setFiltrosSubclasse] = useState([])
+
+  const constroi_filtros = (arr_filtros, filtro) => { 
+    let filtros_modificados = []
+
+    for (let index = 0; index < arr_filtros.length; index++) {
+      filtros_modificados.push({
+        value: filtro,
+        label: arr_filtros[index][0]
+      })
+    }
+    return filtros_modificados
+  }
+
+  useEffect(() => {
+
+    const getFiltrosUf = async () => {
+      const response_getFIltrosUf = await getDadosFiltrosUF()
+      const filtros_validos = constroi_filtros(response_getFIltrosUf.resultTable.rows, 'uf')
+      setFiltrosUf(filtros_validos)
+    } 
+    
+    const getFiltrosMunicipio = async () => {
+      const response_getFIltrosMunicipio = await getDadosFiltrosMunicipio(context.state.uf)
+      const filtros_validos = constroi_filtros(response_getFIltrosMunicipio.resultTable.rows, 'municipio')
+      setFiltrosMunicipio(filtros_validos)
+    }
+
+    const getFiltrosPorte = async () => {
+      const response_getFIltrosPorte = await getDadosFiltrosPorte()
+      const filtros_validos = constroi_filtros(response_getFIltrosPorte.resultTable.rows, 'porte')
+      setFiltrosPorte(filtros_validos)
+    }
+
+    const getFiltrosOcupacao = async () => {
+      const response_getFIltrosOcupacao = await getDadosFiltrosOcupacao()
+      const filtros_validos = constroi_filtros(response_getFIltrosOcupacao.resultTable.rows, 'cbo2002ocupacao')
+      setFiltrosOcupacao(filtros_validos)
+    }
+
+    const getFiltrosSetor = async () => {
+      const response_getFIltrosSetor = await getDadosFiltrosSetor()
+      const filtros_validos = constroi_filtros(response_getFIltrosSetor.resultTable.rows, 'setor')
+      setFiltrosSetor(filtros_validos)
+    }
+
+    const getFiltrosRacacor = async () => {
+      const response_getFIltrosRacacor = await getDadosFiltrosRacaCor()
+      const filtros_validos = constroi_filtros(response_getFIltrosRacacor.resultTable.rows, 'racacor')
+      setFiltrosRacaCor(filtros_validos)
+    }
+
+    const getFiltrosGrauInstrucao = async () => {
+      const response_getFIltrosGrauInstrucao = await getDadosFiltrosGaudeInstrucao()
+      const filtros_validos = constroi_filtros(response_getFIltrosGrauInstrucao.resultTable.rows, 'graudeinstrucao')
+      setFiltrosGrauInstrucao(filtros_validos)
+    }
+
+    const getFiltrosPorSexo = async () => {
+      const response_getFIltrosPorSexo = await getDadosFiltrosSexo()
+      const filtros_validos = constroi_filtros(response_getFIltrosPorSexo.resultTable.rows, 'sexo')
+      setFiltrosPorSexo(filtros_validos)
+    }
+
+    const getFiltrosSubclasse = async () => {
+      const response_getFIltrosSubclasse = await getDadosFiltrosSubclasse()
+      const filtros_validos = constroi_filtros(response_getFIltrosSubclasse.resultTable.rows, 'subclasse')
+      setFiltrosSubclasse(filtros_validos)
+    }
+
+    const filtros_meses = () => {
+      let meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+      let filtromensal = []
+    
+      for (let i = 0; i < meses.length; i++) {
+        filtromensal.push({
+          value:'data',
+          label: meses[i]
+        })
+      }
+
+      setFiltrosMensal(filtromensal)
+    }
+
+    const filtros_ano = () => {
+      let ano_disponiveis = []
+
+      for (let i = 2020; i <= context.state.ano; i++) {
+        ano_disponiveis.push({
+          value: 'ano',
+          label: i
+        })
+      }
+
+      setFiltrosAnual(ano_disponiveis)
+    }
+
+    getFiltrosUf()
+    getFiltrosMunicipio()
+    getFiltrosPorte()
+    getFiltrosOcupacao()
+    getFiltrosSetor()
+    getFiltrosRacacor()
+    getFiltrosGrauInstrucao()
+    getFiltrosPorSexo()
+    getFiltrosSubclasse() 
+    filtros_meses()
+    filtros_ano()
+  }, [context])
 
   return (
     <Styled.ContainerFiltros>
@@ -27,29 +140,29 @@ export const Filtros = ({ filtros }) => {
           <p>Ano:</p>
           <Multiselect
             className="multiselect"
-            displayValue="key"
+            displayValue="label"
             // onKeyPressFn={function noRefCheck() {}}
             // onRemove={function noRefCheck() {}}
             // onSearch={function noRefCheck() {}}
             // onSelect={function noRefCheck() {}}
-            // options={dadosFiltros.Meses}
+            options={filtrosAnual}
           />
         </section>
         <section>
           <p>Mês:</p>
           <Multiselect
             className="multiselect"
-            displayValue="key"
+            displayValue="label"
             // onKeyPressFn={function noRefCheck() {}}
             // onRemove={function noRefCheck() {}}
             // onSearch={function noRefCheck() {}}
             // onSelect={function noRefCheck() {}}
-            // options={dadosFiltros.Meses}
+            options={filtrosMensal}
           />
         </section>
  
         <section>
-          <p>{filtros_superior[0][0].value}</p>
+          <p>UF</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
@@ -57,12 +170,12 @@ export const Filtros = ({ filtros }) => {
             // onRemove={function noRefCheck() {}}
             // onSearch={function noRefCheck() {}}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})}
-            options={filtros_superior[0]}
+            options={filtrosUf}
           />
         </section>
 
         <section>
-          <p>{filtros_superior[1][0].value}</p>
+          <p>Município</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
@@ -70,86 +183,85 @@ export const Filtros = ({ filtros }) => {
             // onRemove={function noRefCheck() {}}
             // onSearch={function noRefCheck() {}}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
-            options={filtros_superior[1]}
+            options={filtrosMunicipio}
           />
         </section>
 
        <section>
-          <p>{filtros_superior[2][0].value}</p>
+          <p>Porte</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
             // onKeyPressFn={function noRefCheck() {}}
             // onRemove={function noRefCheck() {}}
             // onSearch={function noRefCheck() {}}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: {filtros_selecionados: e, filtro:filtros_superior[2].value}})}
-            options={filtros_superior[2]}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: {filtros_selecionados: e}})}
+            options={filtrosPorte}
           />
         </section>
 
        <section>
-          <p>ocupação</p>
+          <p>Ocupação</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
             // onKeyPressFn={function noRefCheck() {}}
             // onRemove={function noRefCheck() {}}
             // onSearch={function noRefCheck() {}}
-            onSelect={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: {filtros_selecionados: e, filtro:filtros_superior[3].value}})}
-            options={filtros_superior[3]}
+            onSelect={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: {filtros_selecionados: e,}})}
+            options={filtrosOcupacao}
           />
         </section>
       </Styled.ContainerMultiSelect>
  
       <Styled.ContainerMultiSelect>
         <section>
-          <p>{filtros_inferior[0][0].value}</p>
+          <p>Setor</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: {filtros_selecionados: e}})}
-            options={filtros_inferior[0]}
-
+            options={filtrosSetor}
           />
         </section>
 
         <section>
-          <p>raça/cor</p>
+          <p>Raça/Cor</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
             onSelect={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: {filtros_selecionados: e}})}
-            options={filtros_inferior[1]}
+            options={filtrosRacaCor}
           />
         </section>
 
         <section>
-          <p>grau de instrução</p>
+          <p>Grau de Instrução</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
             onSelect={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: {filtros_selecionados: e}})}
-            options={filtros_inferior[2]}
+            options={filtrosGrauInstrucao}
           />
         </section>
 
         <section>
-          <p>{filtros_inferior[3][0].value}</p>
+          <p>Sexo</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: {filtros_selecionados: e}})}
-            options={filtros_inferior[3]}
+            options={filtrosPorSexo}
           />
         </section>
 
         <section>
-          <p>{filtros_inferior[4][0].value}</p>
+          <p>Subclasse</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: {filtros_selecionados: e}})}
-            options={filtros_inferior[4]}
+            options={filtrosSubclasse}
           />
         </section>
 
