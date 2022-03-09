@@ -2,12 +2,16 @@ import { useContext, useEffect, useState } from "react"
 import { DataHeader } from "../../components/dataHeader"
 import { Filtros } from "../../components/Filtros"
 import { GraficoMensal } from "../../components/graficos/mensal"
-import { LayoutPadraoGraficos } from "../../components/graficos/padrao"
+import { LayoutGraficoEscolaridade } from "../../components/graficos/all_graficos/grafico-escolaridade"
+import { LayoutGraficoPorSexo } from "../../components/graficos/all_graficos/grafico-porSexo"
+import { LayoutPorteEmpresarial } from "../../components/graficos/all_graficos/porte-empresarial"
+import { LayoutRacaCor } from "../../components/graficos/all_graficos/raca-cor"
+import { LayoutGraficoSetor } from "../../components/graficos/all_graficos/setor"
 import { Header } from "../../components/header"
 import { SaldoEmpregos } from "../../components/saldo-empregos"
 import { Tabela } from "../../components/tabela"
 import { ContextGlobal } from "../../contexts/context"
-import { getDadosGraficos, getFiltros, get_dados_grafico_mensal } from "../../services/pinot"
+import { getDadosGraficos, get_dados_grafico_mensal } from "../../services/pinot"
 import * as Styled from './styled'
 
 export const Home = () => {
@@ -50,35 +54,23 @@ export const Home = () => {
         <GraficoMensal dados_grafico_mensal={dados_graficoMensal} />
         <Styled.ContainerGraficosClassificacao>
             <Styled.ContainerGraficosTipo>
-              <LayoutPadraoGraficos
-                className='grafico-tipo'
-                titulo_grafico="Porte Empresarial"
-                data={dados_graficos[3].valor}
-              />
-              <LayoutPadraoGraficos
-                titulo_grafico="Empregos Por Raça e Cor"
-                data={dados_graficos[6].valor}
-              />
-              <LayoutPadraoGraficos
-                titulo_grafico="Empregos por Setor"
-                data={dados_graficos[5].valor}
-              />
+
+              <LayoutPorteEmpresarial />
+              <LayoutRacaCor />
+              <LayoutGraficoSetor />
+
             </Styled.ContainerGraficosTipo>
 
             <Styled.ContainerGraficosHorizontal>
-              <LayoutPadraoGraficos
-                titulo_grafico="Empregos Por Sexo"
-                xAxisType="value"
-                yAxisType="category"
-                data={dados_graficos[8].valor}
-              />
-              <LayoutPadraoGraficos
-                isEscolaridade={true}
-                titulo_grafico="Empregos Por Escolaridade"
-                xAxisType="value"
-                yAxisType="category"
-                data={dados_graficos[7].valor}
-                tipoGrafico={dados_graficos[7].grafico}
+
+            <LayoutGraficoPorSexo 
+               xAxisType="value"
+               yAxisType="category"
+            /> 
+
+            <LayoutGraficoEscolaridade 
+               xAxisType="value"
+               yAxisType="category"
               />
             </Styled.ContainerGraficosHorizontal>
         </Styled.ContainerGraficosClassificacao>

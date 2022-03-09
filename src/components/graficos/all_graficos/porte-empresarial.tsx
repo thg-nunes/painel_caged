@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Echarts from 'echarts-for-react'
 
 import * as Styled from './styled'
+import { ContextGlobal } from '../../../contexts/context'
+import { getDadosFiltros } from '../../../services/pinot'
 
 type PadraoGraficos = {
   titulo_grafico: string
@@ -25,7 +27,20 @@ type Series = {
   }
 }
 
-export const LayoutPadraoGraficos = ({ titulo_grafico, data, xAxisType, yAxisType, tipoGrafico }: Props) => {
+export const LayoutPorteEmpresarial = ({ titulo_grafico, data, xAxisType, yAxisType, tipoGrafico }: Props) => {
+
+  const context = useContext(ContextGlobal)
+  const [dadosPorte, setDadosPorte] = useState<any[]>([])
+
+  useEffect(() => {
+    const getDadosMensal = async () => {
+      const response = await getDadosFiltros('porte', context)
+      setDadosPorte(response)
+    }
+
+    getDadosMensal()
+  }, [context])
+
   const colecao_cores = [
     '#FFBE7D',
     '#5B9F51',
@@ -44,8 +59,8 @@ export const LayoutPadraoGraficos = ({ titulo_grafico, data, xAxisType, yAxisTyp
   const dados_grafico_categoria_quantidade: Series[] = []
   const quantidade_colunas: number[] = []
 
-  if(data !== undefined){
-      data.forEach(arr => {
+  if(dadosPorte !== undefined){
+    dadosPorte.forEach(arr => {
       dados_grafico_categoria.push(arr[0])
       quantidade_colunas.push(arr[1])
     })
@@ -77,23 +92,23 @@ export const LayoutPadraoGraficos = ({ titulo_grafico, data, xAxisType, yAxisTyp
       position: yAxisType ? 'right' : 'top'
     },
     xAxis: {
-      type: xAxisType ? xAxisType : 'category',
-      data: xAxisType ? dados_grafico_categoria_quantidade : dados_grafico_categoria ,
+      type: 'category',
+      data: dados_grafico_categoria ,
       axisLabel: {
         color: 'black',
         fontSize: 10
       },
     },
     yAxis: {
-      type: yAxisType ? yAxisType : 'value',
-      data: yAxisType ? dados_grafico_categoria : dados_grafico_categoria_quantidade,
+      type: 'value',
+      data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
       },
     },
     series: [
       {
-        data: dados_grafico_categoria_quantidade,
+        data: dadosPorte,
         type: 'bar',
         barWidth: '40%',
       },
@@ -103,8 +118,8 @@ export const LayoutPadraoGraficos = ({ titulo_grafico, data, xAxisType, yAxisTyp
   const is_escolaridade = tipoGrafico !== undefined ? true :false
 
   return (
-    <Styled.Container isEscolaridade={is_escolaridade} titulo={titulo_grafico}>
-      <p>{titulo_grafico}</p>
+    <Styled.Container isEscolaridade={is_escolaridade} >
+      <p>Porte Empresarial</p>
       <Echarts
         className='grafito-tipo'
         option={option}
