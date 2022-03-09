@@ -1,4 +1,7 @@
 import Echarts from 'echarts-for-react'
+import { useContext, useEffect, useState } from 'react'
+import { ContextGlobal } from '../../../contexts/context'
+import { getDadosFiltros } from '../../../services/pinot'
 import * as Sttyle from './styled'
 
 type TypeQuantidade = {
@@ -11,10 +14,23 @@ type TypeQuantidade = {
 
 export const GraficoMensal = ({ dados_grafico_mensal }: TypeQuantidade) => {
 
+  const context = useContext(ContextGlobal)
+  const [dadosMensal, setDadosMensal] = useState<any[]>([])
+
+  useEffect(() => {
+    const getDadosMensal = async () => {
+      const response = await getDadosFiltros('data', context)
+      setDadosMensal(response)
+      console.log(response)
+    }
+
+    getDadosMensal()
+  }, [context])
+
   const valores_colunas: number[] = []
-  if(dados_grafico_mensal !== undefined) {
-    for (let i = 0; i < dados_grafico_mensal.resultTable.rows.length; i++) {
-      valores_colunas.push(dados_grafico_mensal.resultTable.rows[i][1])
+  if(dadosMensal !== undefined) {
+    for (let i = 0; i < dadosMensal.length; i++) {
+      valores_colunas.push(dadosMensal[i][1])
     }
   }
 

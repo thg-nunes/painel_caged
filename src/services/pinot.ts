@@ -61,6 +61,71 @@ const response_dadosGraficos = async (query: string) => {
   return response
 }
 
+
+export const getDadosFiltros = async (classificacao, filtros) => {
+  if(filtros == undefined || filtros == null || filtros.state == undefined || filtros.state == null)
+  return []
+
+  const apelido_coluna_1 = 'natureza_empresa'
+  const apelido_coluna_2 = 'municipio'
+  let apelido_tabela = ''
+
+  let query = `select ${classificacao}, sum(saldomovimentacao) as saldo from caged `
+  let otherFilters = ''
+  let filters = ' where '
+  
+  let groupBy = ''
+  let desc = ''
+
+  switch (classificacao) {
+    case 'data':
+      groupBy = 'data'
+      break
+  }
+
+  for (const key in filtros.state) {
+    if(filtros.state[key] == 'Selecionar') filtros.state[key] = ''
+    
+    if(filtros.state[key] !== ''){
+      switch (key) {
+        case 'ano':
+          filters += `data between '${filtros.state.ano}-01-01' and '${filtros.state.ano}-12-31' group by ${classificacao == 'data' ? 'data' : key} order by ${classificacao == 'data' ? 'data' : 'saldo'} ${classificacao == 'data' ? '' : 'desc'} limit 800000`
+          break
+        default:
+          if(typeof filtros.state[key] == 'object' &&   filtros.state[key].length > 1){
+
+            filtros.state[key].map((element, index) => {
+              index !== 0 ? otherFilters += `or ${key} = '${element.label}' ${index == filtros.state[key].length - 1 ? ') and ' : ''}` : otherFilters += `(${key} = '${element.label}' `
+            })
+            filters = 'where ' + otherFilters
+            break
+          } else {
+            filters += `${key} = '${filtros.state[key]}' and `
+            break
+          }
+      }
+    }
+  }
+  
+  console.log(query + filters)
+
+  return await axios({
+    method: 'POST', 
+    url: 'http://179.127.13.245:3000/query/sql', 
+    headers: {
+      'Target-URL': 'http://pinot-broker:8099',
+    },
+    data: {
+      "sql": query + filters
+    }
+  })
+  .then(res => {
+    return res.data.resultTable.rows
+  })
+  .catch(err => err)
+}
+
+
 export const getDadosGraficos = async (column_db: string[], context: Context) => {
 
   let querys: any[] = []
