@@ -21,7 +21,6 @@ export const GraficoMensal = ({ dados_grafico_mensal }: TypeQuantidade) => {
     const getDadosMensal = async () => {
       const response = await getDadosFiltros('data', context)
       setDadosMensal(response)
-      console.log(response)
     }
 
     getDadosMensal()
