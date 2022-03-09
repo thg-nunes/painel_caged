@@ -164,9 +164,7 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            // onKeyPressFn={function noRefCheck() {}}
-            // onRemove={function noRefCheck() {}}
-            // onSearch={function noRefCheck() {}}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})}
             options={filtrosUf}
           />
@@ -177,9 +175,7 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            // onKeyPressFn={function noRefCheck() {}}
-            // onRemove={function noRefCheck() {}}
-            // onSearch={function noRefCheck() {}}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
             options={filtrosMunicipio}
           />
@@ -190,9 +186,7 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            // onKeyPressFn={function noRefCheck() {}}
-            // onRemove={function noRefCheck() {}}
-            // onSearch={function noRefCheck() {}}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: {filtros_selecionados: e}})}
             options={filtrosPorte}
           />
@@ -203,10 +197,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            // onKeyPressFn={function noRefCheck() {}}
-            // onRemove={function noRefCheck() {}}
-            // onSearch={function noRefCheck() {}}
-            onSelect={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: {filtros_selecionados: e,}})}
+            onRemove={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: {filtros_selecionados: e}})}
+            onSelect={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: {filtros_selecionados: e}})}
             options={filtrosOcupacao}
           />
         </section>
@@ -218,6 +210,7 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: {filtros_selecionados: e}})}
             options={filtrosSetor}
           />
@@ -228,6 +221,7 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: {filtros_selecionados: e}})}
             options={filtrosRacaCor}
           />
@@ -238,6 +232,7 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: {filtros_selecionados: e}})}
             options={filtrosGrauInstrucao}
           />
@@ -248,6 +243,7 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: {filtros_selecionados: e}})}
             options={filtrosPorSexo}
           />
@@ -258,6 +254,7 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: {filtros_selecionados: e}})}
             options={filtrosSubclasse}
           />

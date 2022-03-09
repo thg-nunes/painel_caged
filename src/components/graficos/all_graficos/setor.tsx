@@ -108,17 +108,15 @@ export const LayoutGraficoSetor = ({ titulo_grafico, data, xAxisType, yAxisType,
     },
     series: [
       {
-        data: dadosSetor,
+        data: dados_grafico_categoria_quantidade,
         type: 'bar',
         barWidth: '40%',
       },
     ],
   }
 
-  const is_escolaridade = tipoGrafico !== undefined ? true :false
-
   return (
-    <Styled.Container isEscolaridade={is_escolaridade} >
+    <Styled.Container >
       <p>Empregos Por Setor</p>
       <Echarts
         className='grafito-tipo'

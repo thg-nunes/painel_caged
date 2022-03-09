@@ -108,17 +108,15 @@ export const LayoutRacaCor = ({ titulo_grafico, data, xAxisType, yAxisType, tipo
     },
     series: [
       {
-        data: dadosRacaCor,
+        data: dados_grafico_categoria_quantidade,
         type: 'bar',
         barWidth: '40%',
       },
     ],
   }
 
-  const is_escolaridade = tipoGrafico !== undefined ? true :false
-
   return (
-    <Styled.Container isEscolaridade={is_escolaridade} >
+    <Styled.Container isRacacor >
       <p>Empregos Por Raça/Cor</p>
       <Echarts
         className='grafito-tipo'

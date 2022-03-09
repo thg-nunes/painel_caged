@@ -115,10 +115,8 @@ export const LayoutGraficoEscolaridade = ({ titulo_grafico, data, xAxisType, yAx
     ],
   }
 
-  const is_escolaridade = tipoGrafico !== undefined ? true :false
-
   return (
-    <Styled.Container isEscolaridade={is_escolaridade} >
+    <Styled.Container isEscolaridade isHorizontal >
       <p>Empregos Por Escolaridade</p>
       <Echarts
         className='grafito-tipo'

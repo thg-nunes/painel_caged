@@ -93,7 +93,6 @@ export const LayoutGraficoPorSexo = ({ data, xAxisType, yAxisType, tipoGrafico }
     },
     xAxis: {
       type: 'value',
-      data: dados_grafico_categoria_quantidade ,
       axisLabel: {
         color: 'black',
         fontSize: 10
@@ -115,10 +114,8 @@ export const LayoutGraficoPorSexo = ({ data, xAxisType, yAxisType, tipoGrafico }
     ],
   }
 
-  const is_escolaridade = tipoGrafico !== undefined ? true :false
-
   return (
-    <Styled.Container isEscolaridade={is_escolaridade} >
+    <Styled.Container isGraficoSexo isHorizontal>
       <p>Empregos Por Sexo</p>
       <Echarts
         className='grafito-tipo'

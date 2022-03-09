@@ -108,7 +108,7 @@ export const LayoutPorteEmpresarial = ({ titulo_grafico, data, xAxisType, yAxisT
     },
     series: [
       {
-        data: dadosPorte,
+        data: dados_grafico_categoria_quantidade,
         type: 'bar',
         barWidth: '40%',
       },
@@ -118,14 +118,14 @@ export const LayoutPorteEmpresarial = ({ titulo_grafico, data, xAxisType, yAxisT
   const is_escolaridade = tipoGrafico !== undefined ? true :false
 
   return (
-    <Styled.Container isEscolaridade={is_escolaridade} >
+    <Styled.Container >
       <p>Porte Empresarial</p>
       <Echarts
         className='grafito-tipo'
         option={option}
         opts={{ renderer: 'canvas' }}
         style={{
-          width: '100%',
+          width: '100',
           height: '100%',
         }}
       />

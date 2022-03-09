@@ -1,15 +1,14 @@
 import styled, { css } from 'styled-components'
 
-// type Altura = {
-//   isEscolaridade?: boolean
-// }
-
 export const Container = styled.div`
-  width: 100%;
-  height: ${(({isEscolaridade}) => {
-    if(isEscolaridade === true) return '80vh'
+  width: ${({isHorizontal}) => {
+    if(isHorizontal) return '30vw'
+    return '45vw'
+  }};
+  height: ${({isEscolaridade}) => {
+    if(isEscolaridade) return '82vh'
     return '40vh'
-  })};
+  }};
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -17,6 +16,12 @@ export const Container = styled.div`
   overflow: hidden;
   text-align: center;
   box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.3);
+  margin-top: ${({ isRacacor }) => {
+    if(isRacacor == true) return '2rem'
+  }};
+  margin-bottom: ${({ isRacacor, isGraficoSexo }) => {
+    if(isRacacor == true || isGraficoSexo == true ) return '2rem'
+  }};
 
   p {
     ${({ theme }) => css`
