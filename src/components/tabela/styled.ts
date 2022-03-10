@@ -6,7 +6,6 @@ export const TituloTables = styled.h2`
   padding: 1rem;
 
   color: white;
-  z-index: 10;
 `
 
 export const StylesTables = styled.div`
@@ -38,6 +37,7 @@ export const StylesTables = styled.div`
 
     th,
     td {
+      font-size: 1.5rem;
       margin: 0;
       padding: 0.5rem;
       border-bottom: 1px solid black;
