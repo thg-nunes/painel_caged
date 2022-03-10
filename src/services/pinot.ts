@@ -66,33 +66,20 @@ export const getDadosFiltros = async (classificacao, filtros) => {
   if(filtros == undefined || filtros == null || filtros.state == undefined || filtros.state == null)
   return []
 
-  const apelido_coluna_1 = 'natureza_empresa'
-  const apelido_coluna_2 = 'municipio'
-  let apelido_tabela = ''
-
-  let query = `select ${classificacao}, sum(saldomovimentacao) as saldo from caged `
+  let query = `select ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : classificacao + ','} sum(saldomovimentacao) as saldo from caged `
   let otherFilters = ''
-  let filters = ' where '
+  let filters = ` where ${classificacao == 'saldo_mpe' ? `(porte = 'Microempresa' or porte = 'Pequeno Porte') and ` : ''}`
   
-  let groupBy = ''
-  let desc = ''
-
-  switch (classificacao) {
-    case 'data':
-      groupBy = 'data'
-      break
-  }
-
   for (const key in filtros.state) {
+
     if(filtros.state[key] == 'Selecionar') filtros.state[key] = ''
     
-    console.log(filtros.state[key])
-
-    if(filtros.state[key] !== ''){
+    if(filtros.state[key] !== ''){  
       switch (key) {
         case 'ano':
-          filters += `data between '${filtros.state.ano}-01-01' and '${filtros.state.ano}-12-31' group by ${classificacao} order by ${classificacao == 'data' ? 'data' : 'saldo'} ${classificacao == 'data' ? '' : 'desc'} limit 800000`
+          filters += `data between '${filtros.state.ano}-01-01' and '${filtros.state.ano}-12-31' ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : `group by ${classificacao} `} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? 'limit 800000' : `order by ${classificacao == 'data' ? 'data' : 'saldo'} ${classificacao == 'data' ? '' : 'desc'} limit 800000`} `
           break
+
         default:
           if(typeof filtros.state[key] == 'object' &&  filtros.state[key].length >= 1){
 
@@ -108,8 +95,6 @@ export const getDadosFiltros = async (classificacao, filtros) => {
       }
     }
   }
-  
-  console.log(query + filters)
 
   return await axios({
     method: 'POST', 
@@ -127,62 +112,6 @@ export const getDadosFiltros = async (classificacao, filtros) => {
   .catch(err => err)
 }
 
-
-export const getDadosGraficos = async (column_db: string[], context: Context) => {
-
-  let querys: any[] = []
-  let querys_quantidade = ''
-  
-  for(let main_key in context.state) {
-    let filters = ' where '
-    let inicio_query_quantidade = `select sum(saldomovimentacao) as saldo from caged `
-    let inicio_query = `select ${main_key}, sum(saldomovimentacao) as saldo from caged `
-    const data = ` data between '${context.state.ano}-01-01' and '${context.state.ano}-12-31' group by ${main_key} order by saldo desc limit 800000`
-    
-    if (main_key === 'saldo_geral') {
-      querys_quantidade = `${inicio_query_quantidade} ${filters} data between '${context.state.ano}-01-01' and '${context.state.ano}-12-31' limit 800000`
-      querys.push(querys_quantidade)
-    }else{
-      if (main_key === 'saldo_mpe') {
-        querys_quantidade = `${inicio_query_quantidade} ${filters} (porte = 'Microempresa' or porte = 'Pequeno Porte') and data between '${context.state.ano}-01-01' and '${context.state.ano}-12-31' limit 800000`
-        querys.push(querys_quantidade)
-      }else{
-        for(let key in context.state) {
-          switch (key) {
-            case 'ano':
-              inicio_query += filters + data
-              break          
-            case 'saldo_geral':
-              break        
-            case 'saldo_mpe':
-              break
-            default:
-              if (typeof context.state[key] == 'object'){
-                context.state[key].forEach((element, index) => {
-                  index !== 0 ? filters += `or ${key} = '${element.label}' ${index == context.state[key].length - 1 ? ') and ' : ''}` :
-                    filters += `${context.state[key].length  > 1 ? ` (${element.value} = '${element.label}' ` : ` ${element.value} = '${element.label}' and `} `
-                })
-                break
-              }
-          }
-        }
-        querys.push(inicio_query)
-      }
-    }
-  }
-
-  let all_data: ResponseDadosGraficos[] = []
-  for (let i = 0; i < column_db.length; i++) {
-    const response = await response_dadosGraficos(querys[i])
-
-    all_data.push({
-      grafico: column_db[i],
-      valor: response
-    })
-  }
-
-  return all_data
-}
 export const getDadosFiltrosUF = async () => {
 
   return await axios({
