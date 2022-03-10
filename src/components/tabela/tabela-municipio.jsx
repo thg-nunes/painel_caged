@@ -3,7 +3,7 @@ import { useTable, usePagination } from 'react-table'
 
 import * as Styles from './styled'
 
-export const Tabela = ({ dados, Titulo }) => {
+export const TabelaMunicipio = ({ dados, Titulo }) => {
 
   const dados_tabela = []
 
@@ -11,10 +11,11 @@ export const Tabela = ({ dados, Titulo }) => {
     dados.forEach(arr => {
       dados_tabela.push({
         campo: arr[0],
-        valor: arr[1]
+        valor: arr[1].toLocaleString()
       })
     })
   }, [dados])
+
 
   const COLUMNS = [
     {Header: Titulo, accessor: 'campo'},
@@ -22,8 +23,7 @@ export const Tabela = ({ dados, Titulo }) => {
   ]
 
   const columns = useMemo(() => COLUMNS,[])
-
-  const data = useMemo(() => dados_tabela ,[])
+  const data = useMemo(() => dados_tabela ,[dados])
 
   let [stateButton, setStateButtonPrevious] = useState(undefined)
   let [stateButtonNext, setStateButtonNext] = useState(undefined)

@@ -11,7 +11,7 @@ export const TabelaSubclasse = ({ dados, Titulo }) => {
     dados.forEach(arr => {
       dados_tabela.push({
         campo: arr[0],
-        valor: arr[1]
+        valor: arr[1].toLocaleString()
       })
     })
   }, [dados])
@@ -23,7 +23,7 @@ export const TabelaSubclasse = ({ dados, Titulo }) => {
 
   const columns = useMemo(() => COLUMNS,[])
 
-  const data = useMemo(() => dados_tabela ,[])
+  const data = useMemo(() => dados_tabela ,[dados])
 
   let [stateButton, setStateButtonPrevious] = useState(undefined)
   let [stateButtonNext, setStateButtonNext] = useState(undefined)

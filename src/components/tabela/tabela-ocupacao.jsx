@@ -1,7 +1,5 @@
-import { useContext, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTable, usePagination } from 'react-table'
-import { ContextGlobal } from '../../contexts/context'
-import { getDadosFiltros } from '../../services/pinot'
 
 import * as Styles from './styled'
 
@@ -9,13 +7,11 @@ export const TabelaOcupacao = ({ dados, Titulo }) => {
 
   const dados_tabela = []
 
-  console.log(dados)
-
   useMemo(() => {
     dados.forEach(arr => {
       dados_tabela.push({
         campo: arr[0],
-        valor: arr[1]
+        valor: arr[1].toLocaleString()
       })
     })
   }, [dados])
@@ -27,7 +23,7 @@ export const TabelaOcupacao = ({ dados, Titulo }) => {
 
   const columns = useMemo(() => COLUMNS,[])
 
-  const data = useMemo(() => dados_tabela ,[])
+  const data = useMemo(() => dados_tabela ,[dados])
 
   let [stateButton, setStateButtonPrevious] = useState(undefined)
   let [stateButtonNext, setStateButtonNext] = useState(undefined)
