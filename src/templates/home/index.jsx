@@ -9,33 +9,62 @@ import { LayoutRacaCor } from "../../components/graficos/all_graficos/raca-cor"
 import { LayoutGraficoSetor } from "../../components/graficos/all_graficos/setor"
 import { Header } from "../../components/header"
 import { SaldoEmpregos } from "../../components/saldo-empregos"
-import { Tabela } from "../../components/tabela"
 import { ContextGlobal } from "../../contexts/context"
-import { getDadosGraficos, get_dados_grafico_mensal } from "../../services/pinot"
+import { getDadosFiltros, get_dados_grafico_mensal } from "../../services/pinot"
 import * as Styled from './styled'
+import { TabelaOcupacao } from "../../components/tabela/tabela-ocupacao"
+import { TabelaSubclasse } from "../../components/tabela/tabela-subclasse"
+import { TabelaMunicipio } from "../../components/tabela/tabela-municipio"
 
 export const Home = () => {
 
   const context = useContext(ContextGlobal)
-  const [dados_graficos, setDadosGraficos] = useState([])
   const [dados_graficoMensal, setDadosGraficoMensal] = useState([])
+  const [dados_saldoGeral, setDadosSaldoGeral] = useState([])
+  const [dados_saldoMpe, setDadosSaldoMpe] = useState([])
+  const [ocupacao, setOcupacao] = useState([])
+  const [municipio, setMunicipio] = useState([])
+  const [subclasse, setSubclasse] = useState([])
   
   useEffect(() => {
     
-    const columns_dataBase = ['mes', 'uf', 'municipio', 'porte', 'cbo2002ocupacao', 'setor', 'racacor', 'graudeinstrucao', 'sexo', 'subclasse', 'as_saldo', 'as_mpe']
-
-    const dadosGraficos = async () => {
-      const response_dadosGraficos = await getDadosGraficos(columns_dataBase, context)
-      setDadosGraficos(response_dadosGraficos)
-    } 
-
     const dados_GraficoMensal = async () => {
       const response_graficoMensal = await get_dados_grafico_mensal(context)
       setDadosGraficoMensal(response_graficoMensal)
     }
 
-    dadosGraficos()
+    const getDadosOcupacao =async () => {
+      const response = await getDadosFiltros('cbo2002ocupacao', context)
+      setOcupacao(response)
+    }
+
+    const getDadosMunicipio =async () => {
+      const response = await getDadosFiltros('municipio', context)
+      setMunicipio(response)
+    }
+
+    const getDadosSubclasse =async () => {
+      const response = await getDadosFiltros('subclasse', context)
+      setSubclasse(response)
+    }
+
+    const getSaldoGeral = async () => {
+      const response = await getDadosFiltros('saldo_geral', context)
+      setDadosSaldoGeral(response.toLocaleString())
+    }
+
+    const getSaldoMpe = async () => {
+      const response = await getDadosFiltros('saldo_mpe', context)
+      setDadosSaldoMpe(response.toLocaleString())
+    }
+
+    // dadosGraficos()
     dados_GraficoMensal()
+    getDadosOcupacao()
+    getDadosMunicipio()
+    getDadosSubclasse()
+    getSaldoGeral()
+    getSaldoMpe()
   }, [context])
 
   return <>
@@ -43,42 +72,39 @@ export const Home = () => {
       <DataHeader />
     </Header>
 
-    {dados_graficos .length !== 0 && <Filtros />}
+    {municipio.length !== 0 && <Filtros />}
 
-    {dados_graficos.length !== 0 && <SaldoEmpregos
-      saldo_geral={dados_graficos[10].valor[0].toLocaleString()}
-      saldo_emppregos={dados_graficos[11].valor[0].toLocaleString()} />
+    {municipio.length !== 0 && <SaldoEmpregos
+      saldo_geral={dados_saldoGeral}
+      saldo_emppregos={dados_saldoMpe}
+      />
     }
 
-    {dados_graficos.length && <Styled.ContainerGraficos>
+    {municipio.length && <Styled.ContainerGraficos>
         <GraficoMensal dados_grafico_mensal={dados_graficoMensal} />
         <Styled.ContainerGraficosClassificacao>
             <Styled.ContainerGraficosTipo>
-
               <LayoutPorteEmpresarial />
               <LayoutRacaCor />
               <LayoutGraficoSetor />
-
             </Styled.ContainerGraficosTipo>
 
             <Styled.ContainerGraficosHorizontal>
-
-            <LayoutGraficoPorSexo 
-               xAxisType="value"
-               yAxisType="category"
-            /> 
-
-            <LayoutGraficoEscolaridade 
-               xAxisType="value"
-               yAxisType="category"
-              />
-            </Styled.ContainerGraficosHorizontal>
-        </Styled.ContainerGraficosClassificacao>
+              <LayoutGraficoPorSexo 
+                xAxisType="value"
+                yAxisType="category"
+              /> 
+              <LayoutGraficoEscolaridade 
+                xAxisType="value"
+                yAxisType="category"
+                />
+              </Styled.ContainerGraficosHorizontal>
+          </Styled.ContainerGraficosClassificacao>
 
         <Styled.ContainerTabelas>
-            <Tabela Titulo='Ocupação' dados={dados_graficos[4].valor} />
-            <Tabela Titulo='Município' dados={dados_graficos[2].valor} />
-            <Tabela Titulo='Subclasse' dados={dados_graficos[9].valor} />
+            <TabelaOcupacao Titulo='Ocupação' dados={ocupacao} />
+            <TabelaMunicipio Titulo='Município' dados={municipio} />
+            <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
           </Styled.ContainerTabelas>
       </Styled.ContainerGraficos>
     }

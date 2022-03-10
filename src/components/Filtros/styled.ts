@@ -29,12 +29,15 @@ export const ContainerFiltros = styled.div`
 `
 export const ContainerMultiSelect = styled.div`
   display: flex;
+  flex-flow: wrap;
   margin-top: 1rem;
   margin-bottom: 1rem;
-  display: flex;
   padding-left: 0.8rem;
 
   & section {
+    width: 100%;
+    height: 50px;
+    max-width: 250px;
     padding: 0 0.5rem;
   }
 `
