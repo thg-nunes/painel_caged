@@ -96,15 +96,21 @@ export const LayoutGraficoEscolaridade = ({ titulo_grafico, data, xAxisType, yAx
       data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
-        fontSize: 10
+        fontSize: 12,
+        fontWeight: 'bold'
       },
+      minInterval: 10000
     },
     yAxis: {
       type: 'category',
       data: dados_grafico_categoria,
       axisLabel: {
         color: 'black',
+        fontSize: 11,
       },
+      axisTick: {
+        show: false
+      }
     },
     series: [
       {

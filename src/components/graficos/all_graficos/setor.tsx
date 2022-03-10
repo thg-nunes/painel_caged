@@ -79,9 +79,9 @@ export const LayoutGraficoSetor = ({ titulo_grafico, data, xAxisType, yAxisType,
     },
     grid: {
       containLabel: true,
-      width: yAxisType ? '85%' : '95%',
+      width: '90%',
       top: yAxisType ? '5%' : '10%',
-      left: '1%',
+      left: '4%',
       right: '1%',
       bottom: '5%',
     },
@@ -89,22 +89,29 @@ export const LayoutGraficoSetor = ({ titulo_grafico, data, xAxisType, yAxisType,
       show: true,
       color: 'rgb(0, 0, 0)',
       fontWeight: 'bold',
-      position: yAxisType ? 'right' : 'top'
+      position: 'right'
     },
     xAxis: {
-      type: 'category',
-      data: dados_grafico_categoria ,
-      axisLabel: {
-        color: 'black',
-        fontSize: 10
-      },
-    },
-    yAxis: {
       type: 'value',
       data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
+        fontWeight: 'bold'
       },
+      axisTick: {
+        show: false
+      }
+    },
+    yAxis: {
+      type: 'category',
+      data: dados_grafico_categoria ,
+      axisLabel: {
+        color: 'black',
+        fontSize: 11,
+      },
+      axisTick: {
+        show: false
+      }
     },
     series: [
       {

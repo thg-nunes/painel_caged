@@ -95,7 +95,8 @@ export const LayoutGraficoPorSexo = ({ data, xAxisType, yAxisType, tipoGrafico }
       type: 'value',
       axisLabel: {
         color: 'black',
-        fontSize: 10
+        fontSize: 12,
+        fontWeight: 'bold'
       },
     },
     yAxis: {
@@ -103,6 +104,7 @@ export const LayoutGraficoPorSexo = ({ data, xAxisType, yAxisType, tipoGrafico }
       data: dados_grafico_categoria,
       axisLabel: {
         color: 'black',
+        fontSize: 11,
       },
     },
     series: [
