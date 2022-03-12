@@ -4,8 +4,13 @@ export const TituloTables = styled.h2`
   background: #0A6F89;
   text-align: center;
   padding: 1rem;
-
   color: white;
+
+  @media (max-width: 320px) {
+    font-size: 1.8rem;
+    position: sticky;
+    top: 0;
+  }
 `
 
 export const StylesTables = styled.div`
@@ -66,5 +71,18 @@ export const StylesTables = styled.div`
     background: transparent;
     border: none;
     cursor: pointer;
+  }
+
+  @media (max-width: 320px) {
+    width: 100%;
+    flex-direction: column;
+    max-height: 80vh;
+
+    table {
+      th,
+      td {
+        font-size: 1.1rem;
+      }
+    }
   }
 `

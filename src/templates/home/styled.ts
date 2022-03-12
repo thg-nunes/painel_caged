@@ -31,4 +31,8 @@ export const ContainerTabelas = styled(ContainerGraficosTipo)`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  @media (max-width: 320px) {
+    flex-direction: column;
+  }
 `
