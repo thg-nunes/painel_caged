@@ -219,6 +219,7 @@ export const Filtros = () => {
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: {filtros_selecionados: e}})}
+            placeholder='Selecionar'
             options={filtrosSetor}
           />
         </section>
@@ -230,6 +231,7 @@ export const Filtros = () => {
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: {filtros_selecionados: e}})}
+            placeholder='Selecionar'
             options={filtrosRacaCor}
           />
         </section>
@@ -241,6 +243,7 @@ export const Filtros = () => {
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: {filtros_selecionados: e}})}
+            placeholder='Selecionar'
             options={filtrosGrauInstrucao}
           />
         </section>
@@ -252,6 +255,7 @@ export const Filtros = () => {
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: {filtros_selecionados: e}})}
+            placeholder='Selecionar'
             options={filtrosPorSexo}
           />
         </section>
@@ -263,6 +267,7 @@ export const Filtros = () => {
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: {filtros_selecionados: e}})}
+            placeholder='Selecionar'
             options={filtrosSubclasse}
           />
         </section>
