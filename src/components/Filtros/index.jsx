@@ -144,9 +144,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue="label"
-            // onRemove={function noRefCheck() {}}
-            // onSearch={function noRefCheck() {}}
-            // onSelect={function noRefCheck() {}}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: e}})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: e}})}
             placeholder='Selecionar'
             options={filtrosAnual}
           />
@@ -156,10 +155,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue="label"
-            // onKeyPressFn={function noRefCheck() {}}
-            // onRemove={function noRefCheck() {}}
-            // onSearch={function noRefCheck() {}}
-            // onSelect={function noRefCheck() {}}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_MES, payload: {filtros_selecionados: e}})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_MES, payload: {filtros_selecionados: e}})}
             placeholder='Selecionar'
             options={filtrosMensal}
           />

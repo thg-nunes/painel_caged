@@ -82,7 +82,6 @@ export const getDadosFiltros = async (classificacao, filtros) => {
 
         default:
           if(typeof filtros.state[key] == 'object' &&  filtros.state[key].length >= 1){
-
             filtros.state[key].map((element, index) => {
               index !== 0 ? otherFilters += `or ${key} = '${element.label}' ${index == filtros.state[key].length - 1 ? ') and ' : ''}` : otherFilters += `(${key} = '${element.label}' ${filtros.state[key].length == 1 ? ') and' : ''} `
             })
