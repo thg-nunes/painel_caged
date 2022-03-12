@@ -27,10 +27,11 @@ type Series = {
   }
 }
 
-export const LayoutGraficoEscolaridade = ({ titulo_grafico, data, xAxisType, yAxisType, tipoGrafico }: Props) => {
+export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
 
   const context = useContext(ContextGlobal)
   const [dadosEscolaridade, setDadosEscolaridade] = useState<any[]>([])
+  const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
     const getDadosEscolaridade = async () => {
@@ -38,7 +39,12 @@ export const LayoutGraficoEscolaridade = ({ titulo_grafico, data, xAxisType, yAx
       setDadosEscolaridade(response)
     }
 
+    const get_widthTela = () => {
+      setWidthTela(window.innerWidth)
+    }
+
     getDadosEscolaridade()
+    get_widthTela()
   }, [context])
 
   const colecao_cores = [
@@ -89,24 +95,26 @@ export const LayoutGraficoEscolaridade = ({ titulo_grafico, data, xAxisType, yAx
       show: true,
       color: 'rgb(0, 0, 0)',
       fontWeight: 'bold',
-      position: yAxisType ? 'right' : 'top'
+      position: yAxisType ? 'right' : 'top',
+      fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
     },
     xAxis: {
       type: 'value',
       data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
-        fontSize: 12,
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12,
         fontWeight: 'bold'
       },
-      minInterval: 10000
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 30000 : 12000
     },
     yAxis: {
       type: 'category',
       data: dados_grafico_categoria,
       axisLabel: {
         color: 'black',
-        fontSize: 11,
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 11,
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal'
       },
       axisTick: {
         show: false

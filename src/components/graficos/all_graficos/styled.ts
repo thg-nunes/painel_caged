@@ -32,4 +32,16 @@ export const Container = styled.div`
       font-weight: 600;
     `}
   }
+
+  @media (max-width: 320px) {
+    width:  100%;
+    height: ${({isEscolaridade}) => {
+      if(isEscolaridade) return '82vh'
+      return '50vh'
+    }};
+
+    p{
+      font-size: 1.5rem;
+    }
+  }
 `

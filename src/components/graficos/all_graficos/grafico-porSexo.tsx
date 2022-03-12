@@ -27,10 +27,11 @@ type Series = {
   }
 }
 
-export const LayoutGraficoPorSexo = ({ data, xAxisType, yAxisType, tipoGrafico }: Props) => {
+export const LayoutGraficoPorSexo = ({ yAxisType }: Props) => {
 
   const context = useContext(ContextGlobal)
   const [dadosSexo, setDadosSexo] = useState<any[]>([])
+  const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
     const getDadosSexo = async () => {
@@ -38,7 +39,12 @@ export const LayoutGraficoPorSexo = ({ data, xAxisType, yAxisType, tipoGrafico }
       setDadosSexo(response)
     }
 
+    const get_widthTela = () => {
+      setWidthTela(window.innerWidth)
+    }
+
     getDadosSexo()
+    get_widthTela()
   }, [context])
 
   const colecao_cores = [
@@ -89,23 +95,29 @@ export const LayoutGraficoPorSexo = ({ data, xAxisType, yAxisType, tipoGrafico }
       show: true,
       color: 'rgb(0, 0, 0)',
       fontWeight: 'bold',
-      position: yAxisType ? 'right' : 'top'
+      position: yAxisType ? 'right' : 'top',
+      fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
     },
     xAxis: {
       type: 'value',
       axisLabel: {
         color: 'black',
-        fontSize: 12,
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 12,
         fontWeight: 'bold'
       },
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 10000 : 12000
     },
     yAxis: {
       type: 'category' ,
       data: dados_grafico_categoria,
       axisLabel: {
         color: 'black',
-        fontSize: 11,
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12,
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal'
       },
+      axisTick: {
+        show: widthTela >= 320 && widthTela <= 768 ? false : true
+      }
     },
     series: [
       {

@@ -27,10 +27,11 @@ type Series = {
   }
 }
 
-export const LayoutPorteEmpresarial = ({ titulo_grafico, data, xAxisType, yAxisType, tipoGrafico }: Props) => {
+export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
 
   const context = useContext(ContextGlobal)
   const [dadosPorte, setDadosPorte] = useState<any[]>([])
+  const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
     const getDadosMensal = async () => {
@@ -38,7 +39,12 @@ export const LayoutPorteEmpresarial = ({ titulo_grafico, data, xAxisType, yAxisT
       setDadosPorte(response)
     }
 
+    const get_widthTela = () => {
+      setWidthTela(window.innerWidth)
+    }
+
     getDadosMensal()
+    get_widthTela()
   }, [context])
 
   const colecao_cores = [
@@ -61,7 +67,8 @@ export const LayoutPorteEmpresarial = ({ titulo_grafico, data, xAxisType, yAxisT
 
   if(dadosPorte !== undefined){
     dadosPorte.forEach(arr => {
-      dados_grafico_categoria.push(arr[0])
+      if(widthTela >= 320 && widthTela <= 768) dados_grafico_categoria.push(arr[0].replace(' ', '\n'))
+      else dados_grafico_categoria.push(arr[0])
       quantidade_colunas.push(arr[1])
     })
   }
@@ -89,25 +96,28 @@ export const LayoutPorteEmpresarial = ({ titulo_grafico, data, xAxisType, yAxisT
       show: true,
       color: 'rgb(0, 0, 0)',
       fontWeight: 'bold',
-      position: 'right'
+      position: 'right',
+      fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
     },
     xAxis: {
       type: 'value',
       data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 12
       },
       axisTick: {
         show: false
-      }
+      },
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 30000 : 10000
     },
     yAxis: {
       type: 'category',
       data: dados_grafico_categoria ,
       axisLabel: {
         color: 'black',
-        fontSize: 10,
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 10,
         fontWeight: 'bold',
       },
       axisTick: {

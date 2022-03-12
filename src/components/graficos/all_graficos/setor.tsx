@@ -26,11 +26,12 @@ type Series = {
     color: string
   }
 }
+export const LayoutGraficoSetor = ({ yAxisType }: Props) => {
 
-export const LayoutGraficoSetor = ({ titulo_grafico, data, xAxisType, yAxisType, tipoGrafico }: Props) => {
 
   const context = useContext(ContextGlobal)
   const [dadosSetor, setDadosSetor] = useState<any[]>([])
+  const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
     const getDadosSetor = async () => {
@@ -38,7 +39,12 @@ export const LayoutGraficoSetor = ({ titulo_grafico, data, xAxisType, yAxisType,
       setDadosSetor(response)
     }
 
+    const get_widthTela = () => {
+      setWidthTela(window.innerWidth)
+    }
+
     getDadosSetor()
+    get_widthTela()
   }, [context])
 
   const colecao_cores = [
@@ -61,7 +67,8 @@ export const LayoutGraficoSetor = ({ titulo_grafico, data, xAxisType, yAxisType,
 
   if(dadosSetor !== undefined){
     dadosSetor.forEach(arr => {
-      dados_grafico_categoria.push(arr[0])
+      if(widthTela >= 320 && widthTela <= 768) dados_grafico_categoria.push(arr[0].replace(' ', '\n'))
+      else dados_grafico_categoria.push(arr[0])
       quantidade_colunas.push(arr[1])
     })
   }
@@ -79,7 +86,7 @@ export const LayoutGraficoSetor = ({ titulo_grafico, data, xAxisType, yAxisType,
     },
     grid: {
       containLabel: true,
-      width: '90%',
+      width: '85%',
       top: yAxisType ? '5%' : '10%',
       left: '4%',
       right: '1%',
@@ -89,30 +96,34 @@ export const LayoutGraficoSetor = ({ titulo_grafico, data, xAxisType, yAxisType,
       show: true,
       color: 'rgb(0, 0, 0)',
       fontWeight: 'bold',
-      position: 'right'
+      position: 'right',
+      fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
     },
     xAxis: {
       type: 'value',
       data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
       },
       axisTick: {
         show: false
-      }
+      },
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : 10000
     },
     yAxis: {
       type: 'category',
       data: dados_grafico_categoria ,
       axisLabel: {
         color: 'black',
-        fontSize: 11,
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 11,
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal'
       },
       axisTick: {
         show: false
       }
-    },
+    }, 
     series: [
       {
         data: dados_grafico_categoria_quantidade,

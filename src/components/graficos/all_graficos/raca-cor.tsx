@@ -27,10 +27,11 @@ type Series = {
   }
 }
 
-export const LayoutRacaCor = ({ titulo_grafico, data, xAxisType, yAxisType, tipoGrafico }: Props) => {
+export const LayoutRacaCor = ({ yAxisType }: Props) => {
 
   const context = useContext(ContextGlobal)
   const [dadosRacaCor, setDadosRacaCor] = useState<any[]>([])
+  const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
     const getDadosRacaCor = async () => {
@@ -38,7 +39,12 @@ export const LayoutRacaCor = ({ titulo_grafico, data, xAxisType, yAxisType, tipo
       setDadosRacaCor(response)
     }
 
+    const get_widthTela = () => {
+      setWidthTela(window.innerWidth)
+    }
+
     getDadosRacaCor()
+    get_widthTela()
   }, [context])
 
   const colecao_cores = [
@@ -79,7 +85,7 @@ export const LayoutRacaCor = ({ titulo_grafico, data, xAxisType, yAxisType, tipo
     },
     grid: {
       containLabel: true,
-      width: '90%',
+      width: '85%',
       top: yAxisType ? '5%' : '10%',
       left: '4%',
       right: '1%',
@@ -89,26 +95,30 @@ export const LayoutRacaCor = ({ titulo_grafico, data, xAxisType, yAxisType, tipo
       show: true,
       color: 'rgb(0, 0, 0)',
       fontWeight: 'bold',
-      position: 'right'
+      position: 'right',
+      fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
     },
     xAxis: {
       type: 'value',
       data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
       },
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : 10000
     },
     yAxis: {
       type: 'category',
       data: dados_grafico_categoria ,
       axisLabel: {
-        fontSize: 11,
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 11,
         color: 'black',
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal'
       },
       axisTick: {
         show: false
-      }
+      },
     },
     series: [
       {
