@@ -26,6 +26,59 @@ export const ContainerFiltros = styled.div`
     background: #fff;
     width: min-content;
   }
+
+  .close-menu {
+    display: none;
+  }
+
+  @media (max-width: 320px) {
+    display: none;    
+    width: 80%;
+    height: 100vh;
+    right: 0;
+    margin-top: 0;
+    position: fixed;
+    z-index: 10;
+    border: none;
+
+    transition: all .25ms;
+
+    overflow-y: scroll;
+    padding-bottom: 8rem;
+
+    background: white;
+
+    .texto-filtros {
+      display: none;
+    }
+
+    .close-menu{
+      display: block;
+      border: 1px solid rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+
+      position: absolute;
+      right: 0;
+      margin: .5rem;
+      margin-right: 1.8rem;
+    }
+
+    section {
+      overflow: auto;
+    }
+    section p {
+      margin: 0;
+    }
+
+    section::-webkit-progress-bar{
+      display: none;
+    }
+
+    .searchBox::placeholder {
+      color: black;
+      overflow-x: hidden;
+    }
+  }
 `
 export const ContainerMultiSelect = styled.div`
   display: flex;
@@ -39,5 +92,19 @@ export const ContainerMultiSelect = styled.div`
     height: 50px;
     max-width: 250px;
     padding: 0 0.5rem;
+  }
+
+  @media (max-width: 320px) {
+    p {
+      font-size: 1.3rem;
+      margin: .5rem 0;
+    }
+
+    section {
+      margin: .5rem 0;
+      margin-right: .5rem;
+      max-width: 100%;
+      padding: 0;
+    }
   }
 `

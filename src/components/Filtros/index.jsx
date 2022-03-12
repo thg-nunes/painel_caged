@@ -131,18 +131,23 @@ export const Filtros = () => {
   }, [context])
 
   return (
-    <Styled.ContainerFiltros>
+    <Styled.ContainerFiltros id='all_filters'>
       <p className="texto-filtros">Filtros:</p>
+      <svg className='close-menu' xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#000000"
+        onClick={() => {
+          document.getElementById('all_filters').style.display = 'none'
+        }}
+      ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       <Styled.ContainerMultiSelect>
         <section>
           <p>Ano:</p>
           <Multiselect
             className="multiselect"
             displayValue="label"
-            // onKeyPressFn={function noRefCheck() {}}
             // onRemove={function noRefCheck() {}}
             // onSearch={function noRefCheck() {}}
             // onSelect={function noRefCheck() {}}
+            placeholder='Selecionar'
             options={filtrosAnual}
           />
         </section>
@@ -155,10 +160,11 @@ export const Filtros = () => {
             // onRemove={function noRefCheck() {}}
             // onSearch={function noRefCheck() {}}
             // onSelect={function noRefCheck() {}}
+            placeholder='Selecionar'
             options={filtrosMensal}
           />
         </section>
- 
+
         <section>
           <p>UF</p>
           <Multiselect
@@ -166,6 +172,7 @@ export const Filtros = () => {
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})}
+            placeholder='Selecionar'
             options={filtrosUf}
           />
         </section>
@@ -177,33 +184,36 @@ export const Filtros = () => {
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
+            placeholder='Selecionar'
             options={filtrosMunicipio}
           />
         </section>
 
-       <section>
+      <section>
           <p>Porte</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: {filtros_selecionados: e}})}
+            placeholder='Selecionar'
             options={filtrosPorte}
           />
         </section>
 
-       <section>
+      <section>
           <p>Ocupação</p>
           <Multiselect
             className="multiselect"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: {filtros_selecionados: e}})}
+            placeholder='Selecionar'
             options={filtrosOcupacao}
           />
         </section>
       </Styled.ContainerMultiSelect>
- 
+
       <Styled.ContainerMultiSelect>
         <section>
           <p>Setor</p>

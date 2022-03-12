@@ -16,10 +16,28 @@ export const Data = styled.div`
     width: 130px;
   }
 
+  .menu-mobile {
+    display: none;
+  }
+
   .texto-header {
     font-weight: 600;
     ${({ theme }) => css`
       font-size: ${theme.font.sizes.default};
     `}
+  }
+
+  @media (max-width: 320px) {
+    .texto-header {
+      font-size: 1.2rem;
+    }
+
+    .logo {
+      display: none;
+    }
+
+    .menu-mobile {
+      display: block;
+    }
   }
 `

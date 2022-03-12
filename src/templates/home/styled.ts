@@ -14,6 +14,10 @@ export const ContainerGraficosClassificacao = styled.div`
   justify-content: space-between;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 1fr;
+
+  @media (max-width: 320px) {
+    flex-direction: column;
+  }
 `
 export const ContainerGraficosTipo = styled.section`
   display: flex;
@@ -24,6 +28,11 @@ export const ContainerGraficosTipo = styled.section`
 export const ContainerGraficosHorizontal = styled(ContainerGraficosTipo)`
   width: 60%;
   height: 100%;
+  
+  @media (max-width: 320px) {
+    width: 100%;
+    margin-top: 3rem;
+  }
 `
 export const ContainerTabelas = styled(ContainerGraficosTipo)`
   margin-top: 4rem;
