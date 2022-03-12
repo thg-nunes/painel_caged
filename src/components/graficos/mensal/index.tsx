@@ -10,7 +10,7 @@ export const GraficoMensal = () => {
   const [dadosMensal, setDadosMensal] = useState<any[]>([])
   const [marginBottomGrafico, setMarginBottomGrafico] = useState<string>('')
   const [marginRightGrafico, setMarginRightGrafico] = useState<string>('')
-  const [fontSize, setFontSiza] = useState<string>('')
+  const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
     const getDadosMensal = async () => {
@@ -18,24 +18,26 @@ export const GraficoMensal = () => {
       setDadosMensal(response)
     }
     
-    
     const tamanhoTela = () => {
       if(window.innerWidth > 1366) setMarginBottomGrafico('18%')
       if(window.innerWidth >= 1024 || window.innerWidth <= 1366) {
         setMarginBottomGrafico('20%')
         setMarginRightGrafico('10%')
-        setFontSiza('14px')
       }
 
       if(window.innerWidth >=  768 || window.innerWidth <= 1024) {
         setMarginBottomGrafico('20%')
         setMarginRightGrafico('15%')
-        setFontSiza('10px')
       }
+    }
+
+    const get_widthTela = () => {
+      setWidthTela(window.innerWidth)
     }
 
     getDadosMensal()
     tamanhoTela()
+    get_widthTela()
   }, [context])
 
   const valores_colunas: number[] = []
@@ -51,7 +53,7 @@ export const GraficoMensal = () => {
     },
     grid: {
       containLabel: true,
-      width: '98%',
+      width: widthTela >= 320 && widthTela <= 768 ? '90%' : '98%',
       top: '10%',
       left: '1%',
       right: marginRightGrafico,
@@ -62,7 +64,8 @@ export const GraficoMensal = () => {
       data: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'],
       axisLabel: {
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
       },
       axisTick: {
         show: false
@@ -72,7 +75,8 @@ export const GraficoMensal = () => {
       type: 'value',
       axisLabel: {
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 12
       },
     },
     series: [
@@ -92,7 +96,7 @@ export const GraficoMensal = () => {
         option={option}
         opts={{ renderer: 'canvas' }}
         style={{
-          width: '100%',
+          width: widthTela >= 320 && widthTela <= 768 ? '150vw' : '100%',
           height: '100%',
         }}
       />

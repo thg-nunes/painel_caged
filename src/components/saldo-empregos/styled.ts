@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export const ContainerSaldoEmpregos = styled.div`
   width: 80%;
@@ -9,6 +9,10 @@ export const ContainerSaldoEmpregos = styled.div`
   margin: auto;
   margin-top: 2rem;
   margin-bottom: 2rem;
+
+  @media (max-width: 320px) {
+    flex-direction: column;
+  }
 `
 
 export const QuantidadeSaldoEmpregos = styled.div`
@@ -38,5 +42,20 @@ export const QuantidadeSaldoEmpregos = styled.div`
     font-size: 5rem;
     font-weight: 400;
     padding: 2rem 0;
+  }
+
+  @media (max-width: 320px) {
+    width: 100%;
+    margin-bottom: ${({saldoGeral}) => {
+      if(saldoGeral) return '2rem'
+    }};
+
+    & p:first-child {
+    font-size: 1.5rem;
+    }
+
+    & p:last-child {
+      font-size: 3.5rem;
+    }
   }
 `

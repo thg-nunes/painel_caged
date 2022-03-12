@@ -14,4 +14,13 @@ export const EstiloGraficoMensal = styled.div`
     padding: 1rem 0;
     color: white;
   }
+
+  @media (max-width: 320px) {
+    overflow-x: scroll;
+    h2 {
+      position: sticky;
+      left: 0;
+      font-size: 1.5rem;
+    }
+  }
 `

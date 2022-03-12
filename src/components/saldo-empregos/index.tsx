@@ -9,7 +9,7 @@ export const SaldoEmpregos = ({ saldo_geral, saldo_emppregos }: Quantidade) => {
 
   return (
     <Styled.ContainerSaldoEmpregos>
-      <Styled.QuantidadeSaldoEmpregos>
+      <Styled.QuantidadeSaldoEmpregos saldoGeral>
         <p>Saldo Geral de Empregos</p>
         <p>{saldo_geral}</p>
       </Styled.QuantidadeSaldoEmpregos>
