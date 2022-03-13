@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const EstiloGraficoMensal = styled.div`
   height: 42vh;
+  max-height: 300px;
   box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.3);
   margin-bottom: 2rem;
   border-radius: 15px;
@@ -43,6 +44,16 @@ export const EstiloGraficoMensal = styled.div`
       position: sticky;
       left: 0;
       font-size: 1.7rem;
+    }
+  }
+
+  @media (max-width: 1366px) {
+    height: 50vh;
+
+    h2 {
+      position: sticky;
+      left: 0;
+      font-size: 2rem;
     }
   }
 `

@@ -134,7 +134,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
   }
 
   return (
-    <Styled.Container >
+    <Styled.Container>
       <p>Porte Empresarial</p>
       <Echarts
         className='grafito-tipo'

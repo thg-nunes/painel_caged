@@ -30,6 +30,7 @@ export const StylesTables = styled.div`
   flex-direction: column;
   width: 24vw;
   height: 80vh;
+  max-height: 1000px;
   overflow: hidden;
   overflow-y: scroll;
 

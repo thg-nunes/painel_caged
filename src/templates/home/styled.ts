@@ -3,8 +3,8 @@ import styled from 'styled-components'
 export const ContainerGraficos = styled.section`
   width: 80%;
   max-width: 1366px;
-  height: 300vh;
   margin: auto;
+  margin-bottom: 5rem;
   border-radius: 15px;
 `
 export const ContainerGraficosClassificacao = styled.div`

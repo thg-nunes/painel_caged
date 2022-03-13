@@ -5,10 +5,22 @@ export const Container = styled.div`
     if(isHorizontal) return '30vw'
     return '45vw'
   }};
+
+  max-width: ${({isHorizontal}) => {
+    if(isHorizontal) return '500px'
+    return '800px'
+  }};
+
   height: ${({isEscolaridade}) => {
     if(isEscolaridade) return '82vh'
     return '40vh'
   }};
+
+  max-height: ${({isEscolaridade}) => {
+    if(isEscolaridade) return '1000px'
+    return '500px'
+  }};
+
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -92,6 +104,23 @@ export const Container = styled.div`
 
     margin-bottom: ${({ isEscolaridade }) => {
       if(isEscolaridade) return '0'
+    }};
+  }
+
+  @media (max-width: 1366px) {
+    width:  100%;
+    max-width: ${({ isHorizontal }) => {
+      if(isHorizontal) return '100%'
+      return '90% '
+    }};
+    height: ${({isEscolaridade }) => {
+      if(isEscolaridade) return '100vh'
+      return '50vh'
+    }};
+
+    max-height: ${({isEscolaridade }) => {
+      if(isEscolaridade) return '93vh'
+      return '45vh'
     }};
   }
 `
