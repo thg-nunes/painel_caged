@@ -57,7 +57,7 @@ export const GraficoMensal = () => {
       top: '10%',
       left: '1%',
       right: marginRightGrafico,
-      bottom: marginBottomGrafico,
+      bottom: widthTela == 768 ? '22%' : marginBottomGrafico,
     },
     xAxis: {
       type: 'category',
@@ -96,7 +96,7 @@ export const GraficoMensal = () => {
         option={option}
         opts={{ renderer: 'canvas' }}
         style={{
-          width: widthTela >= 320 && widthTela <= 768 ? '150vw' : '100%',
+          width: widthTela >= 320 && widthTela < 768 ? '150vw' : '100%',
           height: '100%',
         }}
       />

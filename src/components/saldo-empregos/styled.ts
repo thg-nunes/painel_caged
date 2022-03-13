@@ -58,4 +58,16 @@ export const QuantidadeSaldoEmpregos = styled.div`
       font-size: 3.5rem;
     }
   }
+
+  @media (max-width: 768px) {
+    width: 45%;
+
+    & p:first-child {
+    font-size: 1.5rem;
+    }
+
+    & p:last-child {
+      font-size: 3.5rem;
+    }
+  }
 `

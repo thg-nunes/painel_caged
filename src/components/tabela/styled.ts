@@ -13,7 +13,7 @@ export const TituloTables = styled.h2`
   }
 
   @media (max-width: 768px) {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     position: sticky;
     top: 0;
   }

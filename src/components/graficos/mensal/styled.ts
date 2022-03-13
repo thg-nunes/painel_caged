@@ -23,4 +23,15 @@ export const EstiloGraficoMensal = styled.div`
       font-size: 1.5rem;
     }
   }
+
+  @media (max-width: 768px) {
+    height: 45vh;
+    overflow-x: scroll;
+
+    h2 {
+      position: sticky;
+      left: 0;
+      font-size: 1.6rem;
+    }
+  }
 `

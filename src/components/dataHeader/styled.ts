@@ -40,4 +40,10 @@ export const Data = styled.div`
       display: block;
     }
   }
+
+  @media (max-width: 768px) {
+    .texto-header {
+      font-size: 1.7rem;
+    }
+  }
 `

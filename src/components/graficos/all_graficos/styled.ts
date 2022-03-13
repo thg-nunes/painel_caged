@@ -44,4 +44,29 @@ export const Container = styled.div`
       font-size: 1.5rem;
     }
   }
+
+  @media (max-width: 768px) {
+    width:  100%;
+    max-width: ${({ isHorizontal }) => {
+      if(isHorizontal) return '100%'
+      return '90% '
+    }};
+    height: ${({isEscolaridade }) => {
+      if(isEscolaridade) return '104vh'
+      return '50vh'
+    }};
+
+    max-height: ${({isEscolaridade }) => {
+      if(isEscolaridade) return '104vh'
+      return '50vh'
+    }};
+
+    p{
+      font-size: 1.4rem;
+    }
+
+    margin-bottom: ${({ isEscolaridade }) => {
+      if(isEscolaridade) return '0'
+    }};
+  }
 `
