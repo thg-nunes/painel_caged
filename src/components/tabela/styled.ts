@@ -11,6 +11,12 @@ export const TituloTables = styled.h2`
     position: sticky;
     top: 0;
   }
+
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+    position: sticky;
+    top: 0;
+  }
 `
 
 export const StylesTables = styled.div`
@@ -82,6 +88,19 @@ export const StylesTables = styled.div`
       th,
       td {
         font-size: 1.1rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 25vw;
+    flex-direction: column;
+    max-height: 75vh;
+
+    table {
+      th,
+      td {
+        font-size: 1.20rem;
       }
     }
   }
