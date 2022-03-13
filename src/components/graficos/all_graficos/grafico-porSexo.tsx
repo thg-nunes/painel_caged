@@ -103,7 +103,7 @@ export const LayoutGraficoPorSexo = ({ yAxisType }: Props) => {
       axisLabel: {
         color: 'black',
         fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 12,
-        fontWeight: 'bold'
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
       },
       minInterval: widthTela >= 320 && widthTela <= 768 ? 10000 : 12000
     },

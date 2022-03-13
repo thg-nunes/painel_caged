@@ -103,7 +103,7 @@ export const LayoutRacaCor = ({ yAxisType }: Props) => {
       data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
-        fontWeight: 'bold',
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
         fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
       },
       minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : 10000

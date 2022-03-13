@@ -46,4 +46,10 @@ export const Data = styled.div`
       font-size: 1.7rem;
     }
   }
+
+  @media (max-width: 1024px) {
+    .texto-header {
+      font-size: 1.9rem;
+    }
+  }
 `

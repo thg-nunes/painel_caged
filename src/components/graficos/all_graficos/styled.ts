@@ -69,4 +69,29 @@ export const Container = styled.div`
       if(isEscolaridade) return '0'
     }};
   }
+
+  @media (max-width: 1024px) {
+    width:  100%;
+    max-width: ${({ isHorizontal }) => {
+      if(isHorizontal) return '100%'
+      return '90% '
+    }};
+    height: ${({isEscolaridade }) => {
+      if(isEscolaridade) return '104vh'
+      return '50vh'
+    }};
+
+    max-height: ${({isEscolaridade }) => {
+      if(isEscolaridade) return '104vh'
+      return '50vh'
+    }};
+
+    p{
+      font-size: 1.4rem;
+    }
+
+    margin-bottom: ${({ isEscolaridade }) => {
+      if(isEscolaridade) return '0'
+    }};
+  }
 `

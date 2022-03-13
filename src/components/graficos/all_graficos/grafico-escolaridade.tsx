@@ -96,17 +96,19 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
       color: 'rgb(0, 0, 0)',
       fontWeight: 'bold',
       position: yAxisType ? 'right' : 'top',
-      fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
+      fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 11,
+      rotate:  0
     },
     xAxis: {
       type: 'value',
       data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
-        fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12,
-        fontWeight: 'bold'
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 11,
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
+        rotate: widthTela >= 768 && widthTela <= 1024 ? 30 : 0
       },
-      minInterval: widthTela >= 320 && widthTela <= 768 ? 30000 : 12000
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 30000 : 20000
     },
     yAxis: {
       type: 'category',

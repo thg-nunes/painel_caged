@@ -104,7 +104,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
       data: dados_grafico_categoria_quantidade,
       axisLabel: {
         color: 'black',
-        fontWeight: 'bold',
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
         fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 12
       },
       axisTick: {
@@ -118,7 +118,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
       axisLabel: {
         color: 'black',
         fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 10,
-        fontWeight: 'bold',
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
       },
       axisTick: {
         show: false

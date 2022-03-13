@@ -97,6 +97,7 @@ export const GraficoMensal = () => {
         opts={{ renderer: 'canvas' }}
         style={{
           width: widthTela >= 320 && widthTela < 768 ? '150vw' : '100%',
+          maxWidth: '95%',
           height: '100%',
         }}
       />
