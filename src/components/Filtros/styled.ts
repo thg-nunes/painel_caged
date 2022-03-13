@@ -90,7 +90,7 @@
     & section {
       width: 100%;
       height: 50px;
-      max-width: 250px;
+      max-width: 170px;
       padding: 0 0.5rem;
     }
 
