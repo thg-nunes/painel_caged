@@ -1,29 +1,5 @@
 import axios from 'axios'
 
-type Context = {
-  dispatch: () => unknown
-  state: {
-    ano: number
-    cbo2002ocupacao: string
-    data: string
-    graudeinstrucao: string
-    municipio: string
-    porte: string
-    racacor: string
-    saldo_geral: string
-    saldo_mpe: string
-    setor: string
-    sexo: string
-    subclasse: string
-    uf: string
-  }
-}
-
-type ResponseDadosGraficos = {
-  grafico: string
-  valor: any
-}
-
 export const get_dados_grafico_mensal = async (context) => {
   return await axios({
     method: 'POST',
@@ -41,28 +17,7 @@ export const get_dados_grafico_mensal = async (context) => {
     .catch((err) => err)
 }
 
-const response_dadosGraficos = async (query: string) => {
-
-  const response = await axios({
-    method: 'POST',
-    url: 'http://179.127.13.245:3000/query/sql',
-    headers: {
-      'Target-URL': 'http://pinot-broker:8099',
-    },
-    data: {
-      sql: query,
-    },
-  })
-    .then((res) => {
-      return res.data.resultTable.rows
-    })
-    .catch((err) => err)
-
-  return response
-}
-
-
-export const getDadosFiltros = async (classificacao, filtros) => {
+export const getDadosGraficos = async (classificacao, filtros) => {
   if(filtros == undefined || filtros == null || filtros.state == undefined || filtros.state == null)
   return []
 
@@ -77,7 +32,7 @@ export const getDadosFiltros = async (classificacao, filtros) => {
     if(filtros.state[key] !== ''){  
       switch (key) {
         case 'ano':
-          filters += `data between '${filtros.state.ano}-01-01' and '${filtros.state.ano}-12-31' ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : `group by ${classificacao} `} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? 'limit 800000' : `order by ${classificacao == 'data' ? 'data' : 'saldo'} ${classificacao == 'data' ? '' : 'desc'} limit 800000`} `
+          filters += `data between '${filtros.state.ano}-01-01' and '${filtros.state.ano}-12-31' ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : `group by ${classificacao} `} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? 'limit 800000' : `order by ${classificacao == 'data' ? 'data' : 'saldo'} limit 800000`} `
           break
 
         default:
@@ -94,6 +49,8 @@ export const getDadosFiltros = async (classificacao, filtros) => {
       }
     }
   }
+
+  console.log(query + filters)
 
   return await axios({
     method: 'POST', 

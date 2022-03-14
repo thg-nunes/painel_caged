@@ -10,7 +10,7 @@ import { LayoutGraficoSetor } from "../../components/graficos/all_graficos/setor
 import { Header } from "../../components/header"
 import { SaldoEmpregos } from "../../components/saldo-empregos"
 import { ContextGlobal } from "../../contexts/context"
-import { getDadosFiltros, get_dados_grafico_mensal } from "../../services/pinot"
+import { getDadosGraficos, get_dados_grafico_mensal } from "../../services/pinot"
 import * as Styled from './styled'
 import { TabelaOcupacao } from "../../components/tabela/tabela-ocupacao"
 import { TabelaSubclasse } from "../../components/tabela/tabela-subclasse"
@@ -34,27 +34,27 @@ export const Home = () => {
     }
 
     const getDadosOcupacao =async () => {
-      const response = await getDadosFiltros('cbo2002ocupacao', context)
+      const response = await getDadosGraficos('cbo2002ocupacao', context)
       setOcupacao(response)
     }
 
     const getDadosMunicipio =async () => {
-      const response = await getDadosFiltros('municipio', context)
+      const response = await getDadosGraficos('municipio', context)
       setMunicipio(response)
     }
 
     const getDadosSubclasse =async () => {
-      const response = await getDadosFiltros('subclasse', context)
+      const response = await getDadosGraficos('subclasse', context)
       setSubclasse(response)
     }
 
     const getSaldoGeral = async () => {
-      const response = await getDadosFiltros('saldo_geral', context)
+      const response = await getDadosGraficos('saldo_geral', context)
       setDadosSaldoGeral(response.toLocaleString())
     }
 
     const getSaldoMpe = async () => {
-      const response = await getDadosFiltros('saldo_mpe', context)
+      const response = await getDadosGraficos('saldo_mpe', context)
       setDadosSaldoMpe(response.toLocaleString())
     }
 
