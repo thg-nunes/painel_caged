@@ -1,4 +1,4 @@
-  import styled from 'styled-components'
+    import styled from 'styled-components'
 
   export const ContainerFiltros = styled.div`
     width: 80%;
@@ -88,9 +88,9 @@
     padding-left: 0.8rem;
 
     & section {
-      width: 100%;
+      width: 16%;
       height: 50px;
-      max-width: 170px;
+      min-width: 100px;
       padding: 0 0.5rem;
     }
 
