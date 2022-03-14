@@ -3,7 +3,7 @@ import Echarts from 'echarts-for-react'
 
 import * as Styled from './styled'
 import { ContextGlobal } from '../../../contexts/context'
-import { getDadosFiltros } from '../../../services/pinot'
+import { getDadosGraficos } from '../../../services/pinot'
 
 type PadraoGraficos = {
   titulo_grafico: string
@@ -35,7 +35,7 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
 
   useEffect(() => {
     const getDadosEscolaridade = async () => {
-      const response = await getDadosFiltros('graudeinstrucao', context)
+      const response = await getDadosGraficos('graudeinstrucao', context)
       setDadosEscolaridade(response)
     }
 
@@ -59,6 +59,7 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
     '#B6982C',
     '#525174',
     '#3B6065',
+    '#F28E2C',
   ]
 
   const dados_grafico_categoria: string[] = []
@@ -82,6 +83,37 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
   const option = {
     tooltip: {
       trigger: 'axis',
+    },
+    toolbox: {
+      show: true,
+      orient: "vertical",
+      left: "right",
+      showTitle: true,
+      feature: {
+        type: "png",
+        saveAsImage: {
+          show: true,
+          title: ' ',
+          iconStyle: {
+            borderWidth: 1.5,
+          },
+        },
+        magicType: { 
+          show: true,
+          title: ' ',
+          type: ['line'],
+          iconStyle: {
+            borderWidth: 1.5,
+          },
+        },
+        restore: {
+          show: true,
+          title: ' ',
+          iconStyle: {
+            borderWidth: 1.5,
+          },
+        },
+      },
     },
     grid: {
       containLabel: true,
@@ -125,6 +157,7 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
     series: [
       {
         data: dados_grafico_categoria_quantidade,
+        color: '#0374F0',
         type: 'bar',
         barWidth: '40%',
       },
@@ -139,7 +172,7 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
         option={option}
         opts={{ renderer: 'canvas' }}
         style={{
-          width: '100%',
+          width: '98%',
           height: '100%',
         }}
       />

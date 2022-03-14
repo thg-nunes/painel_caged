@@ -3,7 +3,7 @@ import Echarts from 'echarts-for-react'
 
 import * as Styled from './styled'
 import { ContextGlobal } from '../../../contexts/context'
-import { getDadosFiltros } from '../../../services/pinot'
+import { getDadosGraficos } from '../../../services/pinot'
 
 type PadraoGraficos = {
   titulo_grafico: string
@@ -35,7 +35,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
 
   useEffect(() => {
     const getDadosMensal = async () => {
-      const response = await getDadosFiltros('porte', context)
+      const response = await getDadosGraficos('porte', context)
       setDadosPorte(response)
     }
 
@@ -84,6 +84,37 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
     tooltip: {
       trigger: 'axis',
     },
+    toolbox: {
+      show: true,
+      orient: "vertical",
+      left: "right",
+      showTitle: true,
+      feature: {
+        type: "png",
+        saveAsImage: {
+          show: true,
+          title: ' ',
+          iconStyle: {
+            borderWidth: 1.5,
+          },
+        },
+        magicType: { 
+          show: true,
+          title: ' ',
+          type: ['line'],
+          iconStyle: {
+            borderWidth: 1.5,
+          },
+        },
+        restore: {
+          show: true,
+          title: ' ',
+          iconStyle: {
+            borderWidth: 1.5,
+          },
+        },
+      },
+    },
     grid: {
       containLabel: true,
       width: '85%',
@@ -127,6 +158,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
     series: [
       {
         data: dados_grafico_categoria_quantidade,
+        color: '#0374F0',
         type: 'bar',
         barWidth: '40%',
       },
@@ -141,7 +173,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
         option={option}
         opts={{ renderer: 'canvas' }}
         style={{
-          width: '100',
+          width: '98%',
           height: '100%',
         }}
       />

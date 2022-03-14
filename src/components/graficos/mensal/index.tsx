@@ -1,7 +1,7 @@
 import Echarts from 'echarts-for-react'
 import { useContext, useEffect, useState } from 'react'
 import { ContextGlobal } from '../../../contexts/context'
-import { getDadosFiltros } from '../../../services/pinot'
+import { getDadosGraficos } from '../../../services/pinot'
 import * as Sttyle from './styled'
 
 export const GraficoMensal = () => {
@@ -14,7 +14,7 @@ export const GraficoMensal = () => {
 
   useEffect(() => {
     const getDadosMensal = async () => {
-      const response = await getDadosFiltros('data', context)
+      const response = await getDadosGraficos('data', context)
       setDadosMensal(response)
     }
     
@@ -51,9 +51,40 @@ export const GraficoMensal = () => {
     tooltip: {
       trigger: 'axis',
     },
+    toolbox: {
+      show: true,
+      orient: "vertical",
+      left: "right",
+      showTitle: true,
+      feature: {
+        type: "png",
+        saveAsImage: {
+          show: true,
+          title: ' ',
+          iconStyle: {
+            borderWidth: 1.5,
+          },
+        },
+        magicType: { 
+          show: true,
+          title: ' ',
+          type: ['line'],
+          iconStyle: {
+            borderWidth: 1.5,
+          },
+        },
+        restore: {
+          show: true,
+          title: ' ',
+          iconStyle: {
+            borderWidth: 1.5,
+          },
+        },
+      },
+    },
     grid: {
       containLabel: true,
-      width: widthTela >= 320 && widthTela <= 768 ? '90%' : '98%',
+      width: widthTela >= 320 && widthTela <= 768 ? '90%' : '95%',
       top: '10%',
       left: '1%',
       right: marginRightGrafico,
@@ -97,7 +128,7 @@ export const GraficoMensal = () => {
         opts={{ renderer: 'canvas' }}
         style={{
           width: widthTela >= 320 && widthTela < 768 ? '150vw' : '100%',
-          maxWidth: '95%',
+          maxWidth: '98%',
           height: '100%',
         }}
       />
