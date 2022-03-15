@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 export const ContainerSaldoEmpregos = styled.div`
   width: 80%;
@@ -45,7 +45,7 @@ export const QuantidadeSaldoEmpregos = styled.div`
   }
 
   @media (max-width: 320px) {
-    width: 100%;
+    min-width: 100%;
     margin-bottom: ${({saldoGeral}) => {
       if(saldoGeral) return '2rem'
     }};

@@ -87,7 +87,7 @@ export const StylesTables = styled.div`
   }
 
   @media (max-width: 320px) {
-    width: 100%;
+    min-width: 100%;
     flex-direction: column;
     max-height: 80vh;
 
