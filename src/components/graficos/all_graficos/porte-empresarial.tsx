@@ -88,6 +88,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
       show: true,
       orient: "vertical",
       left: "right",
+      itemSize: widthTela >= 768 && widthTela <= 1024 ? 11 : 12,
       showTitle: true,
       feature: {
         type: "png",
@@ -141,7 +142,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
       axisTick: {
         show: false
       },
-      minInterval: widthTela >= 320 && widthTela <= 768 ? 30000 : 10000
+      minInterval: (widthTela >= 320 && widthTela <= 768) ? 30000 : null
     },
     yAxis: {
       type: 'category',

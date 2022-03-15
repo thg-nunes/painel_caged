@@ -113,7 +113,8 @@ export const GraficoMensal = () => {
     series: [
       {
         data: valores_colunas,
-        type: 'line',
+        type: valores_colunas.length <= 1 ? 'bar' : 'line',
+        barMaxWidth: valores_colunas.length <= 1 ? '50%' : null,
         color: '#0374F0',
         smooth: true,
       },
@@ -127,8 +128,7 @@ export const GraficoMensal = () => {
         option={option}
         opts={{ renderer: 'canvas' }}
         style={{
-          width: widthTela >= 320 && widthTela < 768 ? '150vw' : '100%',
-          maxWidth: '98%',
+          width: widthTela >= 320 && widthTela <= 768 ? '150vw' : '100%',
           height: '100%',
         }}
       />

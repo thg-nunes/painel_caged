@@ -87,6 +87,7 @@ export const LayoutGraficoPorSexo = ({ yAxisType }: Props) => {
       show: true,
       orient: "vertical",
       left: "right",
+      itemSize: widthTela >= 768 && widthTela <= 1024 ? 11 : 12,
       showTitle: true,
       feature: {
         type: "png",
@@ -136,7 +137,7 @@ export const LayoutGraficoPorSexo = ({ yAxisType }: Props) => {
         fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 12,
         fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
       },
-      minInterval: widthTela >= 320 && widthTela <= 768 ? 10000 : 12000
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 10000 : null
     },
     yAxis: {
       type: 'category' ,

@@ -88,6 +88,7 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
       show: true,
       orient: "vertical",
       left: "right",
+      itemSize: widthTela >= 768 && widthTela <= 1024 ? 11 : 12,
       showTitle: true,
       feature: {
         type: "png",
@@ -138,9 +139,9 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
         color: 'black',
         fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 11,
         fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
-        rotate: widthTela >= 768 && widthTela <= 1024 ? 30 : 0
+        rotate: widthTela >= 768 && widthTela < 1024 ? 30 : 0
       },
-      minInterval: widthTela >= 320 && widthTela <= 768 ? 30000 : 20000
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 30000 : 400
     },
     yAxis: {
       type: 'category',

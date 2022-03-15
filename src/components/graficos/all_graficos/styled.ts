@@ -46,7 +46,7 @@ export const Container = styled.div`
   }
 
   @media (max-width: 320px) {
-    width:  100%;
+    min-width:  100%;
     height: ${({isEscolaridade}) => {
       if(isEscolaridade) return '82vh'
       return '50vh'
