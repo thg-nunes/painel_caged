@@ -90,9 +90,13 @@
     & section {
       width: 16%;
       height: 50px;
-      min-width: 100px;
+      min-width: ${({isFiltrosBottom}) => {
+        if(isFiltrosBottom) return '117px'
+        return '100px'
+      }};
       padding: 0 0.5rem;
     }
+
 
     @media (max-width: 320px) {
       p {
@@ -121,6 +125,13 @@
       }
       & section div:first-child {
         background: white;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      p {
+        font-size: 1.2rem;
+        margin: .5rem 0;
       }
     }
   `

@@ -211,7 +211,7 @@ export const Filtros = () => {
         </section>
       </Styled.ContainerMultiSelect>
 
-      <Styled.ContainerMultiSelect>
+      <Styled.ContainerMultiSelect isFiltrosBottom>
         <section>
           <p>Setor</p>
           <Multiselect
