@@ -29,26 +29,31 @@ export const getDadosGraficos = async (classificacao, filtros) => {
 
     if(filtros.state[key] == 'Selecionar') filtros.state[key] = ''
     
+    let data = ''
     if(filtros.state[key] !== ''){  
       switch (key) {
         case 'ano':
-          filters += `data between '${filtros.state.ano}-01-01' and '${filtros.state.ano}-12-31' ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : `group by ${classificacao} `} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? 'limit 800000' : `order by ${classificacao == 'data' ? 'data' : 'saldo'} limit 800000`} `
+          filtros.state.data.length == 1 ?  data = `'${filtros.state[key]+filtros.state.data[0].data_inicio}' and '${filtros.state[key]+filtros.state.data[0].data_fim}'` :  data = `'${filtros.state.ano}-01-01' and '${filtros.state.ano}-12-31'`
+
+          filters += `data between ${data} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : `group by ${classificacao} `} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? 'limit 800000' : `order by ${classificacao == 'data' ? 'data' : 'saldo'} limit 800000`} `
           break
 
         default:
-          if(typeof filtros.state[key] == 'object' &&  filtros.state[key].length >= 1){
+          if(typeof filtros.state[key] == 'object' &&  filtros.state[key].length >= 1 && key !== 'data'){
             filtros.state[key].map((element, index) => {
               index !== 0 ? otherFilters += `or ${key} = '${element.label}' ${index == filtros.state[key].length - 1 ? ') and ' : ''}` : otherFilters += `(${key} = '${element.label}' ${filtros.state[key].length == 1 ? ') and' : ''} `
             })
             filters = 'where ' + otherFilters
             break
           } else {
-            filters += `${key} = '${filtros.state[key]}' and `
+            if(key !== 'data') filters += `${key} = '${filtros.state[key]}' and `
             break
           }
       }
     }
   }
+
+  console.log(query + filters)
 
   return await axios({
     method: 'POST', 

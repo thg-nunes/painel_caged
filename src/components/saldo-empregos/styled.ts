@@ -44,18 +44,15 @@ export const QuantidadeSaldoEmpregos = styled.div`
     padding: 2rem 0;
   }
 
-  @media (max-width: 320px) {
-    min-width: 100%;
-    margin-bottom: ${({saldoGeral}) => {
-      if(saldoGeral) return '2rem'
-    }};
+  @media (max-width: 1024px) {
+    width: 45%;
 
     & p:first-child {
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     }
 
     & p:last-child {
-      font-size: 3.5rem;
+      font-size: 4rem;
     }
   }
 
@@ -71,15 +68,19 @@ export const QuantidadeSaldoEmpregos = styled.div`
     }
   }
 
-  @media (max-width: 1024px) {
-    width: 45%;
+  @media (max-width: 320px) {
+    min-width: 100%;
+    margin-bottom: ${({saldoGeral}) => {
+      if(saldoGeral) return '2rem'
+    }};
 
     & p:first-child {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     }
 
     & p:last-child {
-      font-size: 4rem;
+      font-size: 3.5rem;
     }
   }
+  
 `
