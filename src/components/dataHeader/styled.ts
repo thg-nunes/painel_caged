@@ -26,10 +26,22 @@ export const Data = styled.div`
       font-size: ${theme.font.sizes.default};
     `}
   }
+  
+  @media (max-width: 1024px) {
+    .texto-header {
+      font-size: 1.9rem;
+    }
+  }
+  
+    @media (max-width: 768px) {
+      .texto-header {
+        font-size: 1.7rem;
+      }
+    }
 
   @media (max-width: 320px) {
     .texto-header {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
     }
 
     .logo {
@@ -41,15 +53,5 @@ export const Data = styled.div`
     }
   }
 
-  @media (max-width: 768px) {
-    .texto-header {
-      font-size: 1.7rem;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    .texto-header {
-      font-size: 1.9rem;
-    }
-  }
+  
 `

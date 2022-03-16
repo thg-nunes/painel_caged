@@ -45,40 +45,20 @@ export const Container = styled.div`
     `}
   }
 
-  @media (max-width: 320px) {
-    min-width:  100%;
-    height: ${({isEscolaridade}) => {
-      if(isEscolaridade) return '82vh'
-      return '50vh'
-    }};
-
-    p{
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (max-width: 768px) {
+  @media (max-width: 1366px) {
     width:  100%;
     max-width: ${({ isHorizontal }) => {
       if(isHorizontal) return '100%'
       return '90% '
     }};
     height: ${({isEscolaridade }) => {
-      if(isEscolaridade) return '104vh'
+      if(isEscolaridade) return '100vh'
       return '50vh'
     }};
 
     max-height: ${({isEscolaridade }) => {
-      if(isEscolaridade) return '104vh'
-      return '50vh'
-    }};
-
-    p{
-      font-size: 1.4rem;
-    }
-
-    margin-bottom: ${({ isEscolaridade }) => {
-      if(isEscolaridade) return '0'
+      if(isEscolaridade) return '93vh'
+      return '45vh'
     }};
   }
 
@@ -107,20 +87,41 @@ export const Container = styled.div`
     }};
   }
 
-  @media (max-width: 1366px) {
+  @media (max-width: 768px) {
     width:  100%;
     max-width: ${({ isHorizontal }) => {
       if(isHorizontal) return '100%'
       return '90% '
     }};
     height: ${({isEscolaridade }) => {
-      if(isEscolaridade) return '100vh'
+      if(isEscolaridade) return '104vh'
       return '50vh'
     }};
 
     max-height: ${({isEscolaridade }) => {
-      if(isEscolaridade) return '93vh'
-      return '45vh'
+      if(isEscolaridade) return '104vh'
+      return '50vh'
+    }};
+
+    p{
+      font-size: 1.4rem;
+    }
+
+    margin-bottom: ${({ isEscolaridade }) => {
+      if(isEscolaridade) return '0'
     }};
   }
+
+  @media (max-width: 320px) {
+    min-width:  100%;
+    height: ${({isEscolaridade}) => {
+      if(isEscolaridade) return '82vh'
+      return '50vh'
+    }};
+
+    p{
+      font-size: 1.5rem;
+    }
+  }
+  
 `

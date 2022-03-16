@@ -97,18 +97,10 @@
       padding: 0 0.5rem;
     }
 
-
-    @media (max-width: 320px) {
+    @media (max-width: 1024px) {
       p {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
         margin: .5rem 0;
-      }
-
-      section {
-        margin: .5rem 0;
-        margin-right: .5rem;
-        max-width: 100%;
-        padding: 0;
       }
     }
 
@@ -128,10 +120,20 @@
       }
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 320px) {
+      flex-direction: column;
+
       p {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin: .5rem 0;
       }
+
+      section {
+        min-width: 85%;
+        margin: .5rem 0;
+        margin-right: .5rem;
+        max-width: 100%;
+        padding: 0;
+      }
     }
-  `
+`

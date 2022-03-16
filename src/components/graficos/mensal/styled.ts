@@ -16,23 +16,13 @@ export const EstiloGraficoMensal = styled.div`
     color: white;
   }
 
-  @media (max-width: 320px) {
-    overflow-x: scroll;
-    h2 {
-      position: sticky;
-      left: 0;
-      font-size: 1.5rem;
-    }
-  }
-
-  @media (max-width: 768px) {
-    height: 45vh;
-    overflow-x: scroll;
+  @media (max-width: 1366px) {
+    height: 50vh;
 
     h2 {
       position: sticky;
       left: 0;
-      font-size: 1.6rem;
+      font-size: 2rem;
     }
   }
 
@@ -47,13 +37,24 @@ export const EstiloGraficoMensal = styled.div`
     }
   }
 
-  @media (max-width: 1366px) {
-    height: 50vh;
+  @media (max-width: 768px) {
+    height: 45vh;
+    overflow-x: scroll;
 
     h2 {
       position: sticky;
       left: 0;
-      font-size: 2rem;
+      font-size: 1.6rem;
     }
   }
+
+  @media (max-width: 320px) {
+    overflow-x: scroll;
+    h2 {
+      position: sticky;
+      left: 0;
+      font-size: 1.5rem;
+    }
+  }
+  
 `
