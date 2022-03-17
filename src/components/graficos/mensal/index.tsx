@@ -7,6 +7,9 @@ import * as Sttyle from './styled'
 export const GraficoMensal = () => {
 
   const context = useContext(ContextGlobal)
+  const [allMeses] = useState<string[]>(['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'])
+  const [mesesComDados, setMesesComDados] = useState<string[]>([])
+  const [mesesQuantidadeDados, setMesesQuantidadeDados] = useState<number[]>([])
   const [dadosMensal, setDadosMensal] = useState<any[]>([])
   const [marginBottomGrafico, setMarginBottomGrafico] = useState<string>('')
   const [marginRightGrafico, setMarginRightGrafico] = useState<string>('')
@@ -15,6 +18,17 @@ export const GraficoMensal = () => {
   useEffect(() => {
     const getDadosMensal = async () => {
       const response = await getDadosGraficos('data', context)
+
+      const meses_com_dados: string[] = []
+      const quantidade_dados_meses: number[] = []
+
+      for (let i = 0; i < response.length; i++) {
+        meses_com_dados.push(allMeses[i])  
+        quantidade_dados_meses.push(response[0][1])        
+      }
+
+      setMesesComDados(meses_com_dados)
+      setMesesQuantidadeDados(quantidade_dados_meses)
       setDadosMensal(response)
     }
     
@@ -90,9 +104,13 @@ export const GraficoMensal = () => {
       right: marginRightGrafico,
       bottom: widthTela == 768 ? '22%' : marginBottomGrafico,
     },
+    label: {
+      show: mesesQuantidadeDados.length == 1 ? true : false,
+      fontWeight: mesesQuantidadeDados.length == 1 ? 'bold' : null
+    },
     xAxis: {
       type: 'category',
-      data: ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'],
+      data: mesesComDados.length == 1 ? mesesComDados : ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'],
       axisLabel: {
         color: 'black',
         fontWeight: 'bold',
@@ -112,9 +130,9 @@ export const GraficoMensal = () => {
     },
     series: [
       {
-        data: valores_colunas,
-        type: valores_colunas.length <= 1 ? 'bar' : 'line',
-        barMaxWidth: valores_colunas.length <= 1 ? '50%' : null,
+        data: valores_colunas.length == 12 ? valores_colunas : mesesQuantidadeDados,
+        type: mesesQuantidadeDados.length > 1 ? 'line' : 'bar',
+        barMaxWidth: mesesQuantidadeDados.length == 1 ? '10%' : '25%',
         color: '#0374F0',
         smooth: true,
       },

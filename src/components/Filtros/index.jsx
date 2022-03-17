@@ -4,7 +4,7 @@ import * as actions from '../../contexts/actions'
 import { useContext, useEffect, useState } from 'react'
 import { ContextGlobal } from '../../contexts/context'
 import {
-  getDadosFiltrosUF, getDadosFiltrosMunicipio, getDadosFiltrosPorte, getDadosFiltrosOcupacao, getDadosFiltrosSetor, getDadosFiltrosRacaCor, getDadosFiltrosGaudeInstrucao, getDadosFiltrosSexo, getDadosFiltrosSubclasse
+  getDadosFiltrosUF, getDadosFiltrosMunicipio, getDadosFiltrosPorte, getDadosFiltrosOcupacao, getDadosFiltrosSetor, getDadosFiltrosRacaCor, getDadosFiltrosGaudeInstrucao, getDadosFiltrosSexo, getDadosFiltrosSubclasse, getDadosGraficos
 } from '../../services/pinot'
 
 export const Filtros = () => {
@@ -21,6 +21,7 @@ export const Filtros = () => {
   const [filtrosGrauInstrucao, setFiltrosGrauInstrucao] = useState([])
   const [filtrosPorSexo, setFiltrosPorSexo] = useState([])
   const [filtrosSubclasse, setFiltrosSubclasse] = useState([])
+  const [mesesComDados, setMesesComDados] = useState()
 
   const constroi_filtros = (arr_filtros, filtro) => { 
     let filtros_modificados = []
@@ -90,11 +91,13 @@ export const Filtros = () => {
       setFiltrosSubclasse(filtros_validos)
     }
 
-    const filtros_meses = () => {
+    const filtros_meses = async () => {
       let meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
       let filtromensal = []
+
+      const meses_com_dados = await getDadosGraficos('data', context)
     
-      for (let i = 0; i < meses.length; i++) {
+      for (let i = 0; i < meses_com_dados.length; i++) {
         filtromensal.push({
           value:'data',
           label: meses[i]
