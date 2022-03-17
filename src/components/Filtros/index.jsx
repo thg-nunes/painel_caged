@@ -2,6 +2,7 @@ import { Multiselect } from 'multiselect-react-dropdown'
 import * as Styled from './styled'
 import * as actions from '../../contexts/actions'
 import { useContext, useEffect, useState } from 'react'
+import SelectOptions from 'react-select'
 import { ContextGlobal } from '../../contexts/context'
 import {
   getDadosFiltrosUF, getDadosFiltrosMunicipio, getDadosFiltrosPorte, getDadosFiltrosOcupacao, getDadosFiltrosSetor, getDadosFiltrosRacaCor, getDadosFiltrosGaudeInstrucao, getDadosFiltrosSexo, getDadosFiltrosSubclasse, getDadosGraficos
@@ -21,7 +22,6 @@ export const Filtros = () => {
   const [filtrosGrauInstrucao, setFiltrosGrauInstrucao] = useState([])
   const [filtrosPorSexo, setFiltrosPorSexo] = useState([])
   const [filtrosSubclasse, setFiltrosSubclasse] = useState([])
-  const [mesesComDados, setMesesComDados] = useState()
 
   const constroi_filtros = (arr_filtros, filtro) => { 
     let filtros_modificados = []
@@ -34,7 +34,7 @@ export const Filtros = () => {
     }
     return filtros_modificados
   }
-  
+
   useEffect(() => {
 
     const getFiltrosUf = async () => {
@@ -110,7 +110,7 @@ export const Filtros = () => {
     const filtros_ano = () => {
       let ano_disponiveis = []
 
-      for (let i = 2020; i <= context.state.ano; i++) {
+      for (let i = 2020; i <= 2022; i++) {
         ano_disponiveis.push({
           value: 'ano',
           label: i
@@ -145,7 +145,8 @@ export const Filtros = () => {
         <section>
           <p>Ano:</p>
           <Multiselect
-            className="multiselect"
+            isMulti={false}
+            className="multiselect multiselect-ano"
             displayValue="label"
             onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: e}})}

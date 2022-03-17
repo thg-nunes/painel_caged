@@ -53,8 +53,6 @@ export const getDadosGraficos = async (classificacao, filtros) => {
     }
   }
 
-  console.log(query + filters)
-
   return await axios({
     method: 'POST', 
     url: 'http://179.127.13.245:3000/query/sql', 
