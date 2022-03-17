@@ -35,7 +35,7 @@ export const getDadosGraficos = async (classificacao, filtros) => {
         case 'ano':
           filtros.state.data.length == 1 ?  data = `'${filtros.state[key]+filtros.state.data[0].data_inicio}' and '${filtros.state[key]+filtros.state.data[0].data_fim}'` :  data = `'${filtros.state.ano}-01-01' and '${filtros.state.ano}-12-31'`
 
-          filters += `data between ${data} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : `group by ${classificacao} `} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? 'limit 800000' : `order by ${classificacao == 'data' ? 'data' : 'saldo'} limit 800000`} `
+          filters += `data between ${data} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : `group by ${classificacao} `} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? 'limit 800000' : `order by ${classificacao == 'data' ? 'data' : 'saldo'} ${classificacao == 'municipio' || classificacao == 'subclasse' || classificacao == 'cbo2002ocupacao' ? 'desc' : ''} limit 800000`} `
           break
 
         default:

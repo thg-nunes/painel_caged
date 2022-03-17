@@ -58,7 +58,6 @@ export const Home = () => {
       setDadosSaldoMpe(response.toLocaleString())
     }
 
-    // dadosGraficos()
     dados_GraficoMensal()
     getDadosOcupacao()
     getDadosMunicipio()
