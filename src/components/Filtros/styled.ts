@@ -11,6 +11,31 @@
     position: relative;
     box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
 
+    div {
+      margin-right: .2rem;
+    }
+
+    .multiselect {
+      width: 100%;
+      max-width: 11vw;
+    }
+
+    .multiselect-span{
+      max-width: 28vw;
+      
+      span {
+        overflow: hidden;
+        font-size: 1rem;
+      }
+    }
+
+    .multiselect-span-ocupacao{
+      max-width: 20vw;
+      span {
+        font-size: 1rem;
+      }
+    }
+
     .texto-filtros {
       margin: 0;
       padding: 0 0.5rem;
@@ -87,7 +112,7 @@
     margin-bottom: 1rem;
     padding-left: 0.8rem;
 
-    & div {
+    & section {
       width: 50%;
       height: 50px;
       min-width: ${({isFiltrosBottom}) => {
