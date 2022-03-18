@@ -1,10 +1,11 @@
 import * as Styled from './styled'
+import logo from './Governo-Maranhao-MA.jpg'
 
 export const DataHeader = () => {
   return (
     <Styled.Data>
       <p className="texto-header">Painel de Empregos Formais - JUCEMA</p>
-      <img className="logo" src="" alt="logo" />
+      <img className="logo" src={logo} alt="logo" />
       <svg className='menu-mobile' xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"
         onClick={() => {
           document.getElementById('all_filters').style.display = 'block'

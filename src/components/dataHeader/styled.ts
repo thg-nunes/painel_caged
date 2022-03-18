@@ -13,7 +13,8 @@ export const Data = styled.div`
   `}
 
   .logo {
-    width: 130px;
+    width: 50px;
+    border-radius: 5px;
   }
 
   .menu-mobile {
