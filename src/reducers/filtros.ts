@@ -12,9 +12,14 @@ type Meses = {
 export const reducerFilter = (state, action) => {
   switch (action.type) {
     case actions.MUDAR_ANO:
+      if(typeof action.payload.filtros_selecionados === 'number') {
+        return{...state, ano: action.payload.filtros_selecionados}
+      }
+
       if(action.payload.filtros_selecionados.length == 0 || action.payload.filtros_selecionados == ''){
         return{...state, ano: ano}
       }
+
       return {...state, ano: action.payload.filtros_selecionados[0].label}
     case actions.MUDAR_ESTADO:
       if(action.payload.filtros_selecionados.length == 0 || action.payload.filtros_selecionados == ''){

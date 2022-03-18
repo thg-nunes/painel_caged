@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { ContextGlobal } from '../../../contexts/context'
 import { getDadosGraficos } from '../../../services/pinot'
 import * as Sttyle from './styled'
+import * as actions from '../../../contexts/actions'
 
 export const GraficoMensal = () => {
 
@@ -18,6 +19,10 @@ export const GraficoMensal = () => {
   useEffect(() => {
     const getDadosMensal = async () => {
       const response = await getDadosGraficos('data', context)
+
+      if(response.length <= 0) {
+        context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: new Date().getFullYear() - 1}})
+      }
 
       const meses_com_dados: string[] = []
       const quantidade_dados_meses: number[] = []
