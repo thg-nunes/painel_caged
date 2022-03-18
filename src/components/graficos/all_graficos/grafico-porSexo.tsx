@@ -34,17 +34,25 @@ export const LayoutGraficoPorSexo = ({ yAxisType }: Props) => {
   const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
+
+    let cancel_set = false;
+
     const getDadosSexo = async () => {
       const response = await getDadosGraficos('sexo', context)
+      if(cancel_set) return
       setDadosSexo(response)
     }
 
     const get_widthTela = () => {
+      if(cancel_set) return
       setWidthTela(window.innerWidth)
     }
 
     getDadosSexo()
     get_widthTela()
+
+    return () => {cancel_set = true}
+
   }, [context])
 
   const colecao_cores = [

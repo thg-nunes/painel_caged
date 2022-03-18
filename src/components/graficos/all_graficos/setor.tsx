@@ -33,17 +33,23 @@ export const LayoutGraficoSetor = ({ yAxisType }: Props) => {
   const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
+
+    let cancel_set = false;
+
     const getDadosSetor = async () => {
       const response = await getDadosGraficos('setor', context)
+      if(cancel_set) return
       setDadosSetor(response)
     }
 
     const get_widthTela = () => {
+      if(cancel_set) return
       setWidthTela(window.innerWidth)
     }
 
     getDadosSetor()
     get_widthTela()
+    return () => {cancel_set = true}
   }, [context])
 
   const colecao_cores = [

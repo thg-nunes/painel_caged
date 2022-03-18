@@ -17,6 +17,9 @@ export const GraficoMensal = () => {
   const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
+
+    let cancel_set = false
+
     const getDadosMensal = async () => {
       const response = await getDadosGraficos('data', context)
 
@@ -40,23 +43,28 @@ export const GraficoMensal = () => {
     const tamanhoTela = () => {
       if(window.innerWidth > 1366) setMarginBottomGrafico('18%')
       if(window.innerWidth >= 1024 || window.innerWidth <= 1366) {
+        if(cancel_set) return
         setMarginBottomGrafico('20%')
         setMarginRightGrafico('10%')
       }
 
       if(window.innerWidth >=  768 || window.innerWidth <= 1024) {
+        if(cancel_set) return
         setMarginBottomGrafico('20%')
         setMarginRightGrafico('15%')
       }
     }
 
     const get_widthTela = () => {
-      setWidthTela(window.innerWidth)
+        if(cancel_set) return
+        setWidthTela(window.innerWidth)
     }
 
     getDadosMensal()
     tamanhoTela()
     get_widthTela()
+
+    return () => {cancel_set = true}
   }, [context])
 
   const valores_colunas: number[] = []

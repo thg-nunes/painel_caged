@@ -34,17 +34,25 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
   const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
+
+    let cancel_set = false;
+
     const getDadosMensal = async () => {
       const response = await getDadosGraficos('porte', context)
+      if(cancel_set) return
       setDadosPorte(response)
     }
 
     const get_widthTela = () => {
+      if(cancel_set) return
       setWidthTela(window.innerWidth)
     }
 
     getDadosMensal()
     get_widthTela()
+
+    return () => {cancel_set = true}
+
   }, [context])
 
   const colecao_cores = [

@@ -87,8 +87,8 @@
     margin-bottom: 1rem;
     padding-left: 0.8rem;
 
-    & section {
-      width: 16%;
+    & div {
+      width: 50%;
       height: 50px;
       min-width: ${({isFiltrosBottom}) => {
         if(isFiltrosBottom) return '117px'

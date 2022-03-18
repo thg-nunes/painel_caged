@@ -27,35 +27,43 @@ export const Home = () => {
   const [subclasse, setSubclasse] = useState([])
   
   useEffect(() => {
+
+    let cancel_set = false
     
     const dados_GraficoMensal = async () => {
       const response_graficoMensal = await get_dados_grafico_mensal(context)
-      setDadosGraficoMensal(response_graficoMensal)
+        if(cancel_set) return
+        setDadosGraficoMensal(response_graficoMensal)
     }
 
     const getDadosOcupacao =async () => {
       const response = await getDadosGraficos('cbo2002ocupacao', context)
-      setOcupacao(response)
+        if(cancel_set) return
+        setOcupacao(response)
     }
 
     const getDadosMunicipio =async () => {
       const response = await getDadosGraficos('municipio', context)
+        if(cancel_set) return
       setMunicipio(response)
     }
 
     const getDadosSubclasse =async () => {
       const response = await getDadosGraficos('subclasse', context)
+        if(cancel_set) return
       setSubclasse(response)
     }
 
     const getSaldoGeral = async () => {
       const response = await getDadosGraficos('saldo_geral', context)
-      setDadosSaldoGeral(response.toLocaleString())
+        if(cancel_set) return
+        setDadosSaldoGeral(response.toLocaleString())
     }
 
     const getSaldoMpe = async () => {
       const response = await getDadosGraficos('saldo_mpe', context)
-      setDadosSaldoMpe(response.toLocaleString())
+        if(cancel_set) return
+        setDadosSaldoMpe(response.toLocaleString())
     }
 
     dados_GraficoMensal()
@@ -64,6 +72,8 @@ export const Home = () => {
     getDadosSubclasse()
     getSaldoGeral()
     getSaldoMpe()
+
+    return () => cancel_set = true
   }, [context])
 
   return <>

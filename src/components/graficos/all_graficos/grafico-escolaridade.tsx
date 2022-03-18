@@ -34,17 +34,24 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
   const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
+
+    let cancel_set = false;
+
     const getDadosEscolaridade = async () => {
       const response = await getDadosGraficos('graudeinstrucao', context)
+      if(cancel_set) return
       setDadosEscolaridade(response)
     }
 
     const get_widthTela = () => {
+      if(cancel_set) return
       setWidthTela(window.innerWidth)
     }
 
     getDadosEscolaridade()
     get_widthTela()
+
+    return () => {cancel_set = true}
   }, [context])
 
   const colecao_cores = [
