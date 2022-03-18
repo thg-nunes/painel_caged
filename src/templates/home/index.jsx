@@ -89,14 +89,14 @@ export const Home = () => {
       />
     }
 
-    {municipio.length && <Styled.ContainerGraficos>
+    {municipio.length > 0 && <Styled.ContainerGraficos>
         <GraficoMensal dados_grafico_mensal={dados_graficoMensal} />
         <Styled.ContainerGraficosClassificacao>
             <Styled.ContainerGraficosTipo>
               <LayoutPorteEmpresarial />
               <LayoutRacaCor />
               <LayoutGraficoSetor />
-            </Styled.ContainerGraficosTipo>
+            </Styled.ContainerGraficosTipo> 
 
             <Styled.ContainerGraficosHorizontal>
               <LayoutGraficoPorSexo 
@@ -110,12 +110,12 @@ export const Home = () => {
               </Styled.ContainerGraficosHorizontal>
           </Styled.ContainerGraficosClassificacao>
 
-        <Styled.ContainerTabelas>
+          <Styled.ContainerTabelas>
             <TabelaOcupacao Titulo='Ocupação' dados={ocupacao} />
             <TabelaMunicipio Titulo='Município' dados={municipio} />
             <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
           </Styled.ContainerTabelas>
-      </Styled.ContainerGraficos>
+      </Styled.ContainerGraficos>  
     }
   </>
 }
