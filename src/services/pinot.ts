@@ -87,9 +87,15 @@ export const getDadosFiltrosUF = async () => {
     .catch((err) => err)
 }
 
-export const getDadosFiltrosMunicipio = async (uf:string) => {
+type FiltroUF = {
+  value: string
+  label:string
+}
 
-  uf == '' ? uf = 'Maranhão' : uf = uf
+export const getDadosFiltrosMunicipio = async (uf: FiltroUF[]) => {
+
+  let estado = ''
+  uf.length <= 0 || uf[0].label == '' ? estado = 'Maranhão' : estado = uf[0].label
   
   return await axios({
     method: 'POST',
@@ -98,7 +104,7 @@ export const getDadosFiltrosMunicipio = async (uf:string) => {
       'Target-URL': 'http://pinot-broker:8099',
     },
     data: {
-      sql: `select distinct municipio from caged where uf = '${uf}' order by municipio limit 800000`
+      sql: `select distinct municipio from caged where uf = '${estado}' order by municipio limit 800000`
     },
   })
     .then((res) => {

@@ -144,7 +144,7 @@ export const Filtros = () => {
       <Styled.ContainerMultiSelect>
         <section>
           <p>Ano:</p>
-          <Multiselect
+          <SelectOptions
             isMulti={false}
             className="multiselect multiselect-ano"
             displayValue="label"
