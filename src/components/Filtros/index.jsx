@@ -2,7 +2,6 @@ import { Multiselect } from 'multiselect-react-dropdown'
 import * as Styled from './styled'
 import * as actions from '../../contexts/actions'
 import { useContext, useEffect, useState } from 'react'
-import SelectOptions from 'react-select'
 import { ContextGlobal } from '../../contexts/context'
 import {
   getDadosFiltrosUF, getDadosFiltrosMunicipio, getDadosFiltrosPorte, getDadosFiltrosOcupacao, getDadosFiltrosSetor, getDadosFiltrosRacaCor, getDadosFiltrosGaudeInstrucao, getDadosFiltrosSexo, getDadosFiltrosSubclasse, getDadosGraficos
@@ -144,7 +143,7 @@ export const Filtros = () => {
       <Styled.ContainerMultiSelect>
         <section>
           <p>Ano:</p>
-          <SelectOptions
+          <Multiselect
             isMulti={false}
             className="multiselect multiselect-ano"
             displayValue="label"
