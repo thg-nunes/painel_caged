@@ -1,4 +1,4 @@
-import * as Styled from './styled'
+import './style.css'
 
 type Quantidade = {
   saldo_geral: number
@@ -8,16 +8,16 @@ type Quantidade = {
 export const SaldoEmpregos = ({ saldo_geral, saldo_emppregos }: Quantidade) => {
 
   return (
-    <Styled.ContainerSaldoEmpregos>
-      <Styled.QuantidadeSaldoEmpregos saldoGeral>
+    <div className='containerSaldoEmpregos'>
+      <div className='quantidadeSaldoEmpregos saldoGeral' >
         <p>Saldo Geral de Empregos</p>
         <p>{saldo_geral}</p>
-      </Styled.QuantidadeSaldoEmpregos>
+      </div>
 
-      <Styled.QuantidadeSaldoEmpregos>
+      <div className='quantidadeSaldoEmpregos'>
         <p>Saldo Empregos MPE`s</p>
         <p>{saldo_emppregos}</p>
-      </Styled.QuantidadeSaldoEmpregos>
-    </Styled.ContainerSaldoEmpregos>
+      </div>
+    </div>
   )
 }

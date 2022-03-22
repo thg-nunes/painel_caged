@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTable, usePagination } from 'react-table'
-
-import * as Styles from './styled'
+import './style.css'
 
 export const TabelaSubclasse = ({ dados, Titulo }) => {
 
@@ -42,8 +41,8 @@ export const TabelaSubclasse = ({ dados, Titulo }) => {
   const {pageIndex} = state 
 
   return (
-    <Styles.StylesTables>
-      <Styles.TituloTables>{Titulo}</Styles.TituloTables>
+    <div className='stylesTables'>
+      <h2 className='tituloTables'>{Titulo}</h2>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -80,6 +79,6 @@ export const TabelaSubclasse = ({ dados, Titulo }) => {
           if(pageIndex == pageOptions.length) setStateButtonNext(canPreviowsPage)
         }} disabled={stateButtonNext}><strong>{'>'}</strong></button>
       </div>
-    </Styles.StylesTables>
+    </div>
   )
 }

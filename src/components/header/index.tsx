@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
-import * as Styled from './styled'
+import './style.css'
 
 type TypeChildren = {
   children: ReactNode
 }
 
 export const Header = ({ children }: TypeChildren) => {
-  return <Styled.ContainerHeader>{children}</Styled.ContainerHeader>
+  return <div className='containerHeader'>{children}</div>
 }
