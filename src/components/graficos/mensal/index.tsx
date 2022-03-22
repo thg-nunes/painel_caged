@@ -2,8 +2,8 @@ import Echarts from 'echarts-for-react'
 import { useContext, useEffect, useState } from 'react'
 import { ContextGlobal } from '../../../contexts/context'
 import { getDadosGraficos } from '../../../services/pinot'
-import * as Sttyle from './styled'
 import * as actions from '../../../contexts/actions'
+import './style.css'
 
 export const GraficoMensal = () => {
 
@@ -153,7 +153,7 @@ export const GraficoMensal = () => {
   }
 
   return (
-    <Sttyle.EstiloGraficoMensal>
+    <div className='estiloGraficoMensal'>
       <h2>Histórico de Empregos</h2>
       <Echarts
         option={option}
@@ -163,6 +163,6 @@ export const GraficoMensal = () => {
           height: '100%',
         }}
       />
-    </Sttyle.EstiloGraficoMensal>
+    </div>
   )
 }
