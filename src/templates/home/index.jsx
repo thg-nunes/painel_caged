@@ -11,10 +11,11 @@ import { Header } from "../../components/header"
 import { SaldoEmpregos } from "../../components/saldo-empregos"
 import { ContextGlobal } from "../../contexts/context"
 import { getDadosGraficos, get_dados_grafico_mensal } from "../../services/pinot"
-import * as Styled from './styled'
 import { TabelaOcupacao } from "../../components/tabela/tabela-ocupacao"
 import { TabelaSubclasse } from "../../components/tabela/tabela-subclasse"
 import { TabelaMunicipio } from "../../components/tabela/tabela-municipio"
+
+import './style.css'
 
 export const Home = () => {
 
@@ -89,33 +90,33 @@ export const Home = () => {
       />
     }
 
-    {municipio.length > 0 && <Styled.ContainerGraficos>
+    {municipio.length > 0 && <section className="containerGraficos">
         <GraficoMensal dados_grafico_mensal={dados_graficoMensal} />
-        <Styled.ContainerGraficosClassificacao>
-            <Styled.ContainerGraficosTipo>
-              <LayoutPorteEmpresarial />
-              <LayoutRacaCor />
-              <LayoutGraficoSetor />
-            </Styled.ContainerGraficosTipo> 
+        <div className="containerGraficosClassificacao">
+          <section className="containerGraficosTipo">
+            <LayoutPorteEmpresarial />
+            <LayoutRacaCor />
+            <LayoutGraficoSetor />
+          </section> 
 
-            <Styled.ContainerGraficosHorizontal>
-              <LayoutGraficoPorSexo 
-                xAxisType="value"
-                yAxisType="category"
-              /> 
-              <LayoutGraficoEscolaridade 
-                xAxisType="value"
-                yAxisType="category"
-                />
-              </Styled.ContainerGraficosHorizontal>
-          </Styled.ContainerGraficosClassificacao>
+          <section className="containerGraficosHorizontal">
+            <LayoutGraficoPorSexo 
+              xAxisType="value"
+              yAxisType="category"
+            /> 
+            <LayoutGraficoEscolaridade 
+              xAxisType="value"
+              yAxisType="category"
+              />
+            </section>
+        </div>
 
-          <Styled.ContainerTabelas>
+          <section className="containerTabelas">
             <TabelaOcupacao Titulo='Ocupação' dados={ocupacao} />
             <TabelaMunicipio Titulo='Município' dados={municipio} />
             <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
-          </Styled.ContainerTabelas>
-      </Styled.ContainerGraficos>  
+          </section>
+      </section>  
     }
   </>
 }
