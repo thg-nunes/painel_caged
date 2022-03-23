@@ -14,7 +14,7 @@
   border-radius: 5px;
 }
 
-.data .menu-mobile {
+.header-mobile .menu-mobile {
   display: none;
 }
 
@@ -44,7 +44,14 @@
     display: none;
   }
 
-  .menu-mobile {
+  .header-mobile .menu-mobile {
     display: block;
+    margin-right: .5rem;
+  }
+
+  .header-mobile {
+    display: flex;
+    align-items: center;
+    margin-left: .5rem;
   }
 }

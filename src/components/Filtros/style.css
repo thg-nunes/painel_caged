@@ -156,6 +156,10 @@
   .containerMultiSelect {
     flex-direction: column;
   }
+  
+  .containerMultiSelect .multiselect {
+    min-width: 100%;
+  }
 
   .containerMultiSelect p {
     font-size: 1.3rem;
