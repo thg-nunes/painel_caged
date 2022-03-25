@@ -183,7 +183,7 @@ export const Filtros = () => {
         <div>
           <p>Município</p>
           <Multiselect
-            className="multiselect"
+            className="multiselect multiselect-span-municipio"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}

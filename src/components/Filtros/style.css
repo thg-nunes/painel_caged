@@ -11,7 +11,7 @@
 }
 
 .containerFiltros div {
-  margin-right: .2rem;
+  margin-right: 0.2rem;
 }
 
 .multiselect {
@@ -19,24 +19,29 @@
   max-width: 11vw;
 }
 
-.multiselect-span{
+.multiselect-span-municipio {
+  max-width: 13vw;
+}
+
+.multiselect-span {
   max-width: 28vw;
 }
 
-.multiselect-span span{
+.multiselect-span span {
   overflow: hidden;
   font-size: 1rem;
 }
 
-.multiselect-span-ocupacao{
+.multiselect-span-ocupacao {
   max-width: 20vw;
 }
 
-.multiselect-span-ocupacao span {
+.multiselect-span-ocupacao span,
+.multiselect-span-municipio span {
   font-size: 1rem;
 }
 
-.containerFiltros .texto-filtros  {
+.containerFiltros .texto-filtros {
   margin: 0;
   padding: 0 0.5rem;
 
@@ -64,21 +69,21 @@
   padding-left: 0.8rem;
 }
 
-.containerMultiSelect section{
+.containerMultiSelect section {
   width: 50%;
   height: 50px;
   min-width: 100px;
   padding: 0 0.5rem;
 }
 
-.containerFiltros .bottom section{
+.containerFiltros .bottom section {
   min-width: 117px;
 }
 
 @media (max-width: 1024px) {
   .containerMultiSelect p {
     font-size: 1.2rem;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 }
 
@@ -89,7 +94,7 @@
 
   .containerMultiSelect section {
     max-width: 30%;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
     background: white;
   }
 
@@ -104,7 +109,7 @@
 
 @media (max-width: 320px) {
   .containerFiltros {
-    display: none;    
+    display: none;
     width: 80%;
     height: 100vh;
     right: 0;
@@ -113,7 +118,7 @@
     z-index: 10;
     border: none;
 
-    transition: all .25ms;
+    transition: all 0.25ms;
 
     overflow-y: scroll;
     padding-bottom: 8rem;
@@ -124,7 +129,7 @@
   .containerFiltros .texto-filtros {
     display: none;
   }
-  
+
   .containerFiltros .close-menu {
     display: block;
     border: 1px solid rgba(0, 0, 0, 0.5);
@@ -132,10 +137,10 @@
 
     position: absolute;
     right: 0;
-    margin: .5rem;
+    margin: 0.5rem;
     margin-right: 1.8rem;
   }
-  
+
   .containerFiltros section {
     overflow: auto;
   }
@@ -144,7 +149,7 @@
     margin: 0;
   }
 
-  .containerFiltros section::-webkit-progress-bar{
+  .containerFiltros section::-webkit-progress-bar {
     display: none;
   }
 
@@ -156,20 +161,20 @@
   .containerMultiSelect {
     flex-direction: column;
   }
-  
+
   .containerMultiSelect .multiselect {
     min-width: 100%;
   }
 
   .containerMultiSelect p {
     font-size: 1.3rem;
-    margin: .5rem 0;
+    margin: 0.5rem 0;
   }
 
   .containerMultiSelect section {
     min-width: 85%;
-    margin: .5rem 0;
-    margin-right: .5rem;
+    margin: 0.5rem 0;
+    margin-right: 0.5rem;
     max-width: 100%;
     padding: 0;
   }
