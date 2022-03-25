@@ -22,6 +22,8 @@ export const GraficoMensal = () => {
 
     const getDadosMensal = async () => {
       const response = await getDadosGraficos('data', context)
+      console.log(response)
+      console.log(context)
 
       if(response.length <= 0) {
         context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: new Date().getFullYear() - 1}})
@@ -123,7 +125,7 @@ export const GraficoMensal = () => {
     },
     xAxis: {
       type: 'category',
-      data: mesesComDados.length == 1 ? mesesComDados : ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'],
+      data: context.state.data == '' ? ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'] : [context.state.data[0].mes],
       axisLabel: {
         color: 'black',
         fontWeight: 'bold',
@@ -145,7 +147,7 @@ export const GraficoMensal = () => {
       {
         data: valores_colunas.length == 12 ? valores_colunas : mesesQuantidadeDados,
         type: mesesQuantidadeDados.length > 1 ? 'line' : 'bar',
-        barMaxWidth: mesesQuantidadeDados.length == 1 ? '10%' : '25%',
+        barMaxWidth: '45%',
         color: '#0374F0',
         smooth: true,
       },
