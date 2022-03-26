@@ -5,12 +5,9 @@ const url_api = 'http://localhost:3001'
 export const get_dados_grafico_mensal = async (context) => {
   return await axios({
     method: 'POST',
-    url: 'http://179.127.13.245:3000/query/sql',
-    headers: {
-      'Target-URL': 'http://pinot-broker:8099',
-    },
+    url: `${url_api}/getDadosMensais`,
     data: {
-      sql: `select data, sum(saldomovimentacao) as saldo from caged where data between '${context.state.ano}-01-01' and '${context.state.ano}-31-12' group by data order by data limit 800000`,
+      context
     },
   })
   .then((res) => {
@@ -20,52 +17,16 @@ export const get_dados_grafico_mensal = async (context) => {
 }
 
 export const getDadosGraficos = async (classificacao, filtros) => {
-  if(filtros == undefined || filtros == null || filtros.state == undefined || filtros.state == null)
-  return []
-
-  let query = `select ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : classificacao + ','} sum(saldomovimentacao) as saldo from caged `
-  let otherFilters = ''
-  let filters = ` where ${classificacao == 'saldo_mpe' ? `(porte = 'Microempresa' or porte = 'Pequeno Porte') and ` : ''}`
-  
-  for (const key in filtros.state) {
-
-    if(filtros.state[key] == 'Selecionar') filtros.state[key] = ''
-    
-    let data = ''
-    if(filtros.state[key] !== ''){  
-      switch (key) {
-        case 'ano':
-          filtros.state.data.length == 1 ?  data = `'${filtros.state[key]+filtros.state.data[0].data_inicio}' and '${filtros.state[key]+filtros.state.data[0].data_fim}'` :  data = `'${filtros.state.ano}-01-01' and '${filtros.state.ano}-12-31'`
-
-          filters += `data between ${data} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? '' : `group by ${classificacao} `} ${classificacao == 'saldo_geral' || classificacao == 'saldo_mpe' ? 'limit 800000' : `order by ${classificacao == 'data' ? 'data' : 'saldo'} ${classificacao == 'municipio' || classificacao == 'subclasse' || classificacao == 'cbo2002ocupacao' ? 'desc' : ''} limit 800000`} `
-          break
-
-        default:
-          if(typeof filtros.state[key] == 'object' &&  filtros.state[key].length >= 1 && key !== 'data'){
-            filtros.state[key].map((element, index) => {
-              index !== 0 ? otherFilters += `or ${key} = '${element.label}' ${index == filtros.state[key].length - 1 ? ') and ' : ''}` : otherFilters += `(${key} = '${element.label}' ${filtros.state[key].length == 1 ? ') and' : ''} `
-            })
-            filters = 'where ' + otherFilters
-            break
-          } else {
-            if(key !== 'data') filters += `${key} = '${filtros.state[key]}' and `
-            break
-          }
-      }
-    }
-  }
-
   return await axios({
     method: 'POST', 
-    url: 'http://179.127.13.245:3000/query/sql', 
-    headers: {
-      'Target-URL': 'http://pinot-broker:8099',
-    },
+    url: `${url_api}/getDadosGraficos`, 
     data: {
-      "sql": query + filters
+      classificacao,
+      filtros
     }
   })
   .then(res => {
+    console.log(res)
     return res.data.resultTable.rows
   })
   .catch(err => err)
