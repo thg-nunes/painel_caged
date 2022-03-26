@@ -9,7 +9,6 @@ export const GraficoMensal = () => {
 
   const context = useContext(ContextGlobal)
   const [allMeses] = useState<string[]>(['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'])
-  const [mesesComDados, setMesesComDados] = useState<string[]>([])
   const [mesesQuantidadeDados, setMesesQuantidadeDados] = useState<number[]>([])
   const [dadosMensal, setDadosMensal] = useState<any[]>([])
   const [marginBottomGrafico, setMarginBottomGrafico] = useState<string>('')
@@ -36,8 +35,7 @@ export const GraficoMensal = () => {
         meses_com_dados.push(allMeses[i])  
         quantidade_dados_meses.push(response[0][1])        
       }
-
-      setMesesComDados(meses_com_dados)
+      
       setMesesQuantidadeDados(quantidade_dados_meses)
       setDadosMensal(response)
     }

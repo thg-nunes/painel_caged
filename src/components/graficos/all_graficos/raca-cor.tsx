@@ -1,31 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Echarts from 'echarts-for-react'
 
-import * as Styled from './styled'
 import { ContextGlobal } from '../../../contexts/context'
 import { getDadosGraficos } from '../../../services/pinot'
-
-type PadraoGraficos = {
-  titulo_grafico: string
-  data?: any[]
-  isEscolaridade?: boolean
-  tipoGrafico?: string
-  className?: string
-}
-
-type EixoGrafico = {
-  xAxisType?: string
-  yAxisType?: string
-}
+import { PadraoGraficos } from '../../../interfaces/graficos/padrao-graficos'
+import { EixoGrafico } from '../../../interfaces/graficos/eixos-grafico'
+import { Series } from '../../../interfaces/graficos/series'
+import * as Styled from './styled'
 
 type Props = PadraoGraficos & EixoGrafico
-
-type Series = {
-  value: number
-  itemStyle: {
-    color: string
-  }
-}
 
 export const LayoutRacaCor = ({ yAxisType }: Props) => {
 
