@@ -21,8 +21,7 @@ export const Home = () => {
 
   const context = useContext(ContextGlobal)
   const [dados_graficoMensal, setDadosGraficoMensal] = useState([])
-  const [dados_saldoGeral, setDadosSaldoGeral] = useState([])
-  const [dados_saldoMpe, setDadosSaldoMpe] = useState([])
+  const [responseDados, setResponseDados] = useState([])
   const [ocupacao, setOcupacao] = useState([])
   const [municipio, setMunicipio] = useState([])
   const [subclasse, setSubclasse] = useState([])
@@ -45,7 +44,7 @@ export const Home = () => {
 
     const getDadosMunicipio =async () => {
       const response = await getDadosGraficos('municipio', context)
-        if(cancel_set) return
+      if(cancel_set) return   
       setMunicipio(response)
     }
 
@@ -55,24 +54,29 @@ export const Home = () => {
       setSubclasse(response)
     }
 
-    const getSaldoGeral = async () => {
-      const response = await getDadosGraficos('saldo_geral', context)
+    const dadosMensais = async () => {
+      const response = await getDadosGraficos('data', context)
         if(cancel_set) return
-        setDadosSaldoGeral(response.toLocaleString())
-    }
+        setResponseDados(response)
+    } 
 
-    const getSaldoMpe = async () => {
-      const response = await getDadosGraficos('saldo_mpe', context)
-        if(cancel_set) return
-        setDadosSaldoMpe(response.toLocaleString())
-    }
+    // const getSaldoGeral = async () => {
+    //   const response = await getDadosGraficos('saldo_geral', context)
+    //     if(cancel_set) return
+    //     setDadosSaldoGeral(response.toLocaleString())
+    // }
+
+    // const getSaldoMpe = async () => {
+    //   const response = await getDadosGraficos('saldo_mpe', context)
+    //     if(cancel_set) return
+    //     setDadosSaldoMpe(response.toLocaleString())
+    // }
 
     dados_GraficoMensal()
     getDadosOcupacao()
     getDadosMunicipio()
     getDadosSubclasse()
-    getSaldoGeral()
-    getSaldoMpe()
+    dadosMensais()
 
     return () => cancel_set = true
   }, [context])
@@ -82,15 +86,11 @@ export const Home = () => {
       <DataHeader />
     </Header>
 
-    {municipio.length !== 0 && <Filtros />}
+    <Filtros />
 
-    {municipio.length !== 0 && <SaldoEmpregos
-      saldo_geral={dados_saldoGeral}
-      saldo_emppregos={dados_saldoMpe}
-      />
-    }
+    <SaldoEmpregos />
 
-    {municipio.length > 0 && <section className="containerGraficos">
+    <section className="containerGraficos">
         <GraficoMensal dados_grafico_mensal={dados_graficoMensal} />
         <div className="containerGraficosClassificacao">
           <section className="containerGraficosTipo">
@@ -116,7 +116,6 @@ export const Home = () => {
             <TabelaMunicipio Titulo='Município' dados={municipio} />
             <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
           </section>
-      </section>  
-    }
+    </section>  
   </>
 }
