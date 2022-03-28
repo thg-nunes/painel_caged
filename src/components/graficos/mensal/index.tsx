@@ -21,12 +21,7 @@ export const GraficoMensal = () => {
 
     const getDadosMensal = async () => {
       const response = await getDadosGraficos('data', context)
-      console.log(response)
       console.log(context)
-
-      if(response.length <= 0) {
-        context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: new Date().getFullYear() - 1}})
-      }
 
       const meses_com_dados: string[] = []
       const quantidade_dados_meses: number[] = []
@@ -55,10 +50,10 @@ export const GraficoMensal = () => {
       }
     }
 
-    const get_widthTela = () => {
+      const get_widthTela = () => {
         if(cancel_set) return
         setWidthTela(window.innerWidth)
-    }
+      }
 
     getDadosMensal()
     tamanhoTela()
