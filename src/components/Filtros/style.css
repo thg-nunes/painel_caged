@@ -32,12 +32,12 @@
   font-size: 1rem;
 }
 
-.multiselect-span-ocupacao, .setor {
+.multiselect-span-ocupacao,
+.setor {
   max-width: 20vw;
 }
 
-.multiselect-span-ocupacao span,
-.multiselect-span-municipio span {
+.multiselects-span span {
   font-size: 1rem;
 }
 

@@ -152,7 +152,7 @@ export const Filtros = () => {
           <p>Ano:</p>
           <Multiselect
             isMulti={false}
-            className="multiselect multiselect-ano"
+            className="multiselect multiselects-span"
             displayValue="label"
             onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
@@ -164,7 +164,7 @@ export const Filtros = () => {
         <div>
           <p>Mês:</p>
           <Multiselect
-            className="multiselect"
+            className="multiselect multiselects-span"
             displayValue="label"
             onRemove={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
@@ -176,7 +176,7 @@ export const Filtros = () => {
         <div>
           <p>UF</p>
           <Multiselect
-            className="multiselect"
+            className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => {
               context.dispatch({type: actions.MUDAR_ESTADO, payload: e})
@@ -191,7 +191,7 @@ export const Filtros = () => {
         <div>
           <p>Município</p>
           <Multiselect
-            className="multiselect multiselect-span-municipio"
+            className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: e})}
@@ -204,7 +204,7 @@ export const Filtros = () => {
       <div>
           <p>Porte</p>
           <Multiselect
-            className="multiselect"
+            className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: e})}
@@ -216,7 +216,7 @@ export const Filtros = () => {
       <div>
           <p>Ocupação</p>
           <Multiselect
-            className="multiselect multiselect-span-ocupacao"
+            className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: e})}
@@ -230,7 +230,7 @@ export const Filtros = () => {
         <div>
           <p>Setor</p>
           <Multiselect
-            className="multiselect setor"
+            className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: e})}
@@ -242,7 +242,7 @@ export const Filtros = () => {
         <div>
           <p>Raça/Cor</p>
           <Multiselect
-            className="multiselect"
+            className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: e})}
@@ -254,7 +254,7 @@ export const Filtros = () => {
         <div>
           <p>Grau de Instrução</p>
           <Multiselect
-            className="multiselect"
+            className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: e})}
@@ -266,7 +266,7 @@ export const Filtros = () => {
         <div>
           <p>Sexo</p>
           <Multiselect
-            className="multiselect"
+            className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: e})}
@@ -279,7 +279,7 @@ export const Filtros = () => {
         <div>
           <p>Subclasse</p>
           <Multiselect
-            className="multiselect multiselect-span"
+            className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: e})}
