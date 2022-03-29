@@ -23,7 +23,6 @@ export const reducerFilter = (state, action) => {
 
       return {...state, ano: action.payload[0].label}
     case actions.MUDAR_ESTADO:
-      console.log(action.payload)
       if(action.payload.length == 0){
         return{...state, uf: ''}
       } else {
@@ -31,7 +30,6 @@ export const reducerFilter = (state, action) => {
       }
 
     case actions.MUDAR_MUNICIPIO:
-      console.log(action.payload)
       if(action.payload.length == 0){
         return{...state, municipio: ''}
       } else {
@@ -87,7 +85,6 @@ export const reducerFilter = (state, action) => {
       }
 
     case actions.MUDAR_PORTE:
-      console.log(action.payload)
       if(action.payload.length == 0){
         return{...state, porte: ''}
       } else {
@@ -95,7 +92,6 @@ export const reducerFilter = (state, action) => {
       }
 
     case actions.cbo2002ocupacao:
-      console.log(action.payload)
       if(action.payload.length == 0){
         return{...state, cbo2002ocupacao: ''}
       } else {
@@ -110,7 +106,6 @@ export const reducerFilter = (state, action) => {
       }
 
     case actions.MUDAR_RACACOR:
-      console.log(action.payload)
       if(action.payload.length == 0){
         return{...state, racacor: ''}
       } else {
@@ -119,7 +114,6 @@ export const reducerFilter = (state, action) => {
 
 
     case actions.MUDAR_GRAUINSTRUCAO:
-      console.log(action.payload)
       if(action.payload.length == 0){
         return{...state, graudeinstrucao: ''}
       } else {
@@ -127,7 +121,6 @@ export const reducerFilter = (state, action) => {
       }
 
     case actions.MUDAR_SEXO:
-      console.log(action.payload)
       if(action.payload.length == 0){
         return{...state, sexo: ''}
       } else {
@@ -135,7 +128,6 @@ export const reducerFilter = (state, action) => {
       }
 
       case actions.MUDAR_SUBCLASSE:
-      console.log(action.payload)
       if(action.payload.length == 0){
           return{...state, subclasse: ''}
         } else {

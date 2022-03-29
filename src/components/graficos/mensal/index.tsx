@@ -2,7 +2,6 @@ import Echarts from 'echarts-for-react'
 import { useContext, useEffect, useState } from 'react'
 import { ContextGlobal } from '../../../contexts/context'
 import { getDadosGraficos } from '../../../services/pinot'
-import * as actions from '../../../contexts/actions'
 import './style.css'
 
 export const GraficoMensal = () => {

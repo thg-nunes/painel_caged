@@ -30,12 +30,6 @@ export const Home = () => {
 
     let cancel_set = false
     
-    const dados_GraficoMensal = async () => {
-      const response_graficoMensal = await get_dados_grafico_mensal(context)
-        if(cancel_set) return
-        setDadosGraficoMensal(response_graficoMensal)
-    }
-
     const getDadosOcupacao =async () => {
       const response = await getDadosGraficos('cbo2002ocupacao', context)
         if(cancel_set) return
@@ -60,19 +54,6 @@ export const Home = () => {
         setResponseDados(response)
     } 
 
-    // const getSaldoGeral = async () => {
-    //   const response = await getDadosGraficos('saldo_geral', context)
-    //     if(cancel_set) return
-    //     setDadosSaldoGeral(response.toLocaleString())
-    // }
-
-    // const getSaldoMpe = async () => {
-    //   const response = await getDadosGraficos('saldo_mpe', context)
-    //     if(cancel_set) return
-    //     setDadosSaldoMpe(response.toLocaleString())
-    // }
-
-    dados_GraficoMensal()
     getDadosOcupacao()
     getDadosMunicipio()
     getDadosSubclasse()
