@@ -2,20 +2,6 @@ import axios from 'axios'
 
 const url_api = 'http://localhost:3001'
 
-export const get_dados_grafico_mensal = async (context) => {
-  return await axios({
-    method: 'POST',
-    url: `${url_api}/getDadosMensais`,
-    data: {
-      context
-    },
-  })
-  .then((res) => {
-    return res.data
-  })
-    .catch((err) => err)
-}
-
 export const getDadosGraficos = async (classificacao, filtros) => {
   return await axios({
     method: 'POST', 

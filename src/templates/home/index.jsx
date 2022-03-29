@@ -10,7 +10,7 @@ import { LayoutGraficoSetor } from "../../components/graficos/all_graficos/setor
 import { Header } from "../../components/header"
 import { SaldoEmpregos } from "../../components/saldo-empregos"
 import { ContextGlobal } from "../../contexts/context"
-import { getDadosGraficos, get_dados_grafico_mensal } from "../../services/pinot"
+import { getDadosGraficos } from "../../services/pinot"
 import { TabelaOcupacao } from "../../components/tabela/tabela-ocupacao"
 import { TabelaSubclasse } from "../../components/tabela/tabela-subclasse"
 import { TabelaMunicipio } from "../../components/tabela/tabela-municipio"
@@ -20,8 +20,6 @@ import './style.css'
 export const Home = () => {
 
   const context = useContext(ContextGlobal)
-  const [dados_graficoMensal, setDadosGraficoMensal] = useState([])
-  const [responseDados, setResponseDados] = useState([])
   const [ocupacao, setOcupacao] = useState([])
   const [municipio, setMunicipio] = useState([])
   const [subclasse, setSubclasse] = useState([])
@@ -48,16 +46,9 @@ export const Home = () => {
       setSubclasse(response)
     }
 
-    const dadosMensais = async () => {
-      const response = await getDadosGraficos('data', context)
-        if(cancel_set) return
-        setResponseDados(response)
-    } 
-
     getDadosOcupacao()
     getDadosMunicipio()
     getDadosSubclasse()
-    dadosMensais()
 
     return () => cancel_set = true
   }, [context])
@@ -71,7 +62,7 @@ export const Home = () => {
     <SaldoEmpregos />
 
     <section className="containerGraficos">
-        <GraficoMensal dados_grafico_mensal={dados_graficoMensal} />
+        <GraficoMensal />
         <div className="containerGraficosClassificacao">
           <section className="containerGraficosTipo">
             <LayoutPorteEmpresarial />

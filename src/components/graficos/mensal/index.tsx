@@ -20,7 +20,6 @@ export const GraficoMensal = () => {
 
     const getDadosMensal = async () => {
       const response = await getDadosGraficos('data', context)
-
       const meses_com_dados: string[] = []
       const quantidade_dados_meses: number[] = []
 
