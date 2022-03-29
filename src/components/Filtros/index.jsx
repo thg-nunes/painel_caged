@@ -22,6 +22,7 @@ export const Filtros = () => {
   const [filtrosGrauInstrucao, setFiltrosGrauInstrucao] = useState([])
   const [filtrosPorSexo, setFiltrosPorSexo] = useState([])
   const [filtrosSubclasse, setFiltrosSubclasse] = useState([])
+  const [uf, setUf] = useState('')
 
   const constroi_filtros = (arr_filtros, filtro) => { 
     let filtros_modificados = []
@@ -44,9 +45,11 @@ export const Filtros = () => {
     } 
     
     const getFiltrosMunicipio = async () => {
-      const response_getFIltrosMunicipio = await getDadosFiltrosMunicipio(context.state.uf)
-      const filtros_validos = constroi_filtros(response_getFIltrosMunicipio.resultTable.rows, 'municipio')
-      setFiltrosMunicipio(filtros_validos)
+      if(context.state.uf !== '') {
+        const response_getFIltrosMunicipio = await getDadosFiltrosMunicipio(context.state.uf)
+        const filtros_validos = constroi_filtros(response_getFIltrosMunicipio.resultTable.rows, 'municipio')
+        setFiltrosMunicipio(filtros_validos)
+      }
     }
 
     const getFiltrosPorte = async () => {
@@ -120,6 +123,8 @@ export const Filtros = () => {
       setFiltrosAnual(ano_disponiveis)
     }
 
+    const uf_selecionado = () => setUf(context.state.uf)
+
     getFiltrosUf()
     getFiltrosMunicipio()
     getFiltrosPorte()
@@ -131,6 +136,7 @@ export const Filtros = () => {
     getFiltrosSubclasse() 
     filtros_meses()
     filtros_ano()
+    uf_selecionado()
   }, [context])
 
   return (
@@ -172,7 +178,9 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => {
+              context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})
+            }}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})}
             placeholder='Selecionar'
             options={filtrosUf}
@@ -188,7 +196,8 @@ export const Filtros = () => {
             onRemove={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
             placeholder='Selecionar'
-            options={filtrosMunicipio}
+            options={context.state.uf !== '' ? filtrosMunicipio : []}
+            loading={context.state.uf === '' ? true : false}
           />
         </div>
 

@@ -26,7 +26,6 @@ export const getDadosGraficos = async (classificacao, filtros) => {
     }
   })
   .then(res => {
-    console.log(res)
     return res.data.resultTable.rows
   })
   .catch(err => err)
@@ -52,7 +51,7 @@ type FiltroUF = {
 export const getDadosFiltrosMunicipio = async (uf: FiltroUF[]) => {
 
   let estado = ''
-  uf.length <= 0 || uf[0].label == '' ? estado = 'Maranhão' : estado = uf[0].label
+  uf.length === 1 ? estado = uf[0].label : estado = ''
   
   return await axios({
     method: 'POST',

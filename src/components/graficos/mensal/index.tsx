@@ -21,8 +21,6 @@ export const GraficoMensal = () => {
 
     const getDadosMensal = async () => {
       const response = await getDadosGraficos('data', context)
-      console.log(response)
-      console.log(context)
 
       if(response.length <= 0) {
         context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: new Date().getFullYear() - 1}})
