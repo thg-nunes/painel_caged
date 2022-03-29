@@ -21,6 +21,7 @@ export const Home = () => {
 
   const context = useContext(ContextGlobal)
   const [dados_graficoMensal, setDadosGraficoMensal] = useState([])
+  const [responseDados, setResponseDados] = useState([])
   const [ocupacao, setOcupacao] = useState([])
   const [municipio, setMunicipio] = useState([])
   const [subclasse, setSubclasse] = useState([])
@@ -43,7 +44,7 @@ export const Home = () => {
 
     const getDadosMunicipio =async () => {
       const response = await getDadosGraficos('municipio', context)
-        if(cancel_set) return
+      if(cancel_set) return   
       setMunicipio(response)
     }
 
@@ -53,10 +54,29 @@ export const Home = () => {
       setSubclasse(response)
     }
 
+    const dadosMensais = async () => {
+      const response = await getDadosGraficos('data', context)
+        if(cancel_set) return
+        setResponseDados(response)
+    } 
+
+    // const getSaldoGeral = async () => {
+    //   const response = await getDadosGraficos('saldo_geral', context)
+    //     if(cancel_set) return
+    //     setDadosSaldoGeral(response.toLocaleString())
+    // }
+
+    // const getSaldoMpe = async () => {
+    //   const response = await getDadosGraficos('saldo_mpe', context)
+    //     if(cancel_set) return
+    //     setDadosSaldoMpe(response.toLocaleString())
+    // }
+
     dados_GraficoMensal()
     getDadosOcupacao()
     getDadosMunicipio()
     getDadosSubclasse()
+    dadosMensais()
 
     return () => cancel_set = true
   }, [context])
@@ -67,6 +87,9 @@ export const Home = () => {
     </Header>
 
     <Filtros />
+    <SaldoEmpregos />
+
+
     <SaldoEmpregos />
 
     <section className="containerGraficos">

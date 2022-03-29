@@ -230,7 +230,7 @@ export const Filtros = () => {
         <div>
           <p>Setor</p>
           <Multiselect
-            className="multiselect"
+            className="multiselect setor"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: e})}
