@@ -89,9 +89,6 @@ export const Home = () => {
     <Filtros />
     <SaldoEmpregos />
 
-
-    <SaldoEmpregos />
-
     <section className="containerGraficos">
         <GraficoMensal dados_grafico_mensal={dados_graficoMensal} />
         <div className="containerGraficosClassificacao">
