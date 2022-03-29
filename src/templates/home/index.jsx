@@ -21,8 +21,6 @@ export const Home = () => {
 
   const context = useContext(ContextGlobal)
   const [dados_graficoMensal, setDadosGraficoMensal] = useState([])
-  // const [dados_saldoGeral, setDadosSaldoGeral] = useState([])
-  // const [dados_saldoMpe, setDadosSaldoMpe] = useState([])
   const [ocupacao, setOcupacao] = useState([])
   const [municipio, setMunicipio] = useState([])
   const [subclasse, setSubclasse] = useState([])

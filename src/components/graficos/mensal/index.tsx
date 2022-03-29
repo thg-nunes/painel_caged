@@ -22,16 +22,14 @@ export const GraficoMensal = () => {
     const getDadosMensal = async () => {
       const response = await getDadosGraficos('data', context)
 
-      if(response.length <= 0) {
-        context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: new Date().getFullYear() - 1}})
-      }
-
       const meses_com_dados: string[] = []
       const quantidade_dados_meses: number[] = []
 
-      for (let i = 0; i < response.length; i++) {
-        meses_com_dados.push(allMeses[i])  
-        quantidade_dados_meses.push(response[0][1])        
+      if(response.length !== 0) {
+        for (let i = 0; i < response.length; i++) {
+          meses_com_dados.push(allMeses[i])  
+          quantidade_dados_meses.push(response[0][1])        
+        }
       }
       
       setMesesQuantidadeDados(quantidade_dados_meses)

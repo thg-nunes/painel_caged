@@ -154,8 +154,8 @@ export const Filtros = () => {
             isMulti={false}
             className="multiselect multiselect-ano"
             displayValue="label"
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
             placeholder='Selecionar'
             options={filtrosAnual}
             selectionLimit={1}
@@ -166,8 +166,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue="label"
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_MES, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_MES, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
             placeholder='Selecionar'
             options={filtrosMensal}
           />
@@ -179,9 +179,9 @@ export const Filtros = () => {
             className="multiselect"
             displayValue='label'
             onRemove={(e) => {
-              context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})
+              context.dispatch({type: actions.MUDAR_ESTADO, payload: e})
             }}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: {filtros_selecionados: e}})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: e})}
             placeholder='Selecionar'
             options={filtrosUf}
             selectionLimit={1}
@@ -193,8 +193,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect multiselect-span-municipio"
             displayValue='label'
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: e})}
             placeholder='Selecionar'
             options={context.state.uf !== '' ? filtrosMunicipio : []}
             loading={context.state.uf === '' ? true : false}
@@ -206,8 +206,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: e})}
             placeholder='Selecionar'
             options={filtrosPorte}
           />
@@ -218,8 +218,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect multiselect-span-ocupacao"
             displayValue='label'
-            onRemove={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: e})}
             placeholder='Selecionar'
             options={filtrosOcupacao}
           />
@@ -232,8 +232,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: e})}
             placeholder='Selecionar'
             options={filtrosSetor}
           />
@@ -244,8 +244,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: e})}
             placeholder='Selecionar'
             options={filtrosRacaCor}
           />
@@ -256,8 +256,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: e})}
             placeholder='Selecionar'
             options={filtrosGrauInstrucao}
           />
@@ -268,8 +268,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect"
             displayValue='label'
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: e})}
             placeholder='Selecionar'
             options={filtrosPorSexo}
             selectionLimit={1}
@@ -281,8 +281,8 @@ export const Filtros = () => {
           <Multiselect
             className="multiselect multiselect-span"
             displayValue='label'
-            onRemove={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: {filtros_selecionados: e}})}
-            onSelect={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: {filtros_selecionados: e}})}
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: e})}
             placeholder='Selecionar'
             options={filtrosSubclasse}
           />
