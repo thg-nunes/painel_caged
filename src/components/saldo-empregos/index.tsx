@@ -21,8 +21,7 @@ export const SaldoEmpregos = () => {
 
     const getSaldoMpe = async () => {
       const response = await getDadosGraficos('saldo_mpe', context)
-        if(cancel_set) return
-        setDadosSaldoMpe(response.toLocaleString())
+      console.log(response)
       if(cancel_set) return
       setDadosSaldoMpe(response.toLocaleString())
     }

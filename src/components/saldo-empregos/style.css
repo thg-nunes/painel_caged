@@ -19,6 +19,7 @@
   overflow: hidden;
 
   box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.2);
+  background: #fff;
 }
 
 .quantidadeSaldoEmpregos p:first-child {

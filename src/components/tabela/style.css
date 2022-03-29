@@ -1,5 +1,5 @@
 .tituloTables {
-  background: #0A6F89;
+  background: #0a6f89;
   text-align: center;
   padding: 1rem;
   color: white;
@@ -16,6 +16,7 @@
   border-radius: 15px;
   margin-bottom: 4rem;
 
+  background: #fff;
   box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.3);
 }
 
@@ -30,7 +31,8 @@
   border-bottom: 0;
 }
 
-.stylesTables table th, .stylesTables table td {
+.stylesTables table th,
+.stylesTables table td {
   font-size: 1.5rem;
   margin: 0;
   padding: 0.5rem;
@@ -38,7 +40,8 @@
   border-right: 1px solid black;
 }
 
-.stylesTables table th:last-child, .stylesTables table td:last-child {
+.stylesTables table th:last-child,
+.stylesTables table td:last-child {
   border-right: 0;
 }
 
@@ -54,8 +57,8 @@
 }
 
 .stylesTables .pagination button {
-  margin: 0 .5rem;
-  padding: 0 .5rem;
+  margin: 0 0.5rem;
+  padding: 0 0.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -68,19 +71,20 @@
     top: 0;
   }
 
-  .stylesTables  {
+  .stylesTables {
     width: 25vw;
     flex-direction: column;
     max-height: 75vh;
   }
 
-  .stylesTables table th, .stylesTables table td {
+  .stylesTables table th,
+  .stylesTables table td {
     font-size: 1.4rem;
   }
 }
 
 @media (max-width: 768px) {
-  .tituloTables{ 
+  .tituloTables {
     font-size: 1.6rem;
     position: sticky;
     top: 0;
@@ -92,8 +96,9 @@
     max-height: 75vh;
   }
 
-  .stylesTables table th, .stylesTables table td {
-    font-size: 1.20rem;
+  .stylesTables table th,
+  .stylesTables table td {
+    font-size: 1.2rem;
   }
 }
 

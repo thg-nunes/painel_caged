@@ -8,6 +8,7 @@
   margin-top: 2rem;
   position: relative;
   box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+  background: #fff;
 }
 
 .containerFiltros div {
@@ -47,7 +48,6 @@
 
   position: absolute;
 
-  top: -1rem;
   color: #208cc9;
   font-weight: 600;
 
@@ -64,7 +64,7 @@
 .containerMultiSelect {
   display: flex;
   flex-flow: wrap;
-  margin-top: 1rem;
+  margin-top: 2rem;
   margin-bottom: 1rem;
   padding-left: 0.8rem;
 }

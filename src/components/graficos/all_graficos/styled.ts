@@ -28,6 +28,7 @@ export const Container = styled.div`
   overflow: hidden;
   text-align: center;
   box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.3);
+  background: #FFF;
   margin-top: ${({ isRacacor }) => {
     if(isRacacor == true) return '2rem'
   }};
