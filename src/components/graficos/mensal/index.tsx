@@ -113,7 +113,8 @@ export const GraficoMensal = () => {
     },
     label: {
       show: mesesQuantidadeDados.length == 1 ? true : false,
-      fontWeight: mesesQuantidadeDados.length == 1 ? 'bold' : null
+      fontWeight: mesesQuantidadeDados.length == 1 ? 'bold' : null,
+      fontSize: 10
     },
     xAxis: {
       type: 'category',

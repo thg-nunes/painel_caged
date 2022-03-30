@@ -18,7 +18,6 @@
 .multiselect {
   width: 100%;
   max-width: 11vw;
-  overflow: hidden;
 }
 
 .multiselect-span-municipio {
@@ -41,6 +40,12 @@
 
 .multiselects-span span {
   font-size: 1rem;
+}
+
+.multiselects-span div:nth-child(1) {
+  max-height: 4.8vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .containerFiltros .texto-filtros {
@@ -68,9 +73,6 @@
   margin-top: 2rem;
   margin-bottom: 1rem;
   padding-left: 0.8rem;
-}
-
-.containerMultiSelect .container-filtro {
 }
 
 .containerMultiSelect section {

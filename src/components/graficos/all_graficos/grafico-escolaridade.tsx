@@ -108,8 +108,8 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
     },
     grid: {
       containLabel: true,
-      width: yAxisType ? '85%' : '95%',
-      top: yAxisType ? '5%' : '10%',
+      width: yAxisType ? '89%' : '95%',
+      top: yAxisType ? '6%' : '10%',
       left: '1%',
       right: '1%',
       bottom: '5%',
