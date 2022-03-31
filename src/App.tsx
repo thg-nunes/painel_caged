@@ -10,9 +10,9 @@ class App extends React.PureComponent {
       <ContextProvider>
         <BrowserRouter>
           <Switch>
-            <Route path="/empregos-formais" component={Home} />
-            <Redirect from='/' to="/empregos-formais"/>
-            <Redirect from='*' to="/empregos-formais"/>
+            <Route path="/empregos/formais" component={Home} />
+            <Redirect from='/' to="/empregos/formais"/>
+            <Redirect from='*' to="/empregos/formais"/>
           </Switch>
         </BrowserRouter>
       </ContextProvider>
