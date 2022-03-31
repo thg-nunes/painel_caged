@@ -21,7 +21,7 @@ export const getDadosFiltrosUF = async () => {
 
   return await axios({
     method: 'GET',
-    url: `${url_api}/getFiltrosUF`,
+    url: `${url_api}/filtrosUF`,
   })
     .then((res) => {
       return res.data
@@ -41,7 +41,7 @@ export const getDadosFiltrosMunicipio = async (uf: FiltroUF[]) => {
   
   return await axios({
     method: 'POST',
-    url: `${url_api}/getFiltrosMunicipio`,
+    url: `${url_api}/filtrosMunicipio`,
     data: { estado }
   })
     .then((res) => {
@@ -54,7 +54,7 @@ export const getDadosFiltrosPorte = async () => {
 
   return await axios({
     method: 'GET',
-    url: `${url_api}/getPorte`,
+    url: `${url_api}/porte`,
   })
     .then((res) => {
       return res.data
@@ -66,7 +66,7 @@ export const getDadosFiltrosOcupacao = async () => {
 
   return await axios({
     method: 'GET',
-    url: `${url_api}/getPorte`
+    url: `${url_api}/ocupacao`
   })
     .then((res) => {
       return res.data
@@ -78,7 +78,7 @@ export const getDadosFiltrosSetor = async () => {
 
   return await axios({
     method: 'GET',
-    url: `${url_api}/getSetor`
+    url: `${url_api}/setor`
   })
     .then((res) => {
       return res.data
@@ -90,7 +90,7 @@ export const getDadosFiltrosRacaCor = async () => {
 
   return await axios({
     method: 'GET',
-    url: `${url_api}/getRacaCor`,
+    url: `${url_api}/racaCor`,
   })
     .then((res) => {
       return res.data
@@ -102,7 +102,7 @@ export const getDadosFiltrosGaudeInstrucao = async () => {
 
   return await axios({
     method: 'GET',
-    url: `${url_api}/getRacaCor`,
+    url: `${url_api}/grauInstrucao`,
   })
     .then((res) => {
       return res.data
@@ -114,7 +114,7 @@ export const getDadosFiltrosSexo = async () => {
 
   return await axios({
     method: 'GET',
-    url: `${url_api}/get_filtrosSexo`,
+    url: `${url_api}/filtrosSexo`,
   })
     .then((res) => {
       return res.data
@@ -126,7 +126,7 @@ export const getDadosFiltrosSubclasse = async () => {
 
   return await axios({
     method: 'GET',
-    url: `${url_api}/get_subclasse`,
+    url: `${url_api}/subclasse`,
   })
     .then((res) => {
       return res.data
