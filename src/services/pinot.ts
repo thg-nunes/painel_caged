@@ -5,7 +5,7 @@ const url_api = 'http://localhost:3001'
 export const getDadosGraficos = async (classificacao, filtros) => {
   return await axios({
     method: 'POST', 
-    url: `${url_api}/getDadosGraficos`, 
+    url: `${url_api}/dadosGraficos`, 
     data: {
       classificacao,
       filtros
