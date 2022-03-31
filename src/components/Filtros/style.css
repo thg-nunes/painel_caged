@@ -43,9 +43,13 @@
 }
 
 .multiselects-span div:nth-child(1) {
-  max-height: 4.8vh;
+  max-height: 3.45vh;
   overflow-x: hidden;
   overflow-y: scroll;
+}
+
+.multiselects-span div input::placeholder {
+  padding-left: .5rem;
 }
 
 .containerFiltros .texto-filtros {

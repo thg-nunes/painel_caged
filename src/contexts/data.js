@@ -2,7 +2,7 @@ const initial_date = new Date()
 
 export const estadoGlobal = {
   data: '',
-  uf: '',
+  uf: [{value: 'uf', label: 'Maranhão'}],
   municipio: '',
   porte: '',
   cbo2002ocupacao: '',

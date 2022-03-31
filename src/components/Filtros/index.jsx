@@ -137,6 +137,7 @@ export const Filtros = () => {
     filtros_meses()
     filtros_ano()
     uf_selecionado()
+    console.log(context)
   }, [context])
 
   return (
@@ -156,7 +157,7 @@ export const Filtros = () => {
             displayValue="label"
             onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
-            placeholder='Selecionar'
+            placeholder={context.state.ano}
             options={filtrosAnual}
             selectionLimit={1}
           />
@@ -182,7 +183,7 @@ export const Filtros = () => {
               context.dispatch({type: actions.MUDAR_ESTADO, payload: e})
             }}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: e})}
-            placeholder='Selecionar'
+            placeholder={context.state.uf[0] !== undefined ? context.state.uf[0].label : 'Selecionar'}
             options={filtrosUf}
             selectionLimit={1}
           />
