@@ -198,8 +198,7 @@ export const Filtros = () => {
             onRemove={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: e})}
             placeholder='Selecionar'
-            options={context.state.uf !== '' ? filtrosMunicipio : []}
-            loading={context.state.uf === '' ? true : false}
+            options={filtrosMunicipio}
           />
         </div>
 
