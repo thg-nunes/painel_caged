@@ -137,7 +137,6 @@ export const Filtros = () => {
     filtros_meses()
     filtros_ano()
     uf_selecionado()
-    console.log(context)
   }, [context])
 
   return (

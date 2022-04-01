@@ -26,7 +26,7 @@ export const GraficoMensal = () => {
       if(response.length !== 0) {
         for (let i = 0; i < response.length; i++) {
           meses_com_dados.push(allMeses[i])  
-          quantidade_dados_meses.push(response[0][1])        
+          quantidade_dados_meses.push(response[i][1])        
         }
       }
       
@@ -139,7 +139,7 @@ export const GraficoMensal = () => {
     series: [
       {
         data: valores_colunas.length == 12 ? valores_colunas : mesesQuantidadeDados,
-        type: mesesQuantidadeDados.length > 1 ? 'line' : 'bar',
+        type: mesesQuantidadeDados.length <= 1 ? 'bar' : 'line',
         barMaxWidth: '45%',
         color: '#0374F0',
         smooth: true,
