@@ -22,13 +22,12 @@ export const Filtros = () => {
   const [filtrosGrauInstrucao, setFiltrosGrauInstrucao] = useState([])
   const [filtrosPorSexo, setFiltrosPorSexo] = useState([])
   const [filtrosSubclasse, setFiltrosSubclasse] = useState([])
-  const [uf, setUf] = useState('')
 
   const constroi_filtros = (arr_filtros, filtro) => { 
     let filtros_modificados = []
 
     for (let index = 0; index < arr_filtros.length; index++) {
-      filtros_modificados.push({
+      filtros_modificados.unshift({
         value: filtro,
         label: arr_filtros[index][0]
       })
@@ -123,8 +122,6 @@ export const Filtros = () => {
       setFiltrosAnual(ano_disponiveis)
     }
 
-    const uf_selecionado = () => setUf(context.state.uf)
-
     getFiltrosUf()
     getFiltrosMunicipio()
     getFiltrosPorte()
@@ -136,7 +133,6 @@ export const Filtros = () => {
     getFiltrosSubclasse() 
     filtros_meses()
     filtros_ano()
-    uf_selecionado()
   }, [context])
 
   return (

@@ -14,6 +14,7 @@ import { getDadosGraficos } from "../../services/pinot"
 import { TabelaOcupacao } from "../../components/tabela/tabela-ocupacao"
 import { TabelaSubclasse } from "../../components/tabela/tabela-subclasse"
 import { TabelaMunicipio } from "../../components/tabela/tabela-municipio"
+import Loading from '../../gifs/loading.gif'
 
 import './style.css'
 
@@ -23,6 +24,7 @@ export const Home = () => {
   const [ocupacao, setOcupacao] = useState([])
   const [municipio, setMunicipio] = useState([])
   const [subclasse, setSubclasse] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
   
   useEffect(() => {
 
@@ -42,9 +44,12 @@ export const Home = () => {
 
     const getDadosSubclasse =async () => {
       const response = await getDadosGraficos('subclasse', context)
-        if(cancel_set) return
+      if(cancel_set) return
       setSubclasse(response)
+      setIsLoading(false)
     }
+
+    setIsLoading(true)
 
     getDadosOcupacao()
     getDadosMunicipio()
@@ -58,35 +63,40 @@ export const Home = () => {
       <DataHeader />
     </Header>
 
-    <Filtros />
-    <SaldoEmpregos />
+    {isLoading && <img src={Loading} className="loading" alt="loading" />}
 
-    <section className="containerGraficos">
-        <GraficoMensal />
-        <div className="containerGraficosClassificacao">
-          <section className="containerGraficosTipo">
-            <LayoutPorteEmpresarial />
-            <LayoutRacaCor />
-            <LayoutGraficoSetor />
-          </section> 
+    {!isLoading && <>
+      <Filtros />
+      <SaldoEmpregos />
 
-          <section className="containerGraficosHorizontal">
-            <LayoutGraficoPorSexo 
-              xAxisType="value"
-              yAxisType="category"
-            /> 
-            <LayoutGraficoEscolaridade 
-              xAxisType="value"
-              yAxisType="category"
-              />
+      <section className="containerGraficos">
+          <GraficoMensal />
+          <div className="containerGraficosClassificacao">
+            <section className="containerGraficosTipo">
+              <LayoutPorteEmpresarial />
+              <LayoutRacaCor />
+              <LayoutGraficoSetor />
+            </section> 
+
+            <section className="containerGraficosHorizontal">
+              <LayoutGraficoPorSexo 
+                xAxisType="value"
+                yAxisType="category"
+              /> 
+              <LayoutGraficoEscolaridade 
+                xAxisType="value"
+                yAxisType="category"
+                />
+              </section>
+          </div>
+
+            <section className="containerTabelas">
+              <TabelaOcupacao Titulo='Ocupação' dados={ocupacao} />
+              <TabelaMunicipio Titulo='Município' dados={municipio} />
+              <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
             </section>
-        </div>
-
-          <section className="containerTabelas">
-            <TabelaOcupacao Titulo='Ocupação' dados={ocupacao} />
-            <TabelaMunicipio Titulo='Município' dados={municipio} />
-            <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
-          </section>
-    </section>  
+      </section>  
+      </>
+    }
   </>
 }

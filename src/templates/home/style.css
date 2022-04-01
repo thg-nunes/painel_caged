@@ -36,6 +36,14 @@
   justify-content: space-between;
 }
 
+.loading {
+  position: relative;
+  width: 120px;  
+  
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 @media (max-width: 320px) {
   .containerGraficosClassificacao{
     flex-direction: column;
