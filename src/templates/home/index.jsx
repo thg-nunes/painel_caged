@@ -25,7 +25,7 @@ export const Home = () => {
   const [municipio, setMunicipio] = useState([])
   const [subclasse, setSubclasse] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const [scroll, setScroll] = useState("auto")
+  const [scroll, setScroll] = useState()
   
   useEffect(() => {
 
@@ -48,12 +48,12 @@ export const Home = () => {
       if(cancel_set) return
       setSubclasse(response)
       setIsLoading(false)
-      setScroll("auto")
+      setScroll('scroll')
     }
 
     const set_states = () => {
       setIsLoading(true)
-      setScroll("hidden")
+      setScroll('hidden')
     }
 
     getDadosOcupacao()
@@ -63,6 +63,7 @@ export const Home = () => {
     return () => cancel_set = true
   }, [context])
 
+
   return <>
     <Header>
       <DataHeader />
@@ -70,43 +71,39 @@ export const Home = () => {
 
     {isLoading &&
       <div className="content-loading">
-        {document.body.style.overflowX == scroll}
         <img src={Loading} className="loading" alt="loading" />
       </div>
     }
 
-    {!isLoading && <>
-      <Filtros />
-      <SaldoEmpregos />
+    <Filtros />
+    <SaldoEmpregos />
 
-      <section className="containerGraficos">
-          <GraficoMensal />
-          <div className="containerGraficosClassificacao">
-            <section className="containerGraficosTipo">
-              <LayoutPorteEmpresarial />
-              <LayoutRacaCor />
-              <LayoutGraficoSetor />
-            </section> 
+    <section className="containerGraficos">
+        <GraficoMensal />
+        <div className="containerGraficosClassificacao">
+          <section className="containerGraficosTipo">
+            <LayoutPorteEmpresarial />
+            <LayoutRacaCor />
+            <LayoutGraficoSetor />
+          </section> 
 
-            <section className="containerGraficosHorizontal">
-              <LayoutGraficoPorSexo 
-                xAxisType="value"
-                yAxisType="category"
-              /> 
-              <LayoutGraficoEscolaridade 
-                xAxisType="value"
-                yAxisType="category"
-                />
-              </section>
-          </div>
-
-            <section className="containerTabelas">
-              <TabelaOcupacao Titulo='Ocupação' dados={ocupacao} />
-              <TabelaMunicipio Titulo='Município' dados={municipio} />
-              <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
+          <section className="containerGraficosHorizontal">
+            <LayoutGraficoPorSexo 
+              xAxisType="value"
+              yAxisType="category"
+            /> 
+            <LayoutGraficoEscolaridade 
+              xAxisType="value"
+              yAxisType="category"
+              />
             </section>
-      </section>  
-      </>
-    }
+        </div>
+
+          <section className="containerTabelas">
+            <TabelaOcupacao Titulo='Ocupação' dados={ocupacao} />
+            <TabelaMunicipio Titulo='Município' dados={municipio} />
+            <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
+          </section>
+    </section>  
   </>
 }
