@@ -153,6 +153,9 @@ export const Filtros = () => {
             onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
             placeholder={context.state.ano}
+            selectedValues={[
+              {value: 'ano', label: context.state.ano}
+            ]}
             options={filtrosAnual}
             selectionLimit={1}
           />
@@ -180,6 +183,9 @@ export const Filtros = () => {
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: e})}
             placeholder={context.state.uf[0] !== undefined ? context.state.uf[0].label : 'Selecionar'}
             options={filtrosUf}
+            selectedValues={[
+              {value: 'uf', label: 'Maranhão'}
+            ]}
             selectionLimit={1}
           />
         </div>

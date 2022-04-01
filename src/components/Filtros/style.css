@@ -40,12 +40,20 @@
 
 .multiselects-span span {
   font-size: 1rem;
+  max-height: 2.5vh;
 }
 
 .multiselects-span div:nth-child(1) {
   max-height: 3.45vh;
   overflow-x: hidden;
   overflow-y: scroll;
+
+  border: none;
+  border-bottom: 1px solid #215DA7;
+}
+
+.multiselects-span div:nth-child(1)::-webkit-scrollbar {
+  display: none;
 }
 
 .multiselects-span div input::placeholder {
