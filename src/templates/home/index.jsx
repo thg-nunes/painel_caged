@@ -25,7 +25,7 @@ export const Home = () => {
   const [municipio, setMunicipio] = useState([])
   const [subclasse, setSubclasse] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const [scroll, setScroll] = useState()
+  const [scroll, setScroll] = useState('auto')
   
   useEffect(() => {
 
@@ -48,13 +48,14 @@ export const Home = () => {
       if(cancel_set) return
       setSubclasse(response)
       setIsLoading(false)
-      setScroll('scroll')
+      window.document.body.style.overflow = "auto"
     }
-
+    
     const set_states = () => {
       setIsLoading(true)
-      setScroll('hidden')
     }
+
+    window.document.body.style.overflow = "hidden"
 
     getDadosOcupacao()
     getDadosMunicipio()
@@ -62,7 +63,6 @@ export const Home = () => {
     set_states()
     return () => cancel_set = true
   }, [context])
-
 
   return <>
     <Header>
