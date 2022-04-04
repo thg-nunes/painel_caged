@@ -181,7 +181,7 @@ export const Filtros = () => {
               context.dispatch({type: actions.MUDAR_ESTADO, payload: e})
             }}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: e})}
-            placeholder={context.state.uf[0] !== undefined ? context.state.uf[0].label : 'Selecionar'}
+            placeholder='Selecionar'
             options={filtrosUf}
             selectedValues={[
               {value: 'uf', label: 'Maranhão'}

@@ -49,6 +49,7 @@ export const Home = () => {
       setSubclasse(response)
       setIsLoading(false)
       window.document.body.style.overflow = "auto"
+      window.document.body.scroll({top: 0})
     }
     
     const set_states = () => {
