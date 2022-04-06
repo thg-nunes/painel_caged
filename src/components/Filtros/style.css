@@ -196,4 +196,17 @@
     max-width: 100%;
     padding: 0;
   }
+  
+  .multiselects-span div:nth-child(1) {
+    max-height: none;  
+    height: 5vh;
+  }
+
+  .multiselects-span span {
+    width: min-content;
+    display: flex;
+    align-items: center;
+    max-height: none;
+    height: 3.5vh;
+  }
 }
