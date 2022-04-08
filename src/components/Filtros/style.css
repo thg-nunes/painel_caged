@@ -44,7 +44,7 @@
 }
 
 .multiselects-span div:nth-child(1) {
-  max-height: 3.45vh;
+  max-height: 3vh;
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -99,13 +99,18 @@
 }
 
 @media (max-width: 1024px) {
+  .multiselects-span div:nth-child(1) {
+    min-height: 4vh;
+    max-height: 4vh;
+  }
+
   .containerMultiSelect p {
     font-size: 1.2rem;
     margin: 0.5rem 0;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 820px) {
   .containerMultiSelect {
     display: flex;
   }
