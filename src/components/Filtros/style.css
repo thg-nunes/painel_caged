@@ -125,7 +125,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 500px) {
   .containerFiltros {
     display: none;
     width: 80%;

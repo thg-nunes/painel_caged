@@ -113,7 +113,7 @@ export const Container = styled.div`
     }};
   }
 
-  @media (max-width: 320px) {
+  @media (max-width: 500px) {
     min-width:  100%;
     height: ${({isEscolaridade}) => {
       if(isEscolaridade) return '82vh'
