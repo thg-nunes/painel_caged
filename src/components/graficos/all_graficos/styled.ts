@@ -88,7 +88,7 @@ export const Container = styled.div`
     }};
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 820px) {
     width:  100%;
     max-width: ${({ isHorizontal }) => {
       if(isHorizontal) return '100%'
@@ -100,7 +100,7 @@ export const Container = styled.div`
     }};
 
     max-height: ${({isEscolaridade }) => {
-      if(isEscolaridade) return '104vh'
+      if(isEscolaridade) return '102vh'
       return '50vh'
     }};
 

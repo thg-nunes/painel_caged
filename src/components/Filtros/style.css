@@ -121,6 +121,15 @@
     background: white;
   }
 
+  .multiselects-span div:nth-child(2) ul li {
+    font-size: 1.2rem;
+  }
+
+  .multiselects-span div:nth-child(1) {
+    min-height: 3.2vh;
+    max-height: 3.2vh;
+  }
+
   .containerMultiSelect section p {
     font-size: 1.3rem;
   }
