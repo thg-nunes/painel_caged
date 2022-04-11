@@ -25,7 +25,6 @@ export const Home = () => {
   const [municipio, setMunicipio] = useState([])
   const [subclasse, setSubclasse] = useState([])
   const [isLoading, setIsLoading] = useState(false)
-  const [scroll, setScroll] = useState('auto')
   
   useEffect(() => {
 
