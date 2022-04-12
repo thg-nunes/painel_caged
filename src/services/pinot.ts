@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-const url_api = 'http://localhost:3001'
+const url_api = 'http://0.0.0.0:3334'
+// const url_api = 'http://dados.jucema.ma.gov.br/'
 
 export const getDadosGraficos = async (classificacao, filtros) => {
   return await axios({
