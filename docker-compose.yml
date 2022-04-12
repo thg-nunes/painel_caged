@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  front-painel:
+    image: jucema/caged_frontend
+    container_name: caged_frontend
+    restart: unless-stopped
+    build:
+      network: host
+      context: .
+    ports:
+      - '8081:8081'
+  
+  backend-painel:
+    image: jucema/caged_backend
+    container_name: caged_backend
+    restart: unless-stopped
+    build:
+      network: host
+      context: ../backend_caged
+    ports:
+      - '3334:3334'

@@ -1,0 +1,115 @@
+.tituloTables {
+  background: #0a6f89;
+  text-align: center;
+  padding: 1rem;
+  color: white;
+}
+.stylesTables {
+  display: flex;
+  flex-direction: column;
+  width: 24vw;
+  height: 80vh;
+  max-height: 1000px;
+  overflow: hidden;
+  overflow-y: scroll;
+
+  border-radius: 15px;
+  margin-bottom: 4rem;
+
+  background: #fff;
+  box-shadow: 8px 8px 5px rgba(0, 0, 0, 0.3);
+}
+
+.stylesTables table {
+  width: 100%;
+  height: 100%;
+  border-spacing: 0;
+  border: 1px solid black;
+}
+
+.stylesTables table tr:last-child td {
+  border-bottom: 0;
+}
+
+.stylesTables table th,
+.stylesTables table td {
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0.5rem;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+}
+
+.stylesTables table th:last-child,
+.stylesTables table td:last-child {
+  border-right: 0;
+}
+
+.stylesTables .pagination {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding: 0.5rem;
+}
+
+.stylesTables .pagination span {
+  font-size: 1.5rem;
+}
+
+.stylesTables .pagination button {
+  margin: 0 0.5rem;
+  padding: 0 0.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .tituloTables {
+    font-size: 1.7rem;
+    position: sticky;
+    top: 0;
+  }
+
+  .stylesTables {
+    width: 25vw;
+    flex-direction: column;
+    max-height: 75vh;
+  }
+
+  .stylesTables table th,
+  .stylesTables table td {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 820px) {
+  .tituloTables {
+    font-size: 1.6rem;
+    position: sticky;
+    top: 0;
+  }
+
+  .stylesTables {
+    width: 25vw;
+    flex-direction: column;
+    max-height: 60vh;
+  }
+
+  .stylesTables table th,
+  .stylesTables table td {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .stylesTables {
+    width: 100%;
+  }
+
+  .tituloTables {
+    font-size: 1.8rem;
+    position: sticky;
+    top: 0;
+  }
+}

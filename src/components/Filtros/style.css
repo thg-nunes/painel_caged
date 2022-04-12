@@ -1,0 +1,242 @@
+.containerFiltros {
+  width: 80%;
+  max-width: 1366px;
+  border: 1px solid #208cc9;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin: auto;
+  margin-top: 2rem;
+  position: relative;
+  box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+  background: #fff;
+}
+
+.containerFiltros div {
+  margin-right: 0.2rem;
+}
+
+.multiselect {
+  width: 100%;
+  max-width: 11vw;
+}
+
+.multiselect-span-municipio {
+  max-width: 13vw;
+}
+
+.multiselect-span {
+  max-width: 28vw;
+}
+
+.multiselect-span span {
+  overflow: hidden;
+  font-size: 1rem;
+}
+
+.multiselect-span-ocupacao,
+.setor {
+  max-width: 20vw;
+}
+
+.multiselects-span span {
+  font-size: 1rem;
+  max-height: 2.5vh;
+}
+
+.multiselects-span div:nth-child(1) {
+  max-height: 3vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+
+  border: none;
+  border-bottom: 1px solid #215DA7;
+}
+
+.multiselects-span div:nth-child(1)::-webkit-scrollbar {
+  display: none;
+}
+
+.multiselects-span div input::placeholder {
+  padding-left: .5rem;
+}
+
+.containerFiltros .texto-filtros {
+  margin: 0;
+  padding: 0 0.5rem;
+
+  position: absolute;
+
+  color: #208cc9;
+  font-weight: 600;
+
+  margin-left: 2rem;
+
+  background: #fff;
+  width: min-content;
+}
+
+.containerFiltros .close-menu {
+  display: none;
+}
+
+.containerMultiSelect {
+  display: flex;
+  flex-flow: wrap;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-left: 0.8rem;
+}
+
+.containerMultiSelect section {
+  width: 50%;
+  height: 50px;
+  min-width: 100px;
+  padding: 0 0.5rem;
+}
+
+.containerFiltros .bottom section {
+  min-width: 117px;
+}
+
+@media (max-width: 1024px) {
+  .multiselects-span div:nth-child(1) {
+    min-height: 4vh;
+    max-height: 4vh;
+  }
+
+  .containerMultiSelect p {
+    font-size: 1.2rem;
+    margin: 0.5rem 0;
+  }
+}
+
+@media (max-width: 820px) {
+  .containerMultiSelect {
+    display: flex;
+  }
+
+  .containerMultiSelect section {
+    max-width: 30%;
+    margin-bottom: 0.5rem;
+    background: white;
+  }
+
+  .multiselects-span div:nth-child(2) ul li {
+    font-size: 1.2rem;
+  }
+
+  .multiselects-span div:nth-child(1) {
+    min-height: 3.2vh;
+    max-height: 3.2vh;
+  }
+
+  .containerMultiSelect section p {
+    font-size: 1.3rem;
+  }
+
+  .containerMultiSelect section div:first-child {
+    background: white;
+  }
+}
+
+@media (max-width: 500px) {
+  .containerFiltros {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    right: 0;
+    margin-top: 0;
+    position: fixed;
+    z-index: 10;
+    border: none;
+
+    transition: all 0.25ms;
+
+    overflow-y: scroll;
+    padding-bottom: 8rem;
+
+    background: white;
+  }
+
+  .containerFiltros .texto-filtros {
+    display: none;
+  }
+
+  .containerFiltros .close-menu {
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+
+    position: absolute;
+    right: 0;
+    margin: 0.5rem;
+    margin-right: 1.8rem;
+  }
+
+  .containerFiltros section {
+    overflow: auto;
+  }
+
+  .containerMultiSelect div p {
+    font-size: 1.5rem;
+    text-decoration: underline;
+    text-align: center;
+  }
+
+  section p {
+    margin: 0;
+  }
+
+  .containerFiltros section::-webkit-progress-bar {
+    display: none;
+  }
+
+  .containerFiltros .searchBox::placeholder {
+    color: black;
+    overflow-x: hidden;
+  }
+
+  .containerMultiSelect {
+    flex-direction: column;
+  }
+
+  .containerMultiSelect .multiselect {
+    min-width: 100%;
+  }
+
+  .containerMultiSelect p {
+    font-size: 1.3rem;
+    margin: 0.5rem 0;
+  }
+
+  .containerMultiSelect section {
+    min-width: 85%;
+    margin: 0.5rem 0;
+    margin-right: 0.5rem;
+    max-width: 100%;
+    padding: 0;
+  }
+  
+  .multiselects-span div:nth-child(1) {
+    max-height: none;  
+    height: 5vh;
+  }
+
+  .multiselects-span div:nth-child(1) input {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  .multiselects-span div:nth-child(1) {
+    border: 1px solid black;
+  }
+
+  .multiselects-span span {
+    width: min-content;
+    display: flex;
+    align-items: center;
+    max-height: none;
+    height: 3.5vh;
+  }
+}

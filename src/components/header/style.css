@@ -1,0 +1,7 @@
+.containerHeader {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: #263544;
+  color: white;
+}
