@@ -152,10 +152,7 @@ export const Filtros = () => {
             displayValue="label"
             onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
-            placeholder='Selecionar'
-            selectedValues={[
-              {value: 'ano', label: context.state.ano}
-            ]}
+            placeholder={context.state.ano}
             options={filtrosAnual}
             selectionLimit={1}
           />
