@@ -44,12 +44,17 @@
 }
 
 .multiselects-span div:nth-child(1) {
-  max-height: 3vh;
+  max-height: 4.5vh;
+  min-height: 4.5vh;
   overflow-x: hidden;
   overflow-y: scroll;
 
   border: none;
   border-bottom: 1px solid #215DA7;
+}
+
+.multiselects-span div:nth-child(1) span img {
+  width: 12px;
 }
 
 .multiselects-span div:nth-child(1)::-webkit-scrollbar {

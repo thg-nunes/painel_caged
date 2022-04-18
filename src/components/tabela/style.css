@@ -1,8 +1,11 @@
 .tituloTables {
+  position: sticky;
+  top: 0;
   background: #0a6f89;
   text-align: center;
   padding: 1rem;
   color: white;
+  z-index: 2;
 }
 .stylesTables {
   display: flex;
@@ -37,12 +40,34 @@
   margin: 0;
   padding: 0.5rem;
   border-bottom: 1px solid black;
-  border-right: 1px solid black;
 }
 
 .stylesTables table th:last-child,
 .stylesTables table td:last-child {
   border-right: 0;
+}
+
+.municipio {
+  margin: 0 2rem;
+}
+
+.stylesTables table thead tr {
+  background: #006d77;
+  color: white;
+  letter-spacing: .1rem;
+}
+
+.stylesTables table thead tr th:first-child {
+  width: 78%;
+  text-align: left;
+}
+
+.stylesTables table tbody tr td:last-child {
+  text-align: center;
+}
+
+.stylesTables table tbody tr td:first-child {
+  font-size: 1.4rem;
 }
 
 .stylesTables .pagination {

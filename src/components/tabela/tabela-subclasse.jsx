@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react'
-import { useTable, usePagination } from 'react-table'
+import { useMemo } from 'react'
+import { useTable } from 'react-table'
 import './style.css'
 
 export const TabelaSubclasse = ({ dados, Titulo }) => {
@@ -24,21 +24,12 @@ export const TabelaSubclasse = ({ dados, Titulo }) => {
 
   const data = useMemo(() => dados_tabela ,[dados])
 
-  let [stateButton, setStateButtonPrevious] = useState(undefined)
-  let [stateButtonNext, setStateButtonNext] = useState(undefined)
-
   const instancia_tabela = useTable({
     columns,
     data,
-  }, usePagination)
+  })
 
-  const {getTableProps, getTableBodyProps, headerGroups, page, state, prepareRow, nextPage, previousPage, canPreviowsPage, canNextPage, setPageSize, pageOptions} = instancia_tabela
-
-  useEffect(() => {
-    setPageSize(50)
-  },[setPageSize])
-
-  const {pageIndex} = state 
+  const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = instancia_tabela
 
   return (
     <div className='stylesTables'>
@@ -54,7 +45,7 @@ export const TabelaSubclasse = ({ dados, Titulo }) => {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
+          {rows.map((row) => {
             prepareRow(row)
             return (
               <tr {...row.getRowProps()}>
@@ -66,19 +57,6 @@ export const TabelaSubclasse = ({ dados, Titulo }) => {
           })}
         </tbody>
       </table>
-      <div className="pagination">
-        <span>{pageIndex + 1}/{pageOptions.length}</span>
-        <button onClick={() => {
-          previousPage()
-          if(pageIndex == pageOptions.length) setStateButtonPrevious(!canPreviowsPage)
-          if(pageIndex == pageOptions.length) setStateButtonPrevious(canPreviowsPage)
-        }} disabled={stateButton} > <strong>{'<'}</strong> </button>
-        <button onClick={() => {
-          nextPage()
-          if(pageIndex == pageOptions.length) setStateButtonNext(!canPreviowsPage)
-          if(pageIndex == pageOptions.length) setStateButtonNext(canPreviowsPage)
-        }} disabled={stateButtonNext}><strong>{'>'}</strong></button>
-      </div>
     </div>
   )
 }
