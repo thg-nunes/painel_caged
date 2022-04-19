@@ -136,8 +136,17 @@
   }
 
   .multiselects-span div:nth-child(1) {
-    min-height: 3.2vh;
-    max-height: 3.2vh;
+    min-height: 3.8vh;
+    max-height: 3.8vh;
+  }
+  .multiselects-span div:nth-child(1) span {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 .4rem;
+  }
+  .multiselects-span div:nth-child(1) span img {
+    width: 12px;
   }
 
   .containerMultiSelect section p {

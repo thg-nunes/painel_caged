@@ -66,5 +66,11 @@
 
   .containerTabelas {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .containerTabelas .municipio {
+    margin-bottom: 4rem;
   }
 }
