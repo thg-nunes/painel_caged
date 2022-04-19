@@ -53,6 +53,11 @@
   border-bottom: 1px solid #215DA7;
 }
 
+.multiselects-span div:nth-child(1)  {
+  width: 100%;
+  padding-top: 1rem;
+}
+
 .multiselects-span div:nth-child(1) span img {
   width: 12px;
 }

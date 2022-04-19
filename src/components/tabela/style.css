@@ -28,6 +28,7 @@
   height: 100%;
   border-spacing: 0;
   border: 1px solid black;
+  border-top: none;
 }
 
 .stylesTables table tr:last-child td {
@@ -52,7 +53,7 @@
 }
 
 .stylesTables table thead tr {
-  background: #006d77;
+  background: rgb(0, 109, 119, .7);
   color: white;
   letter-spacing: .1rem;
 }
