@@ -142,14 +142,13 @@ export const Filtros = () => {
         <div>
           <p>Ano:</p>
           <Multiselect
-            isMulti={false}
+            singleSelect={true}
             className="multiselect multiselects-span"
             displayValue="label"
             onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
             placeholder={context.state.ano}
             options={filtrosAnual}
-            selectionLimit={1}
           />
         </div>
         <div>
@@ -167,6 +166,7 @@ export const Filtros = () => {
         <div>
           <p>UF</p>
           <Multiselect
+            singleSelect={true}
             className="multiselect multiselects-span"
             displayValue='label'
             onRemove={(e) => {
@@ -178,7 +178,6 @@ export const Filtros = () => {
             selectedValues={[
               {value: 'uf', label: 'Maranhão'}
             ]}
-            selectionLimit={1}
           />
         </div>
 

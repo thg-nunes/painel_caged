@@ -20,6 +20,14 @@
   max-width: 11vw;
 }
 
+.multiselect .singleSelect span {
+  font-size: 1.3rem;
+}
+
+.multiselect .singleSelect img {
+  display: none;
+}
+
 .multiselect-span-municipio {
   max-width: 13vw;
 }
@@ -43,6 +51,10 @@
   max-height: 2.5vh;
 }
 
+.multiselect   {
+  border-bottom: 1px solid #215DA7;
+}
+
 .multiselects-span div:nth-child(1) {
   max-height: 4.5vh;
   min-height: 4.5vh;
@@ -50,7 +62,7 @@
   overflow-y: scroll;
 
   border: none;
-  border-bottom: 1px solid #215DA7;
+  border-bottom: none;
 }
 
 .multiselects-span div:nth-child(1)  {
