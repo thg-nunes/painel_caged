@@ -5,3 +5,9 @@
   background: #263544;
   color: white;
 }
+
+@media (max-width:500px) {
+  .containerHeader {
+    padding: .4rem 0;
+  }
+}

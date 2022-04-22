@@ -128,7 +128,8 @@ export const LayoutRacaCor = ({ yAxisType }: Props) => {
         color: 'black',
         fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
         fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
-      },
+      },      
+      zlevel: 2,
       minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : null
     },
     yAxis: {
@@ -142,6 +143,7 @@ export const LayoutRacaCor = ({ yAxisType }: Props) => {
       axisTick: {
         show: false
       },
+      zlevel: 2
     },
     series: [
       {
