@@ -56,8 +56,8 @@
 }
 
 .multiselects-span div:nth-child(1) {
-  max-height: 4.5vh;
-  min-height: 4.5vh;
+  height: 100%;
+  max-height: 5.2vh;
   overflow-x: hidden;
   overflow-y: scroll;
 
@@ -70,8 +70,15 @@
   padding-top: 1rem;
 }
 
+.multiselects-span div:nth-child(1) span {
+  width: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .multiselects-span div:nth-child(1) span img {
-  width: 12px;
+  width: 10px;
 }
 
 .multiselects-span div:nth-child(1)::-webkit-scrollbar {
@@ -122,8 +129,11 @@
 
 @media (max-width: 1024px) {
   .multiselects-span div:nth-child(1) {
-    min-height: 4vh;
-    max-height: 4vh;
+    max-height: 5.9vh;
+  }
+
+  .multiselects-span div:nth-child(2) ul li {
+    font-size: 1.1rem;
   }
 
   .containerMultiSelect p {
@@ -148,8 +158,8 @@
   }
 
   .multiselects-span div:nth-child(1) {
-    min-height: 3.8vh;
-    max-height: 3.8vh;
+    height: 100%;
+    max-height: 6vh;
   }
   .multiselects-span div:nth-child(1) span {
     display: flex;

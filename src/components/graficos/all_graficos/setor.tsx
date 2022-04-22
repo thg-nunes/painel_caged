@@ -132,7 +132,7 @@ export const LayoutGraficoSetor = ({ yAxisType }: Props) => {
         show: false
       },
       zlevel: 2,
-      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : null
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : 3000
     },
     yAxis: {
       type: 'category',
