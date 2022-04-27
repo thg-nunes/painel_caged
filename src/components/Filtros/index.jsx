@@ -38,7 +38,7 @@ export const Filtros = () => {
   useEffect(() => {
 
     const getFiltrosUf = async () => {
-      const response_getFIltrosUf = await getDadosFiltrosUF()
+      const response_getFIltrosUf = await getDadosFiltrosUF(context)
       const filtros_validos = constroi_filtros(response_getFIltrosUf.resultTable.rows, 'uf')
       setFiltrosUf(filtros_validos)
     } 
@@ -52,43 +52,43 @@ export const Filtros = () => {
     }
 
     const getFiltrosPorte = async () => {
-      const response_getFIltrosPorte = await getDadosFiltrosPorte()
+      const response_getFIltrosPorte = await getDadosFiltrosPorte(context)
       const filtros_validos = constroi_filtros(response_getFIltrosPorte.resultTable.rows, 'porte')
       setFiltrosPorte(filtros_validos)
     }
 
     const getFiltrosOcupacao = async () => {
-      const response_getFIltrosOcupacao = await getDadosFiltrosOcupacao()
+      const response_getFIltrosOcupacao = await getDadosFiltrosOcupacao(context)
       const filtros_validos = constroi_filtros(response_getFIltrosOcupacao.resultTable.rows, 'cbo2002ocupacao')
       setFiltrosOcupacao(filtros_validos)
     }
 
     const getFiltrosSetor = async () => {
-      const response_getFIltrosSetor = await getDadosFiltrosSetor()
+      const response_getFIltrosSetor = await getDadosFiltrosSetor(context)
       const filtros_validos = constroi_filtros(response_getFIltrosSetor.resultTable.rows, 'setor')
       setFiltrosSetor(filtros_validos)
     }
 
     const getFiltrosRacacor = async () => {
-      const response_getFIltrosRacacor = await getDadosFiltrosRacaCor()
+      const response_getFIltrosRacacor = await getDadosFiltrosRacaCor(context)
       const filtros_validos = constroi_filtros(response_getFIltrosRacacor.resultTable.rows, 'racacor')
       setFiltrosRacaCor(filtros_validos)
     }
 
     const getFiltrosGrauInstrucao = async () => {
-      const response_getFIltrosGrauInstrucao = await getDadosFiltrosGaudeInstrucao()
+      const response_getFIltrosGrauInstrucao = await getDadosFiltrosGaudeInstrucao(context)
       const filtros_validos = constroi_filtros(response_getFIltrosGrauInstrucao.resultTable.rows, 'graudeinstrucao')
       setFiltrosGrauInstrucao(filtros_validos)
     }
 
     const getFiltrosPorSexo = async () => {
-      const response_getFIltrosPorSexo = await getDadosFiltrosSexo()
+      const response_getFIltrosPorSexo = await getDadosFiltrosSexo(context)
       const filtros_validos = constroi_filtros(response_getFIltrosPorSexo.resultTable.rows, 'sexo')
       setFiltrosPorSexo(filtros_validos)
     }
 
     const getFiltrosSubclasse = async () => {
-      const response_getFIltrosSubclasse = await getDadosFiltrosSubclasse()
+      const response_getFIltrosSubclasse = await getDadosFiltrosSubclasse(context)
       const filtros_validos = constroi_filtros(response_getFIltrosSubclasse.resultTable.rows, 'subclasse')
       setFiltrosSubclasse(filtros_validos)
     }
