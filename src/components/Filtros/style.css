@@ -44,8 +44,8 @@
 }
 
 .containerMultiSelect .container-filter div:nth-child(1) {
-  min-height: 4vh;
-  max-height: 4vh;
+  min-height: 5.5vh;
+  max-height: 5.5vh;
 }
 
 .containerMultiSelect .container-filter div:nth-child(1)::-webkit-scrollbar {
