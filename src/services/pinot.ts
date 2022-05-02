@@ -49,7 +49,6 @@ export const getDadosFiltrosMunicipio = async (uf: FiltroUF[]) => {
     data: { estado }
   })
     .then((res) => {
-      console.log(res.data)
       return res.data
     })
     .catch((err) => err)

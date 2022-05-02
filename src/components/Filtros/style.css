@@ -55,6 +55,9 @@
 .containerMultiSelect .container-filter div:nth-child(1) span {
   max-width: 220px;
   overflow: hidden;
+  font-size: .8rem;
+  padding: .2rem;
+  margin: 0;
 }
 
 .filter {
