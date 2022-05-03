@@ -95,12 +95,12 @@ export const Container = styled.div`
       return '90% '
     }};
     height: ${({isEscolaridade }) => {
-      if(isEscolaridade) return '104vh'
+      if(isEscolaridade) return '103.5vh'
       return '50vh'
     }};
 
     max-height: ${({isEscolaridade }) => {
-      if(isEscolaridade) return '102vh'
+      if(isEscolaridade) return '103.5vh'
       return '50vh'
     }};
 

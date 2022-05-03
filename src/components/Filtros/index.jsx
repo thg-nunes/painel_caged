@@ -38,7 +38,7 @@ export const Filtros = () => {
   useEffect(() => {
 
     const getFiltrosUf = async () => {
-      const response_getFIltrosUf = await getDadosFiltrosUF()
+      const response_getFIltrosUf = await getDadosFiltrosUF(context)
       const filtros_validos = constroi_filtros(response_getFIltrosUf.resultTable.rows, 'uf')
       setFiltrosUf(filtros_validos)
     } 
@@ -52,43 +52,43 @@ export const Filtros = () => {
     }
 
     const getFiltrosPorte = async () => {
-      const response_getFIltrosPorte = await getDadosFiltrosPorte()
+      const response_getFIltrosPorte = await getDadosFiltrosPorte(context)
       const filtros_validos = constroi_filtros(response_getFIltrosPorte.resultTable.rows, 'porte')
       setFiltrosPorte(filtros_validos)
     }
 
     const getFiltrosOcupacao = async () => {
-      const response_getFIltrosOcupacao = await getDadosFiltrosOcupacao()
+      const response_getFIltrosOcupacao = await getDadosFiltrosOcupacao(context)
       const filtros_validos = constroi_filtros(response_getFIltrosOcupacao.resultTable.rows, 'cbo2002ocupacao')
       setFiltrosOcupacao(filtros_validos)
     }
 
     const getFiltrosSetor = async () => {
-      const response_getFIltrosSetor = await getDadosFiltrosSetor()
+      const response_getFIltrosSetor = await getDadosFiltrosSetor(context)
       const filtros_validos = constroi_filtros(response_getFIltrosSetor.resultTable.rows, 'setor')
       setFiltrosSetor(filtros_validos)
     }
 
     const getFiltrosRacacor = async () => {
-      const response_getFIltrosRacacor = await getDadosFiltrosRacaCor()
+      const response_getFIltrosRacacor = await getDadosFiltrosRacaCor(context)
       const filtros_validos = constroi_filtros(response_getFIltrosRacacor.resultTable.rows, 'racacor')
       setFiltrosRacaCor(filtros_validos)
     }
 
     const getFiltrosGrauInstrucao = async () => {
-      const response_getFIltrosGrauInstrucao = await getDadosFiltrosGaudeInstrucao()
+      const response_getFIltrosGrauInstrucao = await getDadosFiltrosGaudeInstrucao(context)
       const filtros_validos = constroi_filtros(response_getFIltrosGrauInstrucao.resultTable.rows, 'graudeinstrucao')
       setFiltrosGrauInstrucao(filtros_validos)
     }
 
     const getFiltrosPorSexo = async () => {
-      const response_getFIltrosPorSexo = await getDadosFiltrosSexo()
+      const response_getFIltrosPorSexo = await getDadosFiltrosSexo(context)
       const filtros_validos = constroi_filtros(response_getFIltrosPorSexo.resultTable.rows, 'sexo')
       setFiltrosPorSexo(filtros_validos)
     }
 
     const getFiltrosSubclasse = async () => {
-      const response_getFIltrosSubclasse = await getDadosFiltrosSubclasse()
+      const response_getFIltrosSubclasse = await getDadosFiltrosSubclasse(context)
       const filtros_validos = constroi_filtros(response_getFIltrosSubclasse.resultTable.rows, 'subclasse')
       setFiltrosSubclasse(filtros_validos)
     }
@@ -137,45 +137,38 @@ export const Filtros = () => {
 
   return (
     <div className='containerFiltros' id='all_filters'>
-      <p className="texto-filtros">Filtros:</p>
-      <svg className='close-menu' xmlns="http://www.w3.org/2000/svg" height="20px" viewBox="0 0 24 24" width="20px" fill="#000000"
-        onClick={() => {
-          document.getElementById('all_filters').style.display = 'none'
-        }}
-      ><path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      <p className="text-filters">Filtros:</p>
       <div className='containerMultiSelect'>
-        <div>
+        <div className='container-filter'>
           <p>Ano:</p>
           <Multiselect
-            isMulti={false}
-            className="multiselect multiselects-span"
+            singleSelect={true}
+            className="multiselect filter"
             displayValue="label"
             onRemove={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ANO, payload: e})}
-            placeholder='Selecionar'
-            selectedValues={[
-              {value: 'ano', label: context.state.ano}
-            ]}
+            placeholder={context.state.ano}
             options={filtrosAnual}
-            selectionLimit={1}
           />
         </div>
-        <div>
+        <div className='container-filter'>
           <p>Mês:</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            className="multiselect filter"
             displayValue="label"
             onRemove={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
             placeholder='Selecionar'
+            singleSelect={true}
             options={filtrosMensal}
           />
         </div>
 
-        <div>
+        <div className='container-filter'>
           <p>UF</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            singleSelect={true}
+            className="multiselect multiselect-uf filter"
             displayValue='label'
             onRemove={(e) => {
               context.dispatch({type: actions.MUDAR_ESTADO, payload: e})
@@ -186,108 +179,115 @@ export const Filtros = () => {
             selectedValues={[
               {value: 'uf', label: 'Maranhão'}
             ]}
-            selectionLimit={1}
           />
         </div>
 
-        <div>
+        <div className='multiselect container-filter'>
           <p>Município</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            className="filter"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: e})}
             placeholder='Selecionar'
+            showCheckbox={true}
             options={filtrosMunicipio}
           />
         </div>
 
-      <div>
+        <div className='multiselect container-filter'>
           <p>Porte</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            className="filter"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_PORTE, payload: e})}
             placeholder='Selecionar'
+            showCheckbox={true}
             options={filtrosPorte}
           />
         </div>
 
-      <div>
+        <div className='multiselect container-filter'>
           <p>Ocupação</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            className="filter"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.cbo2002ocupacao, payload: e})}
             placeholder='Selecionar'
+            showCheckbox={true}
             options={filtrosOcupacao}
           />
         </div>
       </div>
 
       <div className='containerMultiSelect bottom' isFiltrosBottom>
-        <div>
+        <section className='multiselect container-filter'>
           <p>Setor</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            className="filter"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SETOR, payload: e})}
             placeholder='Selecionar'
+            showCheckbox={true}
             options={filtrosSetor}
           />
-        </div>
+        </section>
 
-        <div>
+        <section className='multiselect container-filter'>
           <p>Raça/Cor</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            className="filter"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_RACACOR, payload: e})}
             placeholder='Selecionar'
+            showCheckbox={true}
             options={filtrosRacaCor}
           />
-        </div>
+        </section>
 
-        <div>
+        <section className='multiselect container-filter'>
           <p>Grau de Instrução</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            className="filter"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_GRAUINSTRUCAO, payload: e})}
             placeholder='Selecionar'
+            showCheckbox={true}
             options={filtrosGrauInstrucao}
           />
-        </div>
+        </section>
 
-        <div>
+        <section className='multiselect container-filter'>
           <p>Sexo</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            className="filter"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SEXO, payload: e})}
             placeholder='Selecionar'
+            showCheckbox={true}
             options={filtrosPorSexo}
             selectionLimit={1}
           />
-        </div>
+        </section>
 
-        <div>
+        <section className='multiselect container-filter'>
           <p>Subclasse</p>
           <Multiselect
-            className="multiselect multiselects-span"
+            className="filter"
             displayValue='label'
             onRemove={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_SUBCLASSE, payload: e})}
             placeholder='Selecionar'
+            showCheckbox={true}
             options={filtrosSubclasse}
           />
-        </div>
+        </section>
 
       </div>
     </div>

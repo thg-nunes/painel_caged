@@ -77,6 +77,7 @@ export const GraficoMensal = () => {
       orient: "vertical",
       left: "right",
       showTitle: true,
+      itemSize: widthTela >= 768 && widthTela <= 1024 ? 11 : 12,
       feature: {
         type: "png",
         saveAsImage: {
@@ -154,7 +155,7 @@ export const GraficoMensal = () => {
         option={option}
         opts={{ renderer: 'canvas' }}
         style={{
-          width: widthTela >= 320 && widthTela <= 768 ? '150vw' : '100%',
+          width: widthTela >= 320 && widthTela < 768 ? '150vw' : '100%',
           height: '100%',
         }}
       />

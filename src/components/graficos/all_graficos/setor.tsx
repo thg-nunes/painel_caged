@@ -131,7 +131,8 @@ export const LayoutGraficoSetor = ({ yAxisType }: Props) => {
       axisTick: {
         show: false
       },
-      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : null
+      zlevel: 2,
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : 3000
     },
     yAxis: {
       type: 'category',
@@ -143,7 +144,8 @@ export const LayoutGraficoSetor = ({ yAxisType }: Props) => {
       },
       axisTick: {
         show: false
-      }
+      },
+      zlevel: 2
     }, 
     series: [
       {

@@ -101,7 +101,7 @@ export const Home = () => {
 
           <section className="containerTabelas">
             <TabelaOcupacao Titulo='Ocupação' dados={ocupacao} />
-            <TabelaMunicipio Titulo='Município' dados={municipio} />
+            <TabelaMunicipio className='municipio' Titulo='Município' dados={municipio} />
             <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
           </section>
     </section>  

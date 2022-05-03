@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const url_api = 'http://0.0.0.0:3334'
-// const url_api = 'http://dados.jucema.ma.gov.br/'
+// const url_api = 'http://192.168.100.5:3334'
+const url_api = 'http://dados.jucema.ma.gov.br/'
 
 export const getDadosGraficos = async (classificacao, filtros) => {
   return await axios({
@@ -18,10 +18,13 @@ export const getDadosGraficos = async (classificacao, filtros) => {
   .catch(err => err)
 }
 
-export const getDadosFiltrosUF = async () => {
+export const getDadosFiltrosUF = async (context) => {
 
   return await axios({
-    method: 'GET',
+    method: 'POST',
+    data: {
+      state: context.state
+    },
     url: `${url_api}/filtrosUF`,
   })
     .then((res) => {
@@ -51,10 +54,13 @@ export const getDadosFiltrosMunicipio = async (uf: FiltroUF[]) => {
     .catch((err) => err)
 }
 
-export const getDadosFiltrosPorte = async () => {
+export const getDadosFiltrosPorte = async (context) => {
 
   return await axios({
-    method: 'GET',
+    method: 'POST',
+    data: {
+      state: context.state
+    },
     url: `${url_api}/porte`,
   })
     .then((res) => {
@@ -63,10 +69,13 @@ export const getDadosFiltrosPorte = async () => {
     .catch((err) => err)
 }
 
-export const getDadosFiltrosOcupacao = async () => {
+export const getDadosFiltrosOcupacao = async (context) => {
 
   return await axios({
-    method: 'GET',
+    method: 'POST',
+    data: {
+      state: context.state
+    },
     url: `${url_api}/ocupacao`
   })
     .then((res) => {
@@ -75,10 +84,13 @@ export const getDadosFiltrosOcupacao = async () => {
     .catch((err) => err)
 }
 
-export const getDadosFiltrosSetor = async () => {
+export const getDadosFiltrosSetor = async (context) => {
 
   return await axios({
-    method: 'GET',
+    method: 'POST',
+    data: {
+      state: context.state
+    },
     url: `${url_api}/setor`
   })
     .then((res) => {
@@ -87,10 +99,13 @@ export const getDadosFiltrosSetor = async () => {
     .catch((err) => err)
 }
 
-export const getDadosFiltrosRacaCor = async () => {
+export const getDadosFiltrosRacaCor = async (context) => {
 
   return await axios({
-    method: 'GET',
+    method: 'POST',
+    data: {
+      state: context.state
+    },
     url: `${url_api}/racaCor`,
   })
     .then((res) => {
@@ -99,10 +114,13 @@ export const getDadosFiltrosRacaCor = async () => {
     .catch((err) => err)
 }
 
-export const getDadosFiltrosGaudeInstrucao = async () => {
+export const getDadosFiltrosGaudeInstrucao = async (context) => {
 
   return await axios({
-    method: 'GET',
+    method: 'POST',
+    data: {
+      state: context.state
+    },
     url: `${url_api}/grauInstrucao`,
   })
     .then((res) => {
@@ -111,10 +129,13 @@ export const getDadosFiltrosGaudeInstrucao = async () => {
     .catch((err) => err)
 }
 
-export const getDadosFiltrosSexo = async () => {
+export const getDadosFiltrosSexo = async (context) => {
 
   return await axios({
-    method: 'GET',
+    method: 'POST',
+    data: {
+      state: context.state
+    },
     url: `${url_api}/filtrosSexo`,
   })
     .then((res) => {
@@ -123,10 +144,13 @@ export const getDadosFiltrosSexo = async () => {
     .catch((err) => err)
 }
 
-export const getDadosFiltrosSubclasse = async () => {
+export const getDadosFiltrosSubclasse = async (context) => {
 
   return await axios({
-    method: 'GET',
+    method: 'POST',
+    data: {
+      state: context.state
+    },
     url: `${url_api}/subclasse`,
   })
     .then((res) => {

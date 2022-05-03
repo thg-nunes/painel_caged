@@ -128,6 +128,7 @@ export const LayoutGraficoPorSexo = ({ yAxisType }: Props) => {
         fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 12,
         fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
       },
+      zlevel: 2,
       minInterval: widthTela >= 320 && widthTela <= 768 ? 10000 : null
     },
     yAxis: {
@@ -140,7 +141,8 @@ export const LayoutGraficoPorSexo = ({ yAxisType }: Props) => {
       },
       axisTick: {
         show: widthTela >= 320 && widthTela <= 768 ? false : true
-      }
+      },
+      zlevel: 2,
     },
     series: [
       {

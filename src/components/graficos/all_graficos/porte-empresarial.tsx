@@ -133,6 +133,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
       axisTick: {
         show: false
       },
+      zlevel: 2,
       minInterval: (widthTela >= 320 && widthTela <= 768) ? 30000 : null
     },
     yAxis: {
@@ -145,7 +146,8 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
       },
       axisTick: {
         show: false
-      }
+      },
+      zlevel: 2,
     },
     series: [
       {
