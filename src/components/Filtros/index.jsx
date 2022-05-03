@@ -159,7 +159,7 @@ export const Filtros = () => {
             onRemove={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
             placeholder='Selecionar'
-            singleSelect={true}
+            showCheckbox={true}
             options={filtrosMensal}
           />
         </div>
@@ -172,6 +172,7 @@ export const Filtros = () => {
             displayValue='label'
             onRemove={(e) => {
               context.dispatch({type: actions.MUDAR_ESTADO, payload: e})
+              context.dispatch({type: actions.MUDAR_MUNICIPIO, payload: []})
             }}
             onSelect={(e) => context.dispatch({type: actions.MUDAR_ESTADO, payload: e})}
             placeholder='Selecionar'
