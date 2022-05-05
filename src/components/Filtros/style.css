@@ -20,7 +20,7 @@
   color: #208cc9;
   font-weight: 600;
 
-  margin-left: 2rem;
+  margin-left: 1rem;
 
   width: min-content;
 }
@@ -33,6 +33,7 @@
 .containerMultiSelect {
   display: flex;
   flex-wrap: nowrap;
+  padding: 0 1rem;
 }
 
 .containerMultiSelect .container-filter {
@@ -41,6 +42,16 @@
 
   min-height: 3vh;
   margin: 0 .5rem;
+}
+
+.containerMultiSelect .container-filter .filter div:nth-child(1) span {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  width: min-content;
+  align-items: center;
+  margin: 0 .5rem .1rem 0;
 }
 
 .containerMultiSelect .multiselect-uf {
@@ -57,6 +68,10 @@
   position: absolute;
 }
 
+.containerMultiSelect .container-filter .multiselect-uf span {
+  color: white;
+  background: #0096FB;
+}
 .containerMultiSelect .container-filter .multiselect-uf div:nth-child(1) {
   display: flex;
 }
@@ -162,18 +177,18 @@
 
 }
 
-@media (max-width: 500px) {
+@media (max-width: 540px) {
   .containerFiltros {
     display: none;
     position: fixed;
     top: 3rem;
     width: 100%;
     height: 100%;
+    left: 100%;
 
     overflow-y: scroll;
     padding-bottom: 5rem;
-
-    transition: 450ms all ease-in-out;
+    animation: animation-filters .5s linear forwards;
     border: none;
     z-index: 5;
   }
@@ -204,5 +219,21 @@
   .containerMultiSelect .container-filter div:nth-child(1) {
     min-height: 4.2vh;
     max-height: 4.2vh;
+  }
+
+  .containerMultiSelect .container-filter div:nth-child(1) {
+    min-height: 5vh;
+    max-height: 5vh;
+  }
+  /* .containerMultiSelect .container-filter div:nth-child(1) span {
+    margin: 0 .4rem;
+  } */
+}
+
+@keyframes animation-filters {
+  from {
+    left: 100%;
+  } to {
+    left: 0%;
   }
 }
