@@ -10,7 +10,7 @@ export const DataHeader = () => {
         <p className="texto-header">Painel de Empregos Formais - JUCEMA</p>
         <img className="logo" src={logo} alt="logo" />
       </div>
-        <svg className='menu-mobile' xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"
+        <svg className='menu-mobile' xmlns="http://www.w3.org/2000/svg" height="26px" viewBox="0 0 24 24" width="26px" fill="#FFFFFF"
           onClick={() => {
             setMenuBlock(!menuBlock)
             document.getElementById('all_filters').style.display = menuBlock ? 'block' : 'none'

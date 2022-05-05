@@ -35,23 +35,29 @@
     }
   }
 
-@media (max-width: 500px) {
+@media (max-width: 540px) {
   .texto-header {
-    font-size: 1.3rem;
+    font-size: 1.8rem;
   }
 
   .logo {
     display: none;
   }
 
-  .header-mobile .menu-mobile {
-    display: block;
-    margin-right: .5rem;
-  }
-
   .header-mobile {
     display: flex;
     align-items: center;
-    margin-left: .5rem;
+    padding: .5rem 1rem;
+  }
+  
+  .header-mobile .data {
+    width: 100%;
+    position: relative;
+  }
+  
+  .header-mobile .menu-mobile {
+    display: block;
+    position: absolute;
+    right: 1rem;
   }
 }
