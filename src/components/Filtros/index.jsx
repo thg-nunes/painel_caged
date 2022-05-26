@@ -112,8 +112,10 @@ export const Filtros = () => {
     const filtros_ano = () => {
       let ano_disponiveis = []
 
-      for (let i = 2020; i <= 2022; i++) {
-        ano_disponiveis.push({
+      const year = new Date().getMonth() >= 2 && new Date().getDate() >= 1 ? new Date().getFullYear() : new Date().getFullYear() - 1
+
+      for (let i = 2020; i <= year; i++) {
+        ano_disponiveis.unshift({
           value: 'ano',
           label: i
         })
