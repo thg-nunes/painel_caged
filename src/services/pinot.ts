@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const url_api = 'http://dados.jucema.ma.gov.br/'
+const url_api = process.env.REACT_APP_BACKEND; //'http://dados.jucema.ma.gov.br/caged'
 
 export const getDadosGraficos = async (classificacao, filtros) => {
   return await axios({
