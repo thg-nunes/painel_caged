@@ -50,6 +50,7 @@
   align-items: center;
   justify-self: center;
   width: min-content;
+  height: min-content;
   align-items: center;
   margin: 0 .5rem .1rem 0;
 }
@@ -59,8 +60,8 @@
 }
 
 .containerMultiSelect .container-filter div:nth-child(1) {
-  min-height: 4vh;
-  max-height: 4vh;
+  min-height: 40px;
+  max-height: 40px;
   position: relative;
 }
 
