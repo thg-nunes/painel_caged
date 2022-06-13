@@ -5,7 +5,7 @@ const url_api = process.env.REACT_APP_BACKEND; //'http://dados.jucema.ma.gov.br/
 export const getDadosGraficos = async (classificacao, filtros) => {
   return await axios({
     method: 'POST', 
-    url: `${url_api}/dadosGraficos`, 
+    url: `${url_api}/caged/dadosGraficos`, 
     data: {
       classificacao,
       filtros
@@ -17,140 +17,19 @@ export const getDadosGraficos = async (classificacao, filtros) => {
   .catch(err => err)
 }
 
-export const getDadosFiltrosUF = async (context) => {
-
-  return await axios({
-    method: 'POST',
-    data: {
-      state: context.state
-    },
-    url: `${url_api}/filtrosUF`,
-  })
-    .then((res) => {
-      return res.data
-    })
-    .catch((err) => err)
-}
-
-type FiltroUF = {
-  value: string
-  label:string
-}
-
-export const getDadosFiltrosMunicipio = async (uf: FiltroUF[]) => {
+export const getDataFilter = async (context: any, filter: string) => {
 
   let estado = ''
-  uf.length === 1 ? estado = uf[0].label : estado = ''
-  
-  return await axios({
-    method: 'POST',
-    url: `${url_api}/filtrosMunicipio`,
-    data: { estado }
-  })
-    .then((res) => {
-      return res.data
-    })
-    .catch((err) => err)
-}
-
-export const getDadosFiltrosPorte = async (context) => {
+  if (filter === 'municipio') {
+    estado = context.state.uf[0].label
+  }
 
   return await axios({
     method: 'POST',
-    data: {
+    data: filter === 'municipio' ? { estado } : {
       state: context.state
     },
-    url: `${url_api}/porte`,
-  })
-    .then((res) => {
-      return res.data
-    })
-    .catch((err) => err)
-}
-
-export const getDadosFiltrosOcupacao = async (context) => {
-
-  return await axios({
-    method: 'POST',
-    data: {
-      state: context.state
-    },
-    url: `${url_api}/ocupacao`
-  })
-    .then((res) => {
-      return res.data
-    })
-    .catch((err) => err)
-}
-
-export const getDadosFiltrosSetor = async (context) => {
-
-  return await axios({
-    method: 'POST',
-    data: {
-      state: context.state
-    },
-    url: `${url_api}/setor`
-  })
-    .then((res) => {
-      return res.data
-    })
-    .catch((err) => err)
-}
-
-export const getDadosFiltrosRacaCor = async (context) => {
-
-  return await axios({
-    method: 'POST',
-    data: {
-      state: context.state
-    },
-    url: `${url_api}/racaCor`,
-  })
-    .then((res) => {
-      return res.data
-    })
-    .catch((err) => err)
-}
-
-export const getDadosFiltrosGaudeInstrucao = async (context) => {
-
-  return await axios({
-    method: 'POST',
-    data: {
-      state: context.state
-    },
-    url: `${url_api}/grauInstrucao`,
-  })
-    .then((res) => {
-      return res.data
-    })
-    .catch((err) => err)
-}
-
-export const getDadosFiltrosSexo = async (context) => {
-
-  return await axios({
-    method: 'POST',
-    data: {
-      state: context.state
-    },
-    url: `${url_api}/filtrosSexo`,
-  })
-    .then((res) => {
-      return res.data
-    })
-    .catch((err) => err)
-}
-
-export const getDadosFiltrosSubclasse = async (context) => {
-
-  return await axios({
-    method: 'POST',
-    data: {
-      state: context.state
-    },
-    url: `${url_api}/subclasse`,
+    url: `${url_api}/caged/${filter}`,
   })
     .then((res) => {
       return res.data

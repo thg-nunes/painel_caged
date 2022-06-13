@@ -3,7 +3,7 @@ import * as actions from '../../contexts/actions'
 import { useContext, useEffect, useState } from 'react'
 import { ContextGlobal } from '../../contexts/context'
 import {
-  getDadosFiltrosUF, getDadosFiltrosMunicipio, getDadosFiltrosPorte, getDadosFiltrosOcupacao, getDadosFiltrosSetor, getDadosFiltrosRacaCor, getDadosFiltrosGaudeInstrucao, getDadosFiltrosSexo, getDadosFiltrosSubclasse, getDadosGraficos
+  getDadosFiltrosUF, getDadosFiltrosMunicipio, getDadosFiltrosPorte, getDadosFiltrosOcupacao, getDadosFiltrosSetor, getDadosFiltrosRacaCor, getDadosFiltrosGaudeInstrucao, getDadosFiltrosSexo, getDadosFiltrosSubclasse, getDadosGraficos, getDataFilter
 } from '../../services/pinot'
 
 import './style.css'
@@ -38,57 +38,57 @@ export const Filtros = () => {
   useEffect(() => {
 
     const getFiltrosUf = async () => {
-      const response_getFIltrosUf = await getDadosFiltrosUF(context)
+      const response_getFIltrosUf = await getDataFilter(context, 'uf')
       const filtros_validos = constroi_filtros(response_getFIltrosUf.resultTable.rows, 'uf')
       setFiltrosUf(filtros_validos)
     } 
     
     const getFiltrosMunicipio = async () => {
       if(context.state.uf !== '') {
-        const response_getFIltrosMunicipio = await getDadosFiltrosMunicipio(context.state.uf)
+        const response_getFIltrosMunicipio = await getDataFilter(context, 'municipio')
         const filtros_validos = constroi_filtros(response_getFIltrosMunicipio.resultTable.rows, 'municipio')
         setFiltrosMunicipio(filtros_validos)
       }
     }
 
     const getFiltrosPorte = async () => {
-      const response_getFIltrosPorte = await getDadosFiltrosPorte(context)
+      const response_getFIltrosPorte = await getDataFilter(context, 'porte')
       const filtros_validos = constroi_filtros(response_getFIltrosPorte.resultTable.rows, 'porte')
       setFiltrosPorte(filtros_validos)
     }
 
     const getFiltrosOcupacao = async () => {
-      const response_getFIltrosOcupacao = await getDadosFiltrosOcupacao(context)
+      const response_getFIltrosOcupacao = await getDataFilter(context, 'cbo2002ocupacao')
       const filtros_validos = constroi_filtros(response_getFIltrosOcupacao.resultTable.rows, 'cbo2002ocupacao')
       setFiltrosOcupacao(filtros_validos)
     }
 
     const getFiltrosSetor = async () => {
-      const response_getFIltrosSetor = await getDadosFiltrosSetor(context)
+      const response_getFIltrosSetor = await getDataFilter(context, 'setor')
       const filtros_validos = constroi_filtros(response_getFIltrosSetor.resultTable.rows, 'setor')
       setFiltrosSetor(filtros_validos)
     }
 
     const getFiltrosRacacor = async () => {
-      const response_getFIltrosRacacor = await getDadosFiltrosRacaCor(context)
+      const response_getFIltrosRacacor = await getDataFilter(context, 'racacor')
       const filtros_validos = constroi_filtros(response_getFIltrosRacacor.resultTable.rows, 'racacor')
       setFiltrosRacaCor(filtros_validos)
     }
 
     const getFiltrosGrauInstrucao = async () => {
-      const response_getFIltrosGrauInstrucao = await getDadosFiltrosGaudeInstrucao(context)
+      const response_getFIltrosGrauInstrucao = await getDataFilter(context, 'graudeinstrucao')
       const filtros_validos = constroi_filtros(response_getFIltrosGrauInstrucao.resultTable.rows, 'graudeinstrucao')
       setFiltrosGrauInstrucao(filtros_validos)
     }
 
     const getFiltrosPorSexo = async () => {
-      const response_getFIltrosPorSexo = await getDadosFiltrosSexo(context)
+      const response_getFIltrosPorSexo = await getDataFilter(context, 'sexo')
       const filtros_validos = constroi_filtros(response_getFIltrosPorSexo.resultTable.rows, 'sexo')
       setFiltrosPorSexo(filtros_validos)
     }
 
     const getFiltrosSubclasse = async () => {
-      const response_getFIltrosSubclasse = await getDadosFiltrosSubclasse(context)
+      const response_getFIltrosSubclasse = await getDataFilter(context, 'subclasse')
       const filtros_validos = constroi_filtros(response_getFIltrosSubclasse.resultTable.rows, 'subclasse')
       setFiltrosSubclasse(filtros_validos)
     }
