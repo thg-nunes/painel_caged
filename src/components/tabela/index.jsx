@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import { useTable } from 'react-table'
 import './style.css'
 
-export const TabelaOcupacao = ({ dados, Titulo }) => {
+export const CreateTable = ({ dados, Titulo }) => {
 
   const dados_tabela = []
 
@@ -15,13 +15,13 @@ export const TabelaOcupacao = ({ dados, Titulo }) => {
     })
   }, [dados])
 
+
   const COLUMNS = [
     {Header: Titulo, accessor: 'campo'},
     {Header: 'Saldo', accessor: 'valor'}
   ]
 
   const columns = useMemo(() => COLUMNS,[])
-
   const data = useMemo(() => dados_tabela ,[dados])
 
   const instancia_tabela = useTable({
@@ -32,7 +32,7 @@ export const TabelaOcupacao = ({ dados, Titulo }) => {
   const {getTableProps, getTableBodyProps, headerGroups, rows, prepareRow} = instancia_tabela
 
   return (
-    <div className='stylesTables'>
+    <div className='stylesTables municipio'>
       <h2 className='tituloTables'>{Titulo}</h2>
       <table {...getTableProps()}>
         <thead>

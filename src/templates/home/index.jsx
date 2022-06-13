@@ -11,9 +11,7 @@ import { Header } from "../../components/header"
 import { SaldoEmpregos } from "../../components/saldo-empregos"
 import { ContextGlobal } from "../../contexts/context"
 import { getDadosGraficos } from "../../services/pinot"
-import { TabelaOcupacao } from "../../components/tabela/tabela-ocupacao"
-import { TabelaSubclasse } from "../../components/tabela/tabela-subclasse"
-import { TabelaMunicipio } from "../../components/tabela/tabela-municipio"
+import { CreateTable } from "../../components/tabela"
 import Loading from '../../gifs/loading.gif'
 
 import './style.css'
@@ -100,9 +98,9 @@ export const Home = () => {
         </div>
 
           <section className="containerTabelas">
-            <TabelaOcupacao Titulo='Ocupação' dados={ocupacao} />
-            <TabelaMunicipio className='municipio' Titulo='Município' dados={municipio} />
-            <TabelaSubclasse Titulo='Subclasse' dados={subclasse} />
+            <CreateTable Titulo='Ocupação' dados={ocupacao} />
+            <CreateTable className='municipio' Titulo='Município' dados={municipio} />
+            <CreateTable Titulo='Subclasse' dados={subclasse} />
           </section>
     </section>  
   </>
