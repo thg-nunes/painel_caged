@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react"
-import { DataHeader } from "../../components/dataHeader"
+import { DataHeader } from "../../client/dataHeader"
 import { AllFilters } from "../../client/create-filters"
 import { GraficoMensal } from "../../components/graficos/mensal"
 import { LayoutGraficoEscolaridade } from "../../components/graficos/all_graficos/grafico-escolaridade"
