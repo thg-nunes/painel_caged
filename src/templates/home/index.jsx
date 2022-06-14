@@ -3,15 +3,14 @@ import { AllFilters } from "../../client/create-filters"
 import { GraficoMensal } from "../../client/charts/mensal"
 import { LayoutGraficoEscolaridade } from "../../client/charts/grafico-escolaridade"
 import { LayoutGraficoPorSexo } from "../../client/charts/grafico-porSexo"
-import { LayoutPorteEmpresarial } from "../../client/charts/porte-empresarial"
 import { LayoutRacaCor } from "../../client/charts/raca-cor"
-import { LayoutGraficoSetor } from "../../client/charts/setor"
 import { Header } from "../../components/header"
 import { CreateBalanceJobs } from "../../client/create-balance-jobs"
 import { ContextGlobal } from "../../contexts/context"
 import { getDadosGraficos } from "../../services/pinot"
 import { DataHeader } from "../../client/dataHeader"
 import { CreateTable } from "../../components/tabela"
+import { LayoutDefaultChart } from "../../components/chart"
 import Loading from '../../gifs/loading.gif'
 
 import './style.css'
@@ -80,9 +79,9 @@ export const Home = () => {
         <GraficoMensal />
         <div className="containerGraficosClassificacao">
           <section className="containerGraficosTipo">
-            <LayoutPorteEmpresarial />
+            <LayoutDefaultChart tipoGrafico='porte' titulo_grafico='Porte Empresarial'/>
             <LayoutRacaCor />
-            <LayoutGraficoSetor />
+            <LayoutDefaultChart tipoGrafico='setor' titulo_grafico='Empregos Por Setor'/>
           </section> 
 
           <section className="containerGraficosHorizontal">

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Echarts from 'echarts-for-react'
 
 import { ContextGlobal } from '../../contexts/context'
@@ -10,20 +10,20 @@ import * as Styled from './styled'
 
 type Props = PadraoGraficos & EixoGrafico
 
-export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
+export const LayoutDefaultChart = ({ yAxisType, tipoGrafico, titulo_grafico }: Props) => {
 
   const context = useContext(ContextGlobal)
-  const [dadosPorte, setDadosPorte] = useState<any[]>([])
+  const [dataChart, setDataChart] = useState<any[]>([])
   const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
 
     let cancel_set = false;
 
-    const getDadosMensal = async () => {
-      const response = await getDadosGraficos('porte', context)
+    const getDataChart = async () => {
+      const response = await getDadosGraficos(tipoGrafico, context)
       if(cancel_set) return
-      setDadosPorte(response)
+      setDataChart(response)
     }
 
     const get_widthTela = () => {
@@ -31,14 +31,12 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
       setWidthTela(window.innerWidth)
     }
 
-    getDadosMensal()
+    getDataChart()
     get_widthTela()
-
     return () => {cancel_set = true}
-
   }, [context])
 
-  const colecao_cores = [
+  const colorsColection = [
     '#FFBE7D',
     '#5B9F51',
     '#9fcbe8',
@@ -52,22 +50,21 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
     '#3B6065',
   ]
 
-  const dados_grafico_categoria: string[] = []
-  const dados_grafico_categoria_quantidade: Series[] = []
-  const quantidade_colunas: number[] = []
+  const dataChartCategory: string[] = []
+  const dataChartCategoryQuantity: Series[] = []
+  const quantityColumns: number[] = []
 
-  if(dadosPorte !== undefined){
-    dadosPorte.forEach(arr => {
-      if(widthTela >= 320 && widthTela <= 768) dados_grafico_categoria.push(arr[0].replace(' ', '\n'))
-      else dados_grafico_categoria.push(arr[0])
-      quantidade_colunas.push(arr[1])
+  if(dataChart !== undefined){
+    dataChart.forEach(arr => {
+      dataChartCategory.push(arr[0])
+      quantityColumns.push(arr[1])
     })
   }
 
-  for (let i = 0; i < quantidade_colunas.length; i++) {
-    dados_grafico_categoria_quantidade.push({
-      value: quantidade_colunas[i],
-      itemStyle: { color: colecao_cores[i] },
+  for (let i = 0; i < quantityColumns.length; i++) {
+    dataChartCategoryQuantity.push({
+      value: quantityColumns[i],
+      itemStyle: { color: colorsColection[i] },
     })
   }
 
@@ -124,34 +121,34 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
     },
     xAxis: {
       type: 'value',
-      data: dados_grafico_categoria_quantidade,
+      data: dataChartCategoryQuantity,
       axisLabel: {
         color: 'black',
         fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
-        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 12
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
       },
       axisTick: {
         show: false
       },
       zlevel: 2,
-      minInterval: (widthTela >= 320 && widthTela <= 768) ? 30000 : null
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : 3000
     },
     yAxis: {
       type: 'category',
-      data: dados_grafico_categoria ,
+      data: dataChartCategory ,
       axisLabel: {
         color: 'black',
-        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 10,
-        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 11,
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal'
       },
       axisTick: {
         show: false
       },
-      zlevel: 2,
-    },
+      zlevel: 2
+    }, 
     series: [
       {
-        data: dados_grafico_categoria_quantidade,
+        data: dataChartCategoryQuantity,
         color: '#0374F0',
         type: 'bar',
         barWidth: '40%',
@@ -161,7 +158,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
 
   return (
     <Styled.Container>
-      <p>Porte Empresarial</p>
+      <p>{titulo_grafico}</p>
       <Echarts
         className='grafito-tipo'
         option={option}
