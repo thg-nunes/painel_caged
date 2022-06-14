@@ -1,29 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Echarts from 'echarts-for-react'
 
-import { ContextGlobal } from '../../../contexts/context'
-import { getDadosGraficos } from '../../../services/pinot'
-import { PadraoGraficos } from '../../../interfaces/graficos/padrao-graficos'
-import { EixoGrafico } from '../../../interfaces/graficos/eixos-grafico'
-import { Series } from '../../../interfaces/graficos/series'
+import { ContextGlobal } from '../../contexts/context'
+import { getDadosGraficos } from '../../services/pinot'
+import { PadraoGraficos } from '../../interfaces/graficos/padrao-graficos'
+import { EixoGrafico } from '../../interfaces/graficos/eixos-grafico'
+import { Series } from '../../interfaces/graficos/series'
 import * as Styled from './styled'
 
 type Props = PadraoGraficos & EixoGrafico
 
-export const LayoutRacaCor = ({ yAxisType }: Props) => {
+export const LayoutGraficoSetor = ({ yAxisType }: Props) => {
 
   const context = useContext(ContextGlobal)
-  const [dadosRacaCor, setDadosRacaCor] = useState<any[]>([])
+  const [dadosSetor, setDadosSetor] = useState<any[]>([])
   const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
 
     let cancel_set = false;
 
-    const getDadosRacaCor = async () => {
-      const response = await getDadosGraficos('racacor', context)
+    const getDadosSetor = async () => {
+      const response = await getDadosGraficos('setor', context)
       if(cancel_set) return
-      setDadosRacaCor(response)
+      setDadosSetor(response)
     }
 
     const get_widthTela = () => {
@@ -31,11 +31,9 @@ export const LayoutRacaCor = ({ yAxisType }: Props) => {
       setWidthTela(window.innerWidth)
     }
 
-    getDadosRacaCor()
+    getDadosSetor()
     get_widthTela()
-
     return () => {cancel_set = true}
-
   }, [context])
 
   const colecao_cores = [
@@ -56,9 +54,10 @@ export const LayoutRacaCor = ({ yAxisType }: Props) => {
   const dados_grafico_categoria_quantidade: Series[] = []
   const quantidade_colunas: number[] = []
 
-  if(dadosRacaCor !== undefined){
-    dadosRacaCor.forEach(arr => {
-      dados_grafico_categoria.push(arr[0])
+  if(dadosSetor !== undefined){
+    dadosSetor.forEach(arr => {
+      if(widthTela >= 320 && widthTela <= 768) dados_grafico_categoria.push(arr[0].replace(' ', '\n'))
+      else dados_grafico_categoria.push(arr[0])
       quantidade_colunas.push(arr[1])
     })
   }
@@ -128,23 +127,26 @@ export const LayoutRacaCor = ({ yAxisType }: Props) => {
         color: 'black',
         fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
         fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
-      },      
+      },
+      axisTick: {
+        show: false
+      },
       zlevel: 2,
-      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : null
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : 3000
     },
     yAxis: {
       type: 'category',
       data: dados_grafico_categoria ,
       axisLabel: {
-        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 11,
         color: 'black',
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 11,
         fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal'
       },
       axisTick: {
         show: false
       },
       zlevel: 2
-    },
+    }, 
     series: [
       {
         data: dados_grafico_categoria_quantidade,
@@ -156,8 +158,8 @@ export const LayoutRacaCor = ({ yAxisType }: Props) => {
   }
 
   return (
-    <Styled.Container isRacacor >
-      <p>Empregos Por Raça/Cor</p>
+    <Styled.Container >
+      <p>Empregos Por Setor</p>
       <Echarts
         className='grafito-tipo'
         option={option}

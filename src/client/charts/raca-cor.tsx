@@ -1,29 +1,29 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Echarts from 'echarts-for-react'
 
-import { ContextGlobal } from '../../../contexts/context'
-import { getDadosGraficos } from '../../../services/pinot'
-import { PadraoGraficos } from '../../../interfaces/graficos/padrao-graficos'
-import { EixoGrafico } from '../../../interfaces/graficos/eixos-grafico'
-import { Series } from '../../../interfaces/graficos/series'
+import { ContextGlobal } from '../../contexts/context'
+import { getDadosGraficos } from '../../services/pinot'
+import { PadraoGraficos } from '../../interfaces/graficos/padrao-graficos'
+import { EixoGrafico } from '../../interfaces/graficos/eixos-grafico'
+import { Series } from '../../interfaces/graficos/series'
 import * as Styled from './styled'
 
 type Props = PadraoGraficos & EixoGrafico
 
-export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
+export const LayoutRacaCor = ({ yAxisType }: Props) => {
 
   const context = useContext(ContextGlobal)
-  const [dadosPorte, setDadosPorte] = useState<any[]>([])
+  const [dadosRacaCor, setDadosRacaCor] = useState<any[]>([])
   const [widthTela, setWidthTela] = useState<number>(0)
 
   useEffect(() => {
 
     let cancel_set = false;
 
-    const getDadosMensal = async () => {
-      const response = await getDadosGraficos('porte', context)
+    const getDadosRacaCor = async () => {
+      const response = await getDadosGraficos('racacor', context)
       if(cancel_set) return
-      setDadosPorte(response)
+      setDadosRacaCor(response)
     }
 
     const get_widthTela = () => {
@@ -31,7 +31,7 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
       setWidthTela(window.innerWidth)
     }
 
-    getDadosMensal()
+    getDadosRacaCor()
     get_widthTela()
 
     return () => {cancel_set = true}
@@ -56,10 +56,9 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
   const dados_grafico_categoria_quantidade: Series[] = []
   const quantidade_colunas: number[] = []
 
-  if(dadosPorte !== undefined){
-    dadosPorte.forEach(arr => {
-      if(widthTela >= 320 && widthTela <= 768) dados_grafico_categoria.push(arr[0].replace(' ', '\n'))
-      else dados_grafico_categoria.push(arr[0])
+  if(dadosRacaCor !== undefined){
+    dadosRacaCor.forEach(arr => {
+      dados_grafico_categoria.push(arr[0])
       quantidade_colunas.push(arr[1])
     })
   }
@@ -128,26 +127,23 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
       axisLabel: {
         color: 'black',
         fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
-        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 12
-      },
-      axisTick: {
-        show: false
-      },
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 10 : 12
+      },      
       zlevel: 2,
-      minInterval: (widthTela >= 320 && widthTela <= 768) ? 30000 : null
+      minInterval: widthTela >= 320 && widthTela <= 768 ? 20000 : null
     },
     yAxis: {
       type: 'category',
       data: dados_grafico_categoria ,
       axisLabel: {
+        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 11,
         color: 'black',
-        fontSize: widthTela >= 320 && widthTela <= 768 ? 9 : 10,
-        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal',
+        fontWeight: widthTela >= 320 && widthTela <= 768 ? 'bold' : 'normal'
       },
       axisTick: {
         show: false
       },
-      zlevel: 2,
+      zlevel: 2
     },
     series: [
       {
@@ -160,8 +156,8 @@ export const LayoutPorteEmpresarial = ({ yAxisType }: Props) => {
   }
 
   return (
-    <Styled.Container>
-      <p>Porte Empresarial</p>
+    <Styled.Container isRacacor >
+      <p>Empregos Por Raça/Cor</p>
       <Echarts
         className='grafito-tipo'
         option={option}
