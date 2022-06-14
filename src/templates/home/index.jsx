@@ -8,7 +8,7 @@ import { LayoutPorteEmpresarial } from "../../components/graficos/all_graficos/p
 import { LayoutRacaCor } from "../../components/graficos/all_graficos/raca-cor"
 import { LayoutGraficoSetor } from "../../components/graficos/all_graficos/setor"
 import { Header } from "../../components/header"
-import { SaldoEmpregos } from "../../components/saldo-empregos"
+import { CreateBalanceJobs } from "../../client/create-balance-jobs"
 import { ContextGlobal } from "../../contexts/context"
 import { getDadosGraficos } from "../../services/pinot"
 import { CreateTable } from "../../components/tabela"
@@ -74,7 +74,7 @@ export const Home = () => {
     }
 
     <Filtros />
-    <SaldoEmpregos />
+    <CreateBalanceJobs />
 
     <section className="containerGraficos">
         <GraficoMensal />
