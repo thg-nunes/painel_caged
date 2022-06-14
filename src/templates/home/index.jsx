@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { DataHeader } from "../../components/dataHeader"
-import { Filtros } from "../../components/Filtros"
+import { AllFilters } from "../../client/create-filters"
 import { GraficoMensal } from "../../components/graficos/mensal"
 import { LayoutGraficoEscolaridade } from "../../components/graficos/all_graficos/grafico-escolaridade"
 import { LayoutGraficoPorSexo } from "../../components/graficos/all_graficos/grafico-porSexo"
@@ -73,7 +73,7 @@ export const Home = () => {
       </div>
     }
 
-    <Filtros />
+    <AllFilters />
     <CreateBalanceJobs />
 
     <section className="containerGraficos">
