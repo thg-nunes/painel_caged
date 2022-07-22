@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Echarts from 'echarts-for-react'
 
 import { ContextGlobal } from '../../contexts/context'
@@ -7,31 +7,31 @@ import { PadraoGraficos } from '../../interfaces/graficos/padrao-graficos'
 import { EixoGrafico } from '../../interfaces/graficos/eixos-grafico'
 import { Series } from '../../interfaces/graficos/series'
 import * as Styled from './styled'
+import { useQuery } from '@tanstack/react-query'
 
 type Props = PadraoGraficos & EixoGrafico
 
 export const LayoutRacaCor = ({ yAxisType }: Props) => {
 
   const context = useContext(ContextGlobal)
-  const [dadosRacaCor, setDadosRacaCor] = useState<any[]>([])
   const [widthTela, setWidthTela] = useState<number>(0)
+
+  const { data: dadosRacaCor } = useQuery(['racacor', context], async () => {
+    const response = await getDadosGraficos('racacor', context)
+    return response
+  }, {
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
 
   useEffect(() => {
 
     let cancel_set = false;
-
-    const getDadosRacaCor = async () => {
-      const response = await getDadosGraficos('racacor', context)
-      if(cancel_set) return
-      setDadosRacaCor(response)
-    }
 
     const get_widthTela = () => {
       if(cancel_set) return
       setWidthTela(window.innerWidth)
     }
 
-    getDadosRacaCor()
     get_widthTela()
 
     return () => {cancel_set = true}

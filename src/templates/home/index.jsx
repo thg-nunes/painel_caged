@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react"
+import { useContext } from "react"
 import { AllFilters } from "../../client/create-filters"
 import { GraficoMensal } from "../../client/charts/mensal"
 import { LayoutGraficoEscolaridade } from "../../client/charts/grafico-escolaridade"
@@ -12,55 +12,39 @@ import { DataHeader } from "../../client/dataHeader"
 import { CreateTable } from "../../components/tabela"
 import { LayoutDefaultChart } from "../../components/chart"
 import Loading from '../../gifs/loading.gif'
+import { useQuery } from "@tanstack/react-query"
 
 import './style.css'
 
 export const Home = () => {
 
   const context = useContext(ContextGlobal)
-  const [ocupacao, setOcupacao] = useState([])
-  const [municipio, setMunicipio] = useState([])
-  const [subclasse, setSubclasse] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
-  
-  useEffect(() => {
 
-    let cancel_set = false
+  const { data: cbo2002ocupacao } = useQuery(['cbo2002ocupacao', context], async () => {
+    const response = await getDadosGraficos('cbo2002ocupacao', context)
+    return response
+  }, {
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
+
+  const { data: municipio } = useQuery(['municipio', context], async () => {
+    const response = await getDadosGraficos('municipio', context)
+    return response
+  }, {
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
+
+  const { data: subclasse, isLoading } = useQuery(['subclasse', context], async () => {
+    const response = await getDadosGraficos('subclasse', context)
     
-    const getDadosOcupacao =async () => {
-      const response = await getDadosGraficos('cbo2002ocupacao', context)
-        if(cancel_set) return
-        setOcupacao(response)
-    }
-
-    const getDadosMunicipio =async () => {
-      const response = await getDadosGraficos('municipio', context)
-      if(cancel_set) return   
-      setMunicipio(response)
-    }
-
-    const getDadosSubclasse =async () => {
-      const response = await getDadosGraficos('subclasse', context)
-      if(cancel_set) return
-      setSubclasse(response)
-      setIsLoading(false)
-      window.document.body.style.overflow = "auto"
-      window.document.body.scroll({top: 0})
-    }
+    window.document.body.style.overflow = "auto"
+    window.document.body.scroll({top: 0})
     
-    const set_states = () => {
-      setIsLoading(true)
-    }
-
-    window.document.body.style.overflow = "hidden"
-
-    getDadosOcupacao()
-    getDadosMunicipio()
-    getDadosSubclasse()
-    set_states()
-    return () => cancel_set = true
-  }, [context])
-
+    return response
+  }, {
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
+    
   return <>
     <Header>
       <DataHeader />
@@ -97,9 +81,9 @@ export const Home = () => {
         </div>
 
           <section className="containerTabelas">
-            <CreateTable Titulo='Ocupação' dados={ocupacao} />
-            <CreateTable className='municipio' Titulo='Município' dados={municipio} />
-            <CreateTable Titulo='Subclasse' dados={subclasse} />
+            {cbo2002ocupacao && <CreateTable Titulo='Ocupação' dados={cbo2002ocupacao} />}
+            {municipio && <CreateTable className='municipio' Titulo='Município' dados={municipio} />}
+            {subclasse && <CreateTable Titulo='Subclasse' dados={subclasse} />}
           </section>
     </section>  
   </>

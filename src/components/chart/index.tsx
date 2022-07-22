@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
 import Echarts from 'echarts-for-react'
 
 import { ContextGlobal } from '../../contexts/context'
@@ -13,25 +14,25 @@ type Props = PadraoGraficos & EixoGrafico
 export const LayoutDefaultChart = ({ yAxisType, tipoGrafico, titulo_grafico }: Props) => {
 
   const context = useContext(ContextGlobal)
-  const [dataChart, setDataChart] = useState<any[]>([])
   const [widthTela, setWidthTela] = useState<number>(0)
+
+  const { data: dataChart } = useQuery([tipoGrafico, context],async () => {
+    const response = await getDadosGraficos(tipoGrafico, context)
+    return response
+  }, {
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
 
   useEffect(() => {
 
     let cancel_set = false;
-
-    const getDataChart = async () => {
-      const response = await getDadosGraficos(tipoGrafico, context)
-      if(cancel_set) return
-      setDataChart(response)
-    }
 
     const get_widthTela = () => {
       if(cancel_set) return
       setWidthTela(window.innerWidth)
     }
 
-    getDataChart()
+    // getDataChart()
     get_widthTela()
     return () => {cancel_set = true}
   }, [context])
