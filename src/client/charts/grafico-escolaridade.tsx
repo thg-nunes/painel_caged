@@ -7,31 +7,31 @@ import { PadraoGraficos } from '../../interfaces/graficos/padrao-graficos'
 import { EixoGrafico } from '../../interfaces/graficos/eixos-grafico'
 import { Series } from '../../interfaces/graficos/series'
 import * as Styled from './styled'
+import { useQuery } from '@tanstack/react-query'
 
 type Props = PadraoGraficos & EixoGrafico
 
 export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
 
   const context = useContext(ContextGlobal)
-  const [dadosEscolaridade, setDadosEscolaridade] = useState<any[]>([])
   const [widthTela, setWidthTela] = useState<number>(0)
+
+  const { data: dadosEscolaridade, isLoading } = useQuery(['graudeinstrucao', context],  async () => {
+    const response = await getDadosGraficos('graudeinstrucao', context)
+    return response
+  }, {
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
 
   useEffect(() => {
 
     let cancel_set = false;
-
-    const getDadosEscolaridade = async () => {
-      const response = await getDadosGraficos('graudeinstrucao', context)
-      if(cancel_set) return
-      setDadosEscolaridade(response)
-    }
 
     const get_widthTela = () => {
       if(cancel_set) return
       setWidthTela(window.innerWidth)
     }
 
-    getDadosEscolaridade()
     get_widthTela()
 
     return () => {cancel_set = true}

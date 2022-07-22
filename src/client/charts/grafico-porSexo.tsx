@@ -7,31 +7,30 @@ import { PadraoGraficos } from '../../interfaces/graficos/padrao-graficos'
 import { EixoGrafico } from '../../interfaces/graficos/eixos-grafico'
 import { Series } from '../../interfaces/graficos/series'
 import * as Styled from './styled'
+import { useQuery } from '@tanstack/react-query'
 
 type Props = PadraoGraficos & EixoGrafico
 
 export const LayoutGraficoPorSexo = ({ yAxisType }: Props) => {
 
   const context = useContext(ContextGlobal)
-  const [dadosSexo, setDadosSexo] = useState<any[]>([])
   const [widthTela, setWidthTela] = useState<number>(0)
+
+  const { data: dataSexo, isLoading } = useQuery(['sexo', context], async () => {
+    const response = await getDadosGraficos('sexo', context)
+    return response
+  }, {
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
 
   useEffect(() => {
 
     let cancel_set = false;
-
-    const getDadosSexo = async () => {
-      const response = await getDadosGraficos('sexo', context)
-      if(cancel_set) return
-      setDadosSexo(response)
-    }
-
     const get_widthTela = () => {
       if(cancel_set) return
       setWidthTela(window.innerWidth)
     }
 
-    getDadosSexo()
     get_widthTela()
 
     return () => {cancel_set = true}
@@ -56,8 +55,8 @@ export const LayoutGraficoPorSexo = ({ yAxisType }: Props) => {
   const dados_grafico_categoria_quantidade: Series[] = []
   const quantidade_colunas: number[] = []
 
-  if(dadosSexo !== undefined){
-    dadosSexo.forEach(arr => {
+  if(!isLoading && dataSexo){
+    dataSexo.forEach(arr => {
       dados_grafico_categoria.push(arr[0])
       quantidade_colunas.push(arr[1])
     })
