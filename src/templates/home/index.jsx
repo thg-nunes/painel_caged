@@ -1,4 +1,3 @@
-import { useContext } from "react"
 import { AllFilters } from "../../client/create-filters"
 import { GraficoMensal } from "../../client/charts/mensal"
 import { LayoutGraficoEscolaridade } from "../../client/charts/grafico-escolaridade"
@@ -6,45 +5,20 @@ import { LayoutGraficoPorSexo } from "../../client/charts/grafico-porSexo"
 import { LayoutRacaCor } from "../../client/charts/raca-cor"
 import { Header } from "../../components/header"
 import { CreateBalanceJobs } from "../../client/create-balance-jobs"
-import { ContextGlobal } from "../../contexts/context"
-import { getDadosGraficos } from "../../services/pinot"
 import { DataHeader } from "../../client/dataHeader"
 import { CreateTable } from "../../components/tabela"
 import { LayoutDefaultChart } from "../../components/chart"
 import Loading from '../../gifs/loading.gif'
-import { useQuery } from "@tanstack/react-query"
+import { useMyQyery } from "../../hooks/useMyQuery"
 
 import './style.css'
 
 export const Home = () => {
 
-  const context = useContext(ContextGlobal)
+  const { data: cbo2002ocupacao } = useMyQyery('cbo2002ocupacao')
+  const { data: municipio } = useMyQyery('municipio')
+  const { data: subclasse, isLoading } = useMyQyery('subclasse')
 
-  const { data: cbo2002ocupacao } = useQuery(['cbo2002ocupacao', context], async () => {
-    const response = await getDadosGraficos('cbo2002ocupacao', context)
-    return response
-  }, {
-    staleTime: 1000 * 60 * 10 // 10 minutes
-  })
-
-  const { data: municipio } = useQuery(['municipio', context], async () => {
-    const response = await getDadosGraficos('municipio', context)
-    return response
-  }, {
-    staleTime: 1000 * 60 * 10 // 10 minutes
-  })
-
-  const { data: subclasse, isLoading } = useQuery(['subclasse', context], async () => {
-    const response = await getDadosGraficos('subclasse', context)
-    
-    window.document.body.style.overflow = "auto"
-    window.document.body.scroll({top: 0})
-    
-    return response
-  }, {
-    staleTime: 1000 * 60 * 10 // 10 minutes
-  })
-    
   return <>
     <Header>
       <DataHeader />

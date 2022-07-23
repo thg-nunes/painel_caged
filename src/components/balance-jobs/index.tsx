@@ -9,7 +9,7 @@ export const BalanceJobs = ({quantityValue, textDescription, isGeneralBalance = 
   return (
     <div className={`quantidadeSaldoEmpregos ${isGeneralBalance !== '' ? isGeneralBalance : null}`}>
       <p>{textDescription}</p>
-      <p>{quantityValue}</p>
+      <p>{quantityValue.toLocaleString()}</p>
     </div>
   )
 }

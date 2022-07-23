@@ -1,9 +1,7 @@
 import Echarts from 'echarts-for-react'
 import { useContext, useEffect, useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
-
 import { ContextGlobal } from '../../../contexts/context'
-import { getDadosGraficos } from '../../../services/pinot'
+import { useMyQyery } from '../../../hooks/useMyQuery'
 import './style.css'
 
 export const GraficoMensal = () => {
@@ -11,31 +9,31 @@ export const GraficoMensal = () => {
   const context = useContext(ContextGlobal)
   const [allMeses] = useState<string[]>(['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'])
   const [mesesQuantidadeDados, setMesesQuantidadeDados] = useState<number[]>([])
+  const [dadosMensal, setDadosMensal] = useState<any[]>([])
   const [marginBottomGrafico, setMarginBottomGrafico] = useState<string>('')
   const [marginRightGrafico, setMarginRightGrafico] = useState<string>('')
   const [widthTela, setWidthTela] = useState<number>(0)
 
-  const { data: dadosMensal, isLoading } = useQuery(['data', context], async () => {
-    const response = await getDadosGraficos('data', context)
-    const meses_com_dados: string[] = []
-    const quantidade_dados_meses: number[] = []
-
-    if(response.length !== 0) {
-      for (let i = 0; i < response.length; i++) {
-        meses_com_dados.push(allMeses[i])  
-        quantidade_dados_meses.push(response[i][1])        
-      }
-    }
-    
-    setMesesQuantidadeDados(quantidade_dados_meses)
-    return response
-  }, {
-    staleTime: 1000 * 60 * 10 // 10 minutes
-  })
+  const { data } = useMyQyery('data')
 
   useEffect(() => {
 
     let cancel_set = false
+
+    const generateData = async () => {
+      const meses_com_dados: string[] = []
+      const quantidade_dados_meses: number[] = []
+
+      if(data.length !== 0) {
+        for (let i = 0; i < data.length; i++) {
+          meses_com_dados.push(allMeses[i])  
+          quantidade_dados_meses.push(data[i][1])        
+        }
+      }
+      
+      setMesesQuantidadeDados(quantidade_dados_meses)
+      setDadosMensal(data)
+    }
     
     const tamanhoTela = () => {
       if(window.innerWidth > 1366) setMarginBottomGrafico('18%')
@@ -57,11 +55,12 @@ export const GraficoMensal = () => {
         setWidthTela(window.innerWidth)
       }
 
+    generateData()
     tamanhoTela()
     get_widthTela()
 
     return () => {cancel_set = true}
-  }, [context])
+  }, [context, data])
 
   const valores_colunas: number[] = []
   if(dadosMensal !== undefined) {

@@ -2,12 +2,11 @@ import { useContext, useEffect, useState } from 'react'
 import Echarts from 'echarts-for-react'
 
 import { ContextGlobal } from '../../contexts/context'
-import { getDadosGraficos } from '../../services/pinot'
 import { PadraoGraficos } from '../../interfaces/graficos/padrao-graficos'
 import { EixoGrafico } from '../../interfaces/graficos/eixos-grafico'
 import { Series } from '../../interfaces/graficos/series'
 import * as Styled from './styled'
-import { useQuery } from '@tanstack/react-query'
+import { useMyQyery } from '../../hooks/useMyQuery'
 
 type Props = PadraoGraficos & EixoGrafico
 
@@ -16,12 +15,7 @@ export const LayoutGraficoEscolaridade = ({ yAxisType }: Props) => {
   const context = useContext(ContextGlobal)
   const [widthTela, setWidthTela] = useState<number>(0)
 
-  const { data: dadosEscolaridade, isLoading } = useQuery(['graudeinstrucao', context],  async () => {
-    const response = await getDadosGraficos('graudeinstrucao', context)
-    return response
-  }, {
-    staleTime: 1000 * 60 * 10 // 10 minutes
-  })
+  const { data: dadosEscolaridade } = useMyQyery('graudeinstrucao')
 
   useEffect(() => {
 
