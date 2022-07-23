@@ -1,4 +1,5 @@
-import { useContext, useEffect, useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { useContext } from 'react'
 import { BalanceJobs } from '../../components/balance-jobs'
 import { ContextGlobal } from '../../contexts/context'
 import { getDadosGraficos } from '../../services/pinot'
@@ -7,31 +8,20 @@ import './style.css'
 export const CreateBalanceJobs = () => {
 
   const context = useContext(ContextGlobal)
-  const [dados_saldoGeral, setDadosSaldoGeral] = useState<number>(0)
-  const [dados_saldoMpe, setDadosSaldoMpe] = useState<number>(0)
 
-  useEffect(() => {
+  const { data: dados_saldoGeral } = useQuery(['saldo_geral', context], async () => {
+    const response = await getDadosGraficos('saldo_geral', context)
+    return response.toLocaleString()
+  }, {
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
 
-    let cancel_set = false
-
-    const getSaldoGeral = async () => {
-      const response = await getDadosGraficos('saldo_geral', context)
-      if(cancel_set) return
-      setDadosSaldoGeral(response.toLocaleString())
-    }
-
-    const getSaldoMpe = async () => {
-      const response = await getDadosGraficos('saldo_mpe', context)
-      if(cancel_set) return
-      setDadosSaldoMpe(response.toLocaleString())
-    }
-
-    getSaldoGeral()
-    getSaldoMpe()
-
-    return () => { cancel_set = true }
-    
-  }, [context])
+  const { data: dados_saldoMpe } = useQuery(['saldo_mpe', context], async () => {
+    const response = await getDadosGraficos('saldo_mpe', context)
+    return response.toLocaleString()
+  }, {
+    staleTime: 1000 * 60 * 10 // 10 minutes
+  })
 
   return (
     <div className='containerSaldoEmpregos'>
