@@ -48,10 +48,6 @@
   border-right: 0;
 }
 
-.municipio {
-  margin: 0 2rem;
-}
-
 .stylesTables table thead tr {
   background: rgb(0, 109, 119, .7);
   color: white;

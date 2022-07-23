@@ -26,15 +26,15 @@ export const GraficoMensal = () => {
 
       if(data.length !== 0) {
         for (let i = 0; i < data.length; i++) {
-          meses_com_dados.push(allMeses[i])  
-          quantidade_dados_meses.push(data[i][1])        
+          meses_com_dados.push(allMeses[i])
+          quantidade_dados_meses.push(data[i][1])
         }
       }
-      
+
       setMesesQuantidadeDados(quantidade_dados_meses)
       setDadosMensal(data)
     }
-    
+
     const tamanhoTela = () => {
       if(window.innerWidth > 1366) setMarginBottomGrafico('18%')
       if(window.innerWidth >= 1024 || window.innerWidth <= 1366) {
@@ -88,7 +88,7 @@ export const GraficoMensal = () => {
             borderWidth: 1.5,
           },
         },
-        magicType: { 
+        magicType: {
           show: true,
           title: ' ',
           type: ['line'],

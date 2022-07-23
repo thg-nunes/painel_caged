@@ -1,13 +1,13 @@
 import { AllFilters } from "../../client/create-filters"
 import { GraficoMensal } from "../../client/charts/mensal"
-import { LayoutGraficoEscolaridade } from "../../client/charts/grafico-escolaridade"
-import { LayoutGraficoPorSexo } from "../../client/charts/grafico-porSexo"
-import { LayoutRacaCor } from "../../client/charts/raca-cor"
 import { Header } from "../../components/header"
 import { CreateBalanceJobs } from "../../client/create-balance-jobs"
 import { DataHeader } from "../../client/dataHeader"
 import { CreateTable } from "../../components/tabela"
 import { LayoutDefaultChart } from "../../components/chart"
+import { LayoutSchoolingChart } from "../../client/charts/schoolingChart/shoolingChart"
+import { LayoutSexChart } from "../../client/charts/sexChart/grafico-porSexo"
+import { LayoutColorRaceChart } from "../../client/charts/colorRaceChart/colorRaceChart"
 import Loading from '../../gifs/loading.gif'
 import { useMyQyery } from "../../hooks/useMyQuery"
 
@@ -38,16 +38,16 @@ export const Home = () => {
         <div className="containerGraficosClassificacao">
           <section className="containerGraficosTipo">
             <LayoutDefaultChart tipoGrafico='porte' titulo_grafico='Porte Empresarial'/>
-            <LayoutRacaCor />
+            <LayoutColorRaceChart />
             <LayoutDefaultChart tipoGrafico='setor' titulo_grafico='Empregos Por Setor'/>
-          </section> 
+          </section>
 
           <section className="containerGraficosHorizontal">
-            <LayoutGraficoPorSexo 
+            <LayoutSexChart
               xAxisType="value"
               yAxisType="category"
-            /> 
-            <LayoutGraficoEscolaridade 
+            />
+            <LayoutSchoolingChart
               xAxisType="value"
               yAxisType="category"
               />
@@ -59,6 +59,6 @@ export const Home = () => {
             {municipio && <CreateTable className='municipio' Titulo='Município' dados={municipio} />}
             {subclasse && <CreateTable Titulo='Subclasse' dados={subclasse} />}
           </section>
-    </section>  
+    </section>
   </>
 }

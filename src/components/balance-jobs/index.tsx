@@ -4,7 +4,7 @@ type DataToBalanceComponent = {
   isGeneralBalance?: string
 }
 
-export const BalanceJobs = ({quantityValue, textDescription, isGeneralBalance = ''}:DataToBalanceComponent) => {
+export const BalanceJobs = ({quantityValue = 0, textDescription, isGeneralBalance = ''}:DataToBalanceComponent) => {
 
   return (
     <div className={`quantidadeSaldoEmpregos ${isGeneralBalance !== '' ? isGeneralBalance : null}`}>

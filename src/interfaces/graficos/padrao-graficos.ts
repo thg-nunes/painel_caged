@@ -3,6 +3,6 @@ export type PadraoGraficos = {
   titulo_grafico: string
   data?: any[]
   isEscolaridade?: boolean
-  tipoGrafico?: string
+  tipoGrafico: string
   className?: string
 }
