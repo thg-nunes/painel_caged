@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import logo from './Governo-Maranhao-MA.jpg'
+import logo from '../../assets/Governo-Maranhao-MA.png'
 import './style.css'
 
 export const DataHeader = () => {
