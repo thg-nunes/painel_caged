@@ -4,14 +4,14 @@
   align-items: center;
   width: 80%;
   max-width: 1366px;
-  height: 100%;
+  max-height: 6rem;
+  overflow: hidden;
   margin: auto;
   padding: 1rem 0;
 }
 
 .data .logo {
-  width: 50px;
-  border-radius: 5px;
+  width: 100px;
 }
 
 .header-mobile .menu-mobile {
