@@ -4,8 +4,8 @@ const url_api = process.env.REACT_APP_BACKEND; //'http://dados.jucema.ma.gov.br/
 
 export const getDadosGraficos = async (classificacao, filtros) => {
   return await axios({
-    method: 'POST', 
-    url: `${url_api}/caged/dadosGraficos`, 
+    method: 'POST',
+    url: `${url_api}/caged/dadosGraficos`,
     data: {
       classificacao,
       filtros
