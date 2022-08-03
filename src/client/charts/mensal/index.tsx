@@ -69,6 +69,19 @@ export const GraficoMensal = () => {
     }
   }
 
+  let intervalMonths: string[] = []
+
+  if(context.state.data.length) {
+    console.log(context.state.data)
+    const min_month = Math.min(...context.state.data) - 1
+    const max_month = Math.max(...context.state.data)
+    const interval_months = allMeses.slice((min_month), (max_month))
+
+    console.log(min_month, max_month)
+
+    intervalMonths = interval_months
+  }
+
   const option = {
     tooltip: {
       trigger: 'axis',
@@ -120,7 +133,9 @@ export const GraficoMensal = () => {
     },
     xAxis: {
       type: 'category',
-      data: context.state.data == '' ? ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'] : [context.state.data[0].mes],
+      data: context.state.data.length === 1 ? [allMeses[context.state.data[0] - 1]] : (
+        intervalMonths.length ? [...intervalMonths] : ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ']
+      ),
       axisLabel: {
         color: 'black',
         fontWeight: 'bold',
