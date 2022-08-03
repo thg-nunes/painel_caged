@@ -1,7 +1,7 @@
 const initial_date = new Date()
 
 export const estadoGlobal = {
-  data: '',
+  data: [],
   uf: [{value: 'uf', label: 'Maranhão'}],
   municipio: '',
   porte: '',

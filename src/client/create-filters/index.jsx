@@ -22,8 +22,9 @@ export const AllFilters = () => {
   const [filtrosGrauInstrucao, setFiltrosGrauInstrucao] = useState([])
   const [filtrosPorSexo, setFiltrosPorSexo] = useState([])
   const [filtrosSubclasse, setFiltrosSubclasse] = useState([])
+  const [monthleFiltersSelects, setMonthleFiltersSelects] = useState([])
 
-  const constroi_filtros = (arr_filtros, filtro) => { 
+  const constroi_filtros = (arr_filtros, filtro) => {
     let filtros_modificados = []
 
     for (let index = 0; index < arr_filtros.length; index++) {
@@ -41,8 +42,8 @@ export const AllFilters = () => {
       const response_getFIltrosUf = await getDataFilter(context, 'uf')
       const filtros_validos = constroi_filtros(response_getFIltrosUf.resultTable.rows, 'uf')
       setFiltrosUf(filtros_validos)
-    } 
-    
+    }
+
     const getFiltrosMunicipio = async () => {
       if(context.state.uf !== '') {
         const response_getFIltrosMunicipio = await getDataFilter(context, 'municipio')
@@ -93,20 +94,26 @@ export const AllFilters = () => {
       setFiltrosSubclasse(filtros_validos)
     }
 
-    const filtros_meses = async () => {
-      let meses = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
-      let filtromensal = []
+    const filtros_meses = () => {
+      const allMonths = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
+      const allValidMonths = []
 
-      const meses_com_dados = await getDadosGraficos('data', context)
-    
-      for (let i = 0; i < meses_com_dados.length; i++) {
-        filtromensal.push({
-          value:'data',
-          label: meses[i]
+      if(context.state.ano < new Date().getFullYear()) {
+        allMonths.forEach((month, index) => {
+          allValidMonths.push({
+            Country: month,
+            label: index + 1
+          })
         })
+      } else {
+        for (let monthIndex = 0; monthIndex <= new Date().getMonth(); monthIndex++) {
+          allValidMonths.push({
+            label: allMonths[monthIndex],
+            value: monthIndex + 1
+          })
+        }
       }
-
-      setFiltrosMensal(filtromensal)
+      setFiltrosMensal(allValidMonths)
     }
 
     const filtros_ano = () => {
@@ -132,7 +139,7 @@ export const AllFilters = () => {
     getFiltrosRacacor()
     getFiltrosGrauInstrucao()
     getFiltrosPorSexo()
-    getFiltrosSubclasse() 
+    getFiltrosSubclasse()
     filtros_meses()
     filtros_ano()
   }, [context])
@@ -150,12 +157,19 @@ export const AllFilters = () => {
           singleSelect={true}
           options={filtrosAnual}
         />
-        <Filter
-          descriptionFilter='Mês'
-          otherClassNameToMultiselectComponent='multiselect'
-          actionType={actions.MUDAR_MES}
-          options={filtrosMensal}
-        />
+        <section className='container-filter'>
+          <p>Mês</p>
+          <Multiselect
+            className="multiselect filter"
+            displayValue='label'
+            onRemove={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
+            onSelect={(e) => context.dispatch({type: actions.MUDAR_MES, payload: e})}
+            placeholder='Selecionar'
+            selectionLimit={2}
+            options={filtrosMensal}
+            showCheckbox
+          />
+        </section>
         <section className='container-filter'>
           <p>UF</p>
           <Multiselect

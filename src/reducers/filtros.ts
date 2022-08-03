@@ -37,51 +37,13 @@ export const reducerFilter = (state, action) => {
       }
 
     case actions.MUDAR_MES:
-      let meses: Meses[] = []
-      for (let i = 0; i < action.payload.length; i++) {
-        switch (action.payload[i].label) {
-          case 'Janeiro':
-            meses.push({value: 'data', data_inicio:`-01-01`, data_fim: `-01-31`, mes: action.payload[i].label })
-            break
-          case 'Fevereiro':
-            meses.push({value: 'data', data_inicio: `-02-01`, data_fim: `-02-31`, mes: action.payload[i].label })
-            break
-          case 'Março':
-            meses.push({value: 'data', data_inicio: `-03-01`, data_fim: `-03-31`, mes: action.payload[i].label })
-            break
-          case 'Abril':
-            meses.push({value: 'data', data_inicio: `-04-01`, data_fim: `-04-31`, mes: action.payload[i].label })
-            break
-          case 'Maio':
-            meses.push({value: 'data', data_inicio: `-05-01`, data_fim: `-05-31`, mes: action.payload[i].label })
-            break
-          case 'Junho':
-            meses.push({value: 'data', data_inicio: `-06-01`, data_fim: `-06-31`, mes: action.payload[i].label })
-            break
-          case 'Julho':
-            meses.push({value: 'data', data_inicio: `-07-01`, data_fim: `-07-31`, mes: action.payload[i].label })
-            break
-          case 'Agosto':
-            meses.push({value: 'data', data_inicio: `-08-01`, data_fim: `-08-31`, mes: action.payload[i].label })
-            break
-          case 'Setembro':
-            meses.push({value: 'data', data_inicio: `-09-01`, data_fim: `-09-31`, mes: action.payload[i].label })
-            break
-          case 'Outubro':
-            meses.push({value: 'data', data_inicio: `-10-01`, data_fim: `-10-31`, mes: action.payload[i].label })
-            break
-          case 'Novembro':
-            meses.push({value: 'data', data_inicio: `-11-01`, data_fim: `-11-31`, mes: action.payload[i].label })
-            break
-          case 'Dezembro':
-            meses.push({value: 'data', data_inicio: `-12-01`, data_fim: `-12-31`, mes: action.payload[i].label })
-            break
-        }
-      }
       if(action.payload.length == 0){
-        return{...state, data: ''}
+        return{...state, data: []}
       } else {
-        return {...state, data: meses}
+        const months_selecteds = action.payload.map(month => {
+          return month.value
+        })
+        return {...state, data: [...months_selecteds] }
       }
 
     case actions.MUDAR_PORTE:
