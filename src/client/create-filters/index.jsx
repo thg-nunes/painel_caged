@@ -101,8 +101,8 @@ export const AllFilters = () => {
       if(context.state.ano < new Date().getFullYear()) {
         allMonths.forEach((month, index) => {
           allValidMonths.push({
-            Country: month,
-            label: index + 1
+            value: index + 1,
+            label: month
           })
         })
       } else {
