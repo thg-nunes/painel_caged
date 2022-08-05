@@ -44,6 +44,36 @@
   margin: 0 .5rem;
 }
 
+.containerMultiSelect .container-filter p {
+  position: relative;
+}
+
+.containerMultiSelect .container-filter .infor {
+  display: inline-block;
+  position: absolute;
+  margin-left: .5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  color: white;
+  text-align: center;
+  font-size: 1.4rem;
+  background: black;
+  cursor: pointer;
+}
+
+.containerMultiSelect .container-filter .text-infor {
+  position: absolute;
+  font-size: 1.1rem;
+  margin-top: -2.5rem;
+  margin-left: 2.2rem;
+  transition: 300ms all ease-in-out;
+  background: #0087D7;
+  color: white;
+  padding: .35rem;
+  border-radius: 5px;
+}
+
 .containerMultiSelect .container-filter .filter div:nth-child(1) span {
   position: relative;
   display: flex;

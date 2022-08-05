@@ -22,7 +22,7 @@ export const AllFilters = () => {
   const [filtrosGrauInstrucao, setFiltrosGrauInstrucao] = useState([])
   const [filtrosPorSexo, setFiltrosPorSexo] = useState([])
   const [filtrosSubclasse, setFiltrosSubclasse] = useState([])
-  const [monthleFiltersSelects, setMonthleFiltersSelects] = useState([])
+  const [infor, setInfor] = useState(false)
 
   const constroi_filtros = (arr_filtros, filtro) => {
     let filtros_modificados = []
@@ -158,7 +158,19 @@ export const AllFilters = () => {
           options={filtrosAnual}
         />
         <section className='container-filter'>
-          <p>Mês</p>
+          <p>
+            Mês
+            {
+              <span
+                className='infor'
+                onMouseOver={() => setInfor(true)}
+                onMouseOut={() => setInfor(false)}
+              >?</span>
+            }
+            {infor && (
+              <span className='text-infor'>Ao selecionar 2 meses, os resultados serão baseados no intervalo entre.</span>
+            )}
+          </p>
           <Multiselect
             className="multiselect filter"
             displayValue='label'
