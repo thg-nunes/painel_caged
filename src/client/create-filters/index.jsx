@@ -168,7 +168,7 @@ export const AllFilters = () => {
               >?</span>
             }
             {infor && (
-              <span className='text-infor'>Ao selecionar 2 meses, os resultados serão baseados no intervalo entre.</span>
+              <span className='text-infor'>Ao selecionar 2 meses, os resultados serão baseados no intervalo entre eles.</span>
             )}
           </p>
           <Multiselect
